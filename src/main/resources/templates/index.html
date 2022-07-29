@@ -169,14 +169,14 @@ function mkmarker(station,chger,map,markers) {
 		locations.latlng = new kakao.maps.LatLng(v.lat, v.lng);
 		
 		// 마커 이미지의 이미지 주소
-		var imageSrc = 'img/marker/1st/1.png';
+		var imageSrc = 'img/markers/1.png';
 		
 		if (Math.max.apply(Math,output) < 40) {
-			imageSrc = 'img/marker/1st/1.png';
+			imageSrc = 'img/markers/1.png';
 		}else if(Math.max.apply(Math,output) >= 100) {
-			imageSrc = 'img/marker/1st/3.png';
+			imageSrc = 'img/markers/3.png';
 		}else if(Math.max.apply(Math,output) >= 40) {
-			imageSrc = 'img/marker/1st/2.png';
+			imageSrc = 'img/markers/2.png';
 		}
 		
 		// 마커 이미지 크기
