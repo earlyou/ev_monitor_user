@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.finalproject.mapper.CarModelMapper">
+<mapper namespace="com.user.mapper.CarModelMapper">
 	
 	<insert id="insert" parameterType="carmodelVO">
 		INSERT INTO carmodel VALUES (#{carmodelid},#{mname},#{mbrand},#{carimg},#{crange},#{batterysize},#{fptid},#{sptid})

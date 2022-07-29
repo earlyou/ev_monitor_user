@@ -81,7 +81,7 @@ function getstation(station) {
  		parkingFree = null;
  	}
 	$.ajax({
-		url:'/test/getstation',
+		url:'/evcsmonitor/getstation',
 		data:{'filter':filter,'carmodelid':carmodelid,'adapter':adapter,'bnm':bnm,'chargespeed':chargespeed,'chargerstat':chargerstat,'parkingFree':parkingFree},
 		async: false,
 		success:function(data){
@@ -247,7 +247,7 @@ function mkmarker(station,chger,map,markers) {
 function getchger(chger){
 	var start = new Date();
 	$.ajax({
-		url:'/test/getchger',
+		url:'/evcsmonitor/getchger',
 		data:{},
 		async:false,
 		success:function(data){
