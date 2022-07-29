@@ -1,7 +1,5 @@
 package com.user.vo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,14 +12,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class StationVO {
-	
-	private int statId;
+	// Attributes
+	private String statId;
 	private String statNm;
 	private String addr;
 	private String location;
-	private int zcode;
-	private Double lat;
-	private Double lng;
+	private String zcode;
+	private String lat;
+	private String lng;
 	private String useTime;
 	private String parkingFree;
 	private String note;
@@ -33,7 +31,7 @@ public class StationVO {
 	private String busiCall;
 	
 	
-	public StationVO(String statNm, String addr, String location, int zcode, Double lat, Double lng, String useTime,
+	public StationVO(String statNm, String addr, String location, String zcode, String lat, String lng, String useTime,
 			String parkingFree, String note, String limitYn, String limitDetail, String busiId, String bnm,
 			String busiNm, String busiCall) {
 		this.statNm = statNm;

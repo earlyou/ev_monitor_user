@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.user.frame.Biz;
 import com.user.mapper.StationMapper;
+import com.user.vo.FilterVO;
 import com.user.vo.StationVO;
 
 @Service
@@ -43,9 +44,8 @@ public class StationBiz implements Biz<Integer, StationVO>{
 		return sdao.selectall();
 	}
 
-	
-
-
-	
+	public List<StationVO> selectfilter(FilterVO obj) throws Exception{
+		return sdao.selectfilter(obj);
+	}
 	
 }
