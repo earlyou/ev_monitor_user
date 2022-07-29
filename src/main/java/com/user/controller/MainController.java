@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
 	
-	@RequestMapping("/index")
-	public String index(Model m) {
+	@RequestMapping("/")
+	public String main(Model m) {
+		m.addAttribute("left", "left");
 		return "index";
 	}
 	
@@ -27,6 +28,21 @@ public class MainController {
 			session.invalidate();
 		}
 		return "index";
+	}
+	
+	@RequestMapping("/example/elements")
+	public String elements() {
+		return "example/elements";
+	}
+	
+	@RequestMapping("/example/generic")
+	public String generic() {
+		return "example/generic";
+	}
+	
+	@RequestMapping("/example/index")
+	public String index() {
+		return "example/index";
 	}
 
 }
