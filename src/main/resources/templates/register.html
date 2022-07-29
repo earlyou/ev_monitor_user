@@ -1,0 +1,156 @@
+<meta charset="utf-8">
+<link href="/css/member.css" rel="stylesheet">
+
+<style>
+#iuid {
+	color: white
+}
+#iemail {
+	color: white
+}
+#iphone {
+	color: white
+}
+</style>
+<script>
+	(function() {
+		'use strict'
+		const forms = document.querySelectorAll('.requires-validation')
+		Array.from(forms).forEach(function(form) {
+			form.addEventListener('submit', function(event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+			}, false)
+		})
+	})
+
+	/* ajax 이용해서 사용가능한 아이디, 불가능한 아이디 띄우기 */
+	$(document).ready(function() {
+		$('#uid').keyup(function() {
+			var inputuid = $(this).val();
+			$.ajax({
+				url : '/checkuid',
+				data : {
+					uid : inputuid
+				},
+				success : function(result) {
+					if (result == '1') {
+						$('#iuid').text('사용불가능한 아이디입니다');
+						/*  alert("사용 불가능한 아이디입니다")  */
+					} else {
+						$('#iuid').text('사용가능한 아이디입니다.');
+						/* alert("사용 가능한 아이디입니다.") */
+					}
+				}
+			});
+		});
+		$('#email').keyup(function() {
+				var inputemail = $(this).val();
+				$.ajax({
+					url : '/checkemail',
+					data : {
+						email : inputemail
+					},
+					success : function(result) {
+						if (result == '1') {
+							$('#iemail').text('사용중인 이메일입니다');
+							
+						} else {
+							$('#iemail').text('사용가능한 이메일입니다');
+				
+						}
+					}
+				});
+			});
+				$('#phone').keyup(function() {
+					var inputphone = $(this).val();
+					$.ajax({
+						url : '/checkphone',
+						data : {
+							phone : inputphone
+						},
+						success : function(result) {
+							if (result == '1') {
+								$('#iphone').text('등록불가한 폰번호입니다');
+						
+							} else {
+								$('#iphone').text('사용가능한 폰번호입니다');
+						
+							}
+						}
+					});
+				});
+					
+		
+
+		$('#register_bt').click(function() {
+
+			$('#register_form').attr({
+				'method' : 'post',
+				'action' : '/registerimpl'
+			});
+			$('#register_form').submit();
+		});
+
+	});
+</script>
+  <section class="page-section">
+	<div class="container">
+		<div class="form-body">
+			<div class="row">
+				<div class="form-holder">
+					<div class="form-content">
+						<div class="form-items">
+							<h3>Register Today</h3>
+							<p>Fill in the data below.</p>
+
+							<form id="register_form" class="requires-validation">
+								<div class="col-md-12">
+									<input id="uid" class="form-control" type="text" name="uid"
+										placeholder="ID" required for="uid">
+									<h5 id="iuid"></h5>
+								</div>
+
+								<div class="col-md-12">
+									<input id="pwd" class="form-control" type="password" name="pwd"
+										placeholder="Password" required>
+
+								</div>
+
+								<div class="col-md-12">
+									<input id="name" class="form-control" type="text" name="name"
+										placeholder="Full Name" required>
+								</div>
+
+								<div class="col-md-12">
+									<input id="addr" class="form-control" type="text" name="addr"
+										placeholder="Address" required>
+								</div>
+								<div class="col-md-12">
+									<input id="email" class="form-control" type="email"
+										name="email" placeholder="Email" required for="email">
+									<h5 id="iemail"></h5>
+								</div>
+								<div class="col-md-12">
+									<input id="phone" class="form-control" type="text" name="phone"
+										placeholder="Phone-number" required for="phone">
+									<h5 id="iphone"></h5>
+								</div>
+
+								<div class="form-button mt-3">
+									<button id="register_bt" type="submit" class="btn btn-primary">Register</button>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>

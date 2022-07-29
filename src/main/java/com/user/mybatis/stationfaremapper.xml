@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalproject.mapper.StationFareMapper">
+
+		
+	<select id="select" parameterType="int" resultType="stationfareVO">
+		SELECT * FROM stationfare WHERE cid=#{cid}
+	</select>
+	<select id="selectall" resultType="stationfareVO">
+		SELECT * FROM stationfare
+	</select>
+	<insert id="insert" parameterType="stationfareVO">
+			INSERT INTO stationfare VALUES (#{cid},#{busiId},#{bnm},#{cs},#{memYN},#{apartYN},#{time},#{seasons},#{cf})
+	</insert>
+	<update id="update" parameterType="stationfareVO">
+		UPDATE stationfare SET cid=#{cid},busiId=#{busiId}, bnm=#{bnm},cs=#{cs}, time=#{time},seasons=#{seasons},cf=#{cf} WHERE cid=#{cid}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM stationfare WHERE cid=#{cid}
+	</delete>
+</mapper>

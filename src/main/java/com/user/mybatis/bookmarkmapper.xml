@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalproject.mapper.BookMarkMapper">
+	
+	<select id="select" parameterType="int" resultType="bookmarkVO">
+		SELECT * FROM bookmark WHERE bsid=#{bsid}
+	</select>
+	<select id="selectall" resultType="bookmarkVO">
+		SELECT * FROM bookmark
+	</select>
+	<insert id="insert" parameterType="bookmarkVO">
+		INSERT INTO bookmark VALUES (#{bsid}, #{statid}, #{uid}, #{zcode}, #{statnm});
+	</insert>
+	<delete id="delete" parameterType="int">
+		DELETE FROM bookmark WHERE bsid=#{bsid}
+	</delete>
+	
+	<!-- 즐겨찾기 JOIN select -->
+	<select id="selectcustomerbookmark" parameterType="int" resultType="usersVO">
+		SELECT b.bsid, b.statid, b.zcode, b.statnm, u.id as uid, u.name as uname, u.nickname as unickname, u.clp as uclp
+		FROM bookmark b
+		INNER JOIN users u ON b.uid = u.id 
+		WHERE b.uid = #{uid}
+	</select>
+	
+</mapper>

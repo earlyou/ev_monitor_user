@@ -1,0 +1,137 @@
+<meta charset="utf-8">
+<link href="/css/member.css" rel="stylesheet">
+<script>
+	(function() {
+		'use strict'
+		const forms = document.querySelectorAll('.requires-validation')
+		Array.from(forms).forEach(function(form) {
+			form.addEventListener('submit', function(event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+			}, false)
+		})
+	})()
+
+/* 	$(document).ready(function() {
+		$('#login_bt').click(function() {
+
+			$('#login_form').attr({
+				'method' : 'post',
+				'action' : '/loginimpl'
+			});
+			$('#login_form').submit();
+			$.ajax({
+				url : 'checklogin',
+				data : {
+					uid : inputuid
+				},
+				success : function(result) {
+					if (result == '1') {
+						alert("로그인에 성공하셨습니다")
+					} else {
+						alert("id와 pwd를 확인하세요")
+					}
+				}
+			})
+		}); */
+		$(document).ready(function() {
+			$('#login_bt').click(function() {
+
+				$('#login_form').attr({
+					'method' : 'post',
+					'action' : '/loginimpl'
+				});
+				$('#login_form').submit();
+			});
+		});
+
+</script>
+<section class="page-section">
+	<div class="container">
+		<div class="form-body">
+			<div class="row">
+				<div class="form-holder">
+					<div class="form-content">
+						<div class="form-items">
+							<h3>Sign In</h3>
+							<p>Fill in the data below.</p>
+							<form id="login_form" class="requires-validation" novalidate>
+
+								<div class="col-md-12">
+									<input class="form-control" type="text" name="id"
+										placeholder="ID" required>
+									<div class="valid-feedback">사용할 수 있는 아이디입니다.</div>
+									<div class="invalid-feedback">아이디를 입력하여 주십시오.</div>
+								</div>
+
+								<div class="col-md-12">
+									<input class="form-control" type="password" name="pwd"
+										placeholder="Password" required>
+									<div class="valid-feedback">비밀번호가 입력되었습니다.</div>
+									<div class="invalid-feedback">비밀번호를 입력하여 주십시오.</div>
+								</div>
+
+
+
+								<!-- 	<div class="col-md-12">
+									<select class="form-select mt-3" required>
+										<option selected disabled value="">Position</option>
+										<option value="jweb">Junior Web Developer</option>
+										<option value="sweb">Senior Web Developer</option>
+										<option value="pmanager">Project Manager</option>
+									</select>
+									<div class="valid-feedback">You selected a position!</div>
+									<div class="invalid-feedback">Please select a position!</div>
+								</div> -->
+
+
+
+
+
+								<!-- 		<div class="col-md-12 mt-3">
+									<label class="mb-3 mr-1" for="gender">Gender: </label> <input
+										type="radio" class="btn-check" name="gender" id="male"
+										autocomplete="off" required> <label
+										class="btn btn-sm btn-outline-secondary" for="male">Male</label>
+
+									<input type="radio" class="btn-check" name="gender" id="female"
+										autocomplete="off" required> <label
+										class="btn btn-sm btn-outline-secondary" for="female">Female</label>
+
+									<input type="radio" class="btn-check" name="gender" id="secret"
+										autocomplete="off" required> <label
+										class="btn btn-sm btn-outline-secondary" for="secret">Secret</label>
+									<div class="valid-feedback mv-up">You selected a gender!</div>
+									<div class="invalid-feedback mv-up">Please select a
+										gender!</div>
+								</div> -->
+
+								<!-- 							<div class="form-check">
+									<input class="form-check-input" type="checkbox" value=""
+										id="invalidCheck" required> <label
+										class="form-check-label">I confirm that all data are
+										correct</label>
+									<div class="invalid-feedback">Please confirm that the
+										entered data are all correct!</div>
+								</div> -->
+
+
+								<div class="form-button mt-3">
+									<button id="login_bt" type="submit"
+										class="btn btn-primary me-3">Login</button>
+									<a id="register" href="/register" class="btn btn-secondary">Register</a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+

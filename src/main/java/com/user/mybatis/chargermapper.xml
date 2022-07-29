@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalproject.mapper.ChargerMapper">
+	
+	<insert id="insert" parameterType="chargerVO">
+		INSERT INTO charger VALUES (#{ptid},#{chgernm},#{pinimg},#{ec},#{vol},#{power},#{clevel})
+	</insert>
+	<update id="update" parameterType="chargerVO">
+		UPDATE charger SET chgernm=#{chgernm},pinimg=#{pinimg},ec=#{ec},vol=#{vol},
+		power=#{power},clevel=#{clevel} WHERE ptid=#{ptid}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM charger WHERE ptid=#{ptid}
+	</delete>
+	<select id="select" parameterType="int" resultType="chargerVO">
+		SELECT * FROM charger WHERE ptid=#{ptid}
+	</select>
+	<select id="selectall" resultType="chargerVO">
+		SELECT * FROM charger
+	</select>
+	
+</mapper>
