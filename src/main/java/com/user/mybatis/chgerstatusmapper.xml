@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalproject.mapper.ChgerstatusMapper">
+	
+	<select id="select" parameterType="int" resultType="chgerstatusVO">
+		SELECT * FROM chgerstatus WHERE chgerId=#{chgerId}
+	</select>
+	<select id="selectall" resultType="chgerstatusVO">
+		SELECT * FROM chgerstatus
+	</select>
+	<insert id="insert" parameterType="chgerstatusVO">
+		INSERT INTO chgerstatus VALUES (#{chgerId}, #{statId}, #{stat}, #{method}, 
+		#{output}, #{statUpdDt}, #{lastTsdt}, #{lastTedt}, 
+		#{nowTsdt}, #{delYn}, #{delDetail}, #{chgerType})
+	</insert>
+	<update id="update" parameterType="chgerstatusVO">
+		UPDATE chgerstatus SET 
+		statId=#{statId}, stat=#{stat}, method=#{method}, 
+		output=#{output}, statUpdDt=#{statUpdDt}, lastTsdt=#{lastTsdt}, lastTedt=#{lastTedt}, 
+		nowTsdt=#{nowTsdt}, delYn=#{delYn}, delDetail=#{delDetail}, chgerType=#{chgerType}
+		WHERE chgerId=#{chgerId}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM chgerstatus WHERE chgerId=#{chgerId}
+	</delete>
+	
+</mapper>

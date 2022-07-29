@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalproject.mapper.CommunityMapper">
+		
+	<select id="select" parameterType="int" resultType="communityVO">
+		SELECT * FROM community WHERE pid=#{pid}
+	</select>
+	<select id="selectall" resultType="communityVO">
+		SELECT * FROM community
+	</select>
+	
+	<insert id="insert" parameterType="communityVO">
+
+		INSERT INTO community VALUES (#{pid},#{uid},#{statId},#{tf},#{cimgname},sysdate(),#{zcode},#{statnm})
+	</insert>
+	<update id="update" parameterType="communityVO">
+		UPDATE community SET tf=#{tf}, cimgname=#{cimgname},statnm=#{statnm} WHERE pid=#{pid}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM community WHERE pid=#{pid}
+		
+	</delete>
+</mapper>
+
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.finalproject.mapper.StationMapper">
+	
+	<select id="select" parameterType="int" resultType="stationVO">
+		SELECT * FROM station WHERE statId=#{statId}
+	</select>
+	<select id="selectall" resultType="stationVO">
+		SELECT * FROM station
+	</select>
+	<insert id="insert" parameterType="stationVO">
+		INSERT INTO station VALUES (#{statId}, #{statNm}, #{addr}, #{location}, 
+		#{zcode}, #{lat}, #{lng}, #{useTime}, #{parkingFree}, #{note}, #{limitYn}, #{limitDetail},
+		#{busiId}, #{bnm}, #{busiNm},#{busiCall})
+	</insert>
+	<update id="update" parameterType="stationVO">
+		UPDATE station SET statNm=#{statNm}, addr=#{addr}, location=#{location}, zcode=#{zcode},
+		lat=#{lat}, lng=#{lng}, useTime=#{useTime}, parkingFree=#{parkingFree}, note=#{note}, 
+		limityn=#{limitYn}, limitDetail=#{limitDetail},
+		busiId=#{busiId}, bnm=#{bnm}, busiNm=#{busiNm},busiCall=#{busiCall}
+		WHERE statId=#{statId}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM station WHERE statId=#{statId}
+	</delete>
+	
+</mapper>
