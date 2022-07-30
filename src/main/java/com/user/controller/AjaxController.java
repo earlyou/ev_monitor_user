@@ -1,6 +1,7 @@
 package com.user.controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,12 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.user.biz.ChgerstatusBiz;
 import com.user.biz.StationBiz;
+import com.user.biz.UserAuthorityBiz;
+import com.user.biz.UsersBiz;
 import com.user.vo.ChgerstatusVO;
 import com.user.vo.FilterVO;
 import com.user.vo.StationVO;
+import com.user.vo.UsersVO;
 
 @RestController
 public class AjaxController {
+	
+	@Autowired
+	UsersBiz ubiz;
+	
+	@Autowired
+	UserAuthorityBiz uabiz;
 	
 	@Autowired
 	StationBiz sbiz;
@@ -103,5 +113,29 @@ public class AjaxController {
 			arr.put(json);
 		}
 		return arr.toString();
+	}
+	
+	@RequestMapping("checkid") // 회원가입시 ID 유효성 검사
+	public String checkid(String id) {		
+		String result = "";
+		UsersVO uvo = null;
+		
+		if(id.equals("") || id == null) { 
+			return "2"; 
+		}		
+		if(!Pattern.matches("^[0-9a-zA-Z]*$",id)) { 
+			return "3"; 
+		}		
+		try {
+			uvo = ubiz.get(id);
+			if(uvo == null) {
+				result = "0";
+			}else{
+				result = "1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return result;
 	}
 }
