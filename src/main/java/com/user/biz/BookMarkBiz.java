@@ -40,8 +40,8 @@ public class BookMarkBiz implements Biz<Integer, BookMarkVO>{
 		return bdao.selectall();
 	}
 	
-	public List<BookMarkVO> getcustomerbookmark() throws Exception {
-		return bdao.selectcustomerbookmark();
+	public BookMarkVO getcustomerbookmark(int i) throws Exception {
+		return bdao.selectcustomerbookmark(i);
 	}
 
 }
