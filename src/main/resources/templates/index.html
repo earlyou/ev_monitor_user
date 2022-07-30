@@ -481,14 +481,11 @@ $(document).ready(function(){
 
 	<!-- Wrapper -->
 	<div id="wrapper">
-
-		<!-- Main -->
+	
+	<!-- Main -->
 		<div id="main">
-			<div id="fixed">
-				<div id="map"></div>
-			</div>
+			<div th:insert="${center} ? ${center} : center"></div>
 		</div>
-		
 		
 		<!-- Side Bar  -->
 		<div th:insert="${left} ? ${left} : left"></div>

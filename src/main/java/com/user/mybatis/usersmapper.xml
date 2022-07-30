@@ -4,22 +4,31 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.UsersMapper">
 	
+	<!-- 일반회원 조회 -->
 	<select id="select" parameterType="String" resultType="usersVO">
 		SELECT * FROM users WHERE id=#{id}
 	</select>
+	
+	<!-- 모든 회원에 대한 정보 조회 -->
 	<select id="selectall" resultType="usersVO">
 		SELECT * FROM users
 	</select>
+	
+	<!-- 일반회원 프로필 업데이트 -->
 	<insert id="insert" parameterType="usersVO">
 		INSERT INTO users VALUES (#{id}, #{pwd}, #{name}, #{nickname}, #{phonenum}, #{email}, 
 		#{clp}, #{usertypeid}, SYSDATE(), #{carmodelid});
 	</insert>
+	
+	<!-- 일반회원 프로필 업데이트 -->
 	<update id="update" parameterType="usersVO">
 		UPDATE users SET pwd=#{pwd}, name=#{name}, nickname=#{nickname}, 
 		phonenum=#{phonenum}, email=#{email}, clp=#{clp}, usertypeid=#{usertypeid},
 		carmodelid=#{carmodelid}
 		WHERE id = #{id}
 	</update>
+	
+	<!-- 일반회원 Delete -->
 	<delete id="delete" parameterType="String">
 		DELETE FROM users WHERE id=#{id}
 	</delete>
@@ -42,6 +51,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		INNER JOIN userauthority ua ON u.usertypeid = ua.utid
 		INNER JOIN carmodel cm ON u.carmodelid = cm.carmodelid
 		WHERE u.id = #{id}
+	</select>
+	
+		<!-- 아이디 찾기 -->
+    <select id="selectchid" resultType="String">
+		SELECT <![CDATA[REGEXP_REPLACE(id, '(?<=.{3}).', '*') AS maskingemid]]>
+		FROM users
+		WHERE name=#{name} AND email = #{email};
+	</select>
+	
+	<!-- 비밀번호 찾기(이메일 발송) -->
+    <select id="selectchpwd" resultType="String">
+		SELECT email
+		FROM users
+		WHERE name=#{name} AND id = #{id} AND email = #{email};
+	</select>
+	
+	<!-- 비밀번호 찾기(이메일 발송 시 비밀번호 같이 전송하게 하는 SQL문) -->
+    <select id="selectchpwdvalue" resultType="String">
+		SELECT pwd
+		FROM users
+		WHERE name=#{name} AND id = #{id} AND email = #{email};
 	</select>
 	
 </mapper>
