@@ -101,8 +101,14 @@ function mkmarker(station,chger,map,markers) {
 		var content = 
 		'<div class="wrap">' + 
         '    <div class="info">' + 
-        '        <div class="title">' + v.statNm + 
-        '            <div class="close" title="닫기"></div>' + 
+        '        <div class="title">' + 
+        '           <div class="Nm">' +
+        	           	 v.statNm + 
+        '			</div>' + 
+        '           <div class="bookmark">' +
+        '           	<a href="#" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
+        '			</div>' + 
+        '			<div class="close" title="닫기"></div>' + 
         '        </div>' + 
         '        <div class="body">' + 
         '           <div class="img">' +
@@ -201,6 +207,21 @@ function mkmarker(station,chger,map,markers) {
 			position : marker.getPosition(),
 			zIndex: 4
 		});
+     	
+		
+		$('.icon').on('click',function(){
+			if ($('#'+v.statId+'').attr("src") == 'images/bookmark/unchecked.png') {
+				$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
+				$.ajax({
+					url:'/evcsmonitor/bookmarked',
+					data: {'statId':v.statId,'uid':/*[[${session.uid}]]*/'','zcode':v.zcode,'statNm':v.statNm}
+				});
+			}else if ($('#'+v.statId+'').attr("src") == 'images/bookmark/checked.png') {
+				$('#'+v.statId+'').attr('src', 'images/bookmark/unchecked.png');
+			}
+		});
+		
+		
 
         $('.wrap').mouseenter(function(){
         	map.setDraggable(false);
@@ -420,6 +441,18 @@ $(document).ready(function(){
 	    border-bottom: 1px solid #ddd;
 	    font-size: 18px;
 	    font-weight: bold;
+    }
+    .info .Nm {
+    	width: 100px;
+    	word-wrap: break-word;
+    }
+    .info .bookmark {
+	    position: absolute;
+	    top: 5px;
+	    right: 35px;
+	    color: #888;
+	    width: 20px;
+	    height: 20px;
     }
     .info .close {
 	    position: absolute;
