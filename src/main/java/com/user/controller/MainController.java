@@ -13,6 +13,7 @@ public class MainController {
 	@RequestMapping("/")
 	public String main(Model m) {
 		m.addAttribute("left", "left");
+		m.addAttribute("center", "center");
 		return "index";
 	}
 	
