@@ -1,37 +1,63 @@
-<meta charset="utf-8" />
+<meta charset="utf-8"/>
+
 <!-- Sidebar -->
 <div id="sidebar">
 	<div class="inner">
 		
 		<!-- Search -->
+		
 		<section id="search" class="alt">
 			<div class="navbar-nav ms-auto py-3 py-lg-0">
 				<a href="login" class="nav-item nav-link">로그인</a> <a
 					href="register" class="nav-item nav-link">회원가입</a>
 			</div>
-			
 			<form method="post" action="#">
-				<input type="text" name="query" id="query" placeholder="Search" />
+				<a th:href="@{/}"><i class="bi bi-heart-fill"></i></a>
+				<input type="text" name="query" id="query" placeholder="지역 검색"/>
 			</form>
 		</section>
+		
+		<!-- Login -->
+		<nav id="menu" th:if="${session.loginmember == null}">
+			<header class="major">
+				<h2>로그인</h2>
+			</header>
+			<ul>
+				<div style="font-size:1.5em">
+				<a th:href="@{/login}"><i class="bi bi-box-arrow-in-right"></i><b> 로그인</b></a>
+				<a th:href="@{/register}"><i class="bi bi-person-plus-fill"></i><b> 회원가입</b></a>
+				<div>
+			</ul>
+		</nav>
+		
+	    <!-- Mypage -->
+		<nav id="menu" th:unless="${session.loginmember == null}">
+			<header class="major">
+				<h2>MyMenu</h2>
+			</header>
+			<ul>
+				<li th:unless="${session.loginmember == null}"><a th:href="@{/logout}">로그아웃</a></li>
+				<li><a href="#">프로파일</a></li>
+				<li><a href="#">즐겨찾기</a></li>
+				<li><span class="opener"><a href="#">커뮤니티</a></span>
+				<ul>
+						<li><a href="#"></a>리뷰</li>
+				</ul>
+				</li>
+				
+			</ul>
+		</nav>
 		
 		<!-- Menu -->
 		<nav id="menu">
 			<header class="major">
-				<h2>Menu</h2>
+				<h2>Information</h2>
 			</header>
 			<ul>
-				<li><a href="index">홈페이지</a></li>
+				<li><a th:href="@{/}">홈페이지</a></li>
 				<li><a href="#">충전소 찾기</a></li>
 				<li><a href="#">충전소 정보</a></li>
-				<li><span class="opener"><a href="#">커뮤니티</a></span>
-				<ul>
-						<li><a href="#">공지 사항</a></li>
-						<li><a href="#"></a>리뷰</li>
-						<li><a href="#">고객센터</a></li>
-					</ul>
-				</li>
-				
+				<li><a href="#">공지사항</a></li>
 			</ul>
 		</nav>
 
@@ -355,7 +381,7 @@
 
 		<!-- Footer -->
 		<footer id="footer">
-			<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+			<p class="copyright">&copy; Ev-monitor. All rights reserved.</p>
 		</footer>
 
 	</div>
