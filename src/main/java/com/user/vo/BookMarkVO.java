@@ -14,18 +14,18 @@ import lombok.ToString;
 public class BookMarkVO {
 	
 	private int bsid;
-	private int statid;
+	private String statid;
 	private String uid;
-	private int zcode;
-	private String statnm;
-
-	public BookMarkVO(int statid, String uid, int zcode, String statnm) {
+	
+	private String uname;
+	private String unickname;
+	private String uclp;
+	private int ucarmodelid;
+	
+	public BookMarkVO(int bsid, String statid, String uid) {
+		this.bsid = bsid;
 		this.statid = statid;
 		this.uid = uid;
-		this.zcode = zcode;
-		this.statnm = statnm;
 	}
 	
-	
-
 }
