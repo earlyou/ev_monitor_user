@@ -1,0 +1,96 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#withdrawalbtn').click(function(){
+		var id = $('input[name="id"]').val();
+		var cd = confirm('회원탈퇴 하시겠습니까?');
+		
+		if(cd == true){
+			location.href='wdcheckpwd';
+		}
+		
+	});
+	
+	$('#updatebtn').click(function(){
+		$('#user_form').attr({
+			'method':'post',
+			'action':'update'
+		});
+		$('#user_form').submit();
+	});
+	
+});
+
+</script>
+
+	<div class="col-lg-6">
+		<div class="form-group">
+    		<h1 class="h2 text-gray-700 mb-25 text-center">고객 정보 상세</h1>
+		</div>
+		
+        <form class="form-horizontal" id="user_form">
+            <div class="form-group">
+                아이디: <input type="text" class="form-control form-control-user"
+                    name="id" th:value="${members.id}" readonly="readonly">
+            </div>
+            
+            <div class="form-group">
+                비밀번호: <input type="text" 
+                		class="form-control form-control-user"
+                        name="pwd"  th:value="${members.pwd}">
+            </div>
+            
+            <div class="form-group">
+                이름: <input type="text" 
+                	  class="form-control form-control-user"
+                      name="name"  th:value="${members.name}">
+            </div>
+           
+            <div class="form-group">
+                닉네임: <input type="text" 
+                		class="form-control form-control-user"
+                    	name="nickname" th:value="${members.nickname}">
+            </div>
+            
+            <div class="form-group">
+                휴대전화번호: <input type="text" 
+                			class="form-control form-control-user"
+                    		name="phonenum" th:value="${members.phonenum}">
+            </div>
+ 
+             <div class="form-group">
+                이메일: <input type="email" 
+                		class="form-control form-control-user"
+                    	name="email" th:value="${members.email}">
+            </div>
+            
+            <div class="form-group">
+                차량번호: <input type="text" 
+                  		class="form-control form-control-user"
+                    	name="clp" th:value="${members.clp}">
+            </div>         
+                       
+            <div class="form-group">
+                등록일: <input type="text" 
+                		class="form-control form-control-user"
+                    	name="regdate" th:value="${#dates.format(members.regdate,'yyyy/MM/dd')}" readonly="readonly">
+            </div>
+              
+              <div class="form-group">
+                 차량모델: <select name="carmodelid" class="form-control form-control-item">
+                 			<option th:each="cm:${cmlist}" 
+                 					th:if="${cm.carmodelid != 0}"
+                 					th:value="${cm.carmodelid}" 
+                 					th:text="${cm.mname}"
+                 					th:selected="${cm.carmodelid} == ${members.carmodelid}">
+                 			</option>
+                 		</select>
+              </div>                          
+         	
+         	<a id="updatebtn" href="#">업데이트</a>
+            <a id="withdrawalbtn" href="#">회원탈퇴</a>           
+        </form>
+              
+	</div>

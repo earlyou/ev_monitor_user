@@ -1,0 +1,73 @@
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet"/>
+        <link href="/css/mainmenu.css" rel="stylesheet"/>
+    </head>
+    
+<body>
+    
+        <!-- 상단 네비게이션 바 -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" th:href="@{/}"><img style="width: 100px; height: 40px; "src="/images/logo.png" alt="..." /></a>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link" href="#!"><strong>소개</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!"><strong>커뮤니티</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!"><strong>고객센터</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!"><strong>공지사항</strong></a></li>
+                    </ul>
+                    
+                    <div style="text-align: right">
+                    	<div th:if="${session.loginmember == null}">
+                        	<a class="btn btn-outline-primary" th:href="@{/tos}">
+                            	<i class="bi-clipboard-check"></i>
+                            	회원가입
+                        	</a>
+                        	<a class="btn btn-outline-primary" th:href="@{/login}">
+                            	<i class="bi-box-arrow-in-right"></i>
+                            	로그인
+                        	</a>
+                   		</div>
+                   		
+                   		<div th:unless="${session.loginmember == null}">
+                        	<a class="btn btn-outline-primary" th:href="@{/mypage/myprofile}">
+                            	<i class="bi bi-person-square"></i>
+                            	내 프로필
+                        	</a>                   		
+                        	<a class="btn btn-outline-primary" th:href="@{/logout}">
+                            	<i class="bi bi-box-arrow-right"></i>
+                            	로그아웃
+                        	</a>
+                   		</div>
+                   		
+                     </div>   
+                      
+                </div>
+            </div>
+        </nav><hr>
+        
+ 		<div th:insert="${center} ? ${center} : center"></div>
+        
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">
+         상호: EV-monitor &nbsp;&nbsp; 대표자: 신승욱 &nbsp;&nbsp; 개인정보책임자: 한규정 &nbsp;&nbsp; 이메일: gjhansc@gmail.com<br>
+         사업자번호: 123-12-12345 &nbsp;&nbsp; <br>
+         전화번호: (02)951-1234 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동</p></div>
+        </footer>
+        
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    
+    </body>
+</html>

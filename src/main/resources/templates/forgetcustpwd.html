@@ -1,0 +1,81 @@
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:inline ="javascript">
+$(document).ready(function(){
+	
+	$('#findpwdbtn').click(function(){
+		
+		$('#findpwdcheck').empty();
+		var custname = $('input[name="pwdnamecheck"]').val();
+		var custid = $('input[name="pwdidcheck"]').val();
+		var custemail = $('input[name="pwdemailcheck"]').val();
+		
+		$('#findpwdcheck').append('<p class="find_result pwd">정보를 찾고 있습니다. 잠시만 기다려주세요.</p>');
+			
+		$.ajax({
+			url:'/findpwdimpl',
+			data:{
+				'name':custname,
+				'id':custid,
+				'email':custemail
+			},
+			success: function(result){
+
+				$('#findpwdcheck').empty();
+				if(result == "0"){
+					$('#findpwdcheck').append('<p class="pwdfindresult">일치하는 회원 정보가 없습니다.</p><p class="pwdfindresult">다시 입력해 주십시오.</p>');
+				}else{
+					$('#findpwdcheck').append('<p class="pwdfindresult">해당 메일 주소로 비밀번호를 발송하였습니다.</p>');
+				}
+			}
+		});
+		
+	});
+
+	
+});
+</script>
+
+<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+	<div class="container">
+		<div class="row justify-content-center mb-5 pb-3">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+				<h2 class="mb-4">비밀번호 찾기</h2>
+			</div>
+		<div class="col-md-6 order-md-last d-flex">
+		
+		           <form class="bg-light p-4 p-md-5 contact-form choose" id="findpwdprofile">
+		           
+			              <div class="form-group">
+								<label>성함: </label>
+								<input type="text" class="form-control" name="pwdnamecheck">
+			              </div>
+			              
+			              <div class="form-group">
+								<label>아이디: </label>
+								<input type="text" class="form-control" name="pwdidcheck">
+			              </div>
+			              
+			              <div class="form-group">
+								<label>이메일 주소: </label>
+								<input type="email" class="form-control" name="pwdemailcheck">
+						  </div>
+			              
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<button type="button" id="findpwdbtn" class="btn btn-primary py-2 px-3">확인</button>	
+									<a class="btn btn-info py-2 px-3" th:href="@{/login}"><span>로그인</span></a>
+									<div id="findpwdcheck" style ="color:blue; font-weight:bold; 
+         	 							  background:#FA5858; text-align: center; 
+         	 							  width:400px; height:50px"></div>
+								</div>
+							</div>
+						</div>
+					
+					</form>
+	
+			</div>
+		</div>
+	</div>
+</section>

@@ -52,6 +52,39 @@ public class UsersBiz implements Biz<String, UsersVO>{
 		return udao.selectcustomerauthoritydetail();
 	}
 	
+	public String getselectchid(String k, String l) throws Exception {
+		String id = udao.selectchid(k, l);
+		if(id == null) {
+			id = udao.selectchid(k, l);
+		}
+		if(id == null) {
+			id = "0";
+		}
+		return id;
+	}
+	
+	public String getselectchpwd(String k, String l, String m) throws Exception {
+		String email = udao.selectchpwd(k, l, m);
+		if(email == null) {
+			email = udao.selectchpwd(k, l, m);
+		}
+		if(email == null) {
+			email = "0";
+		}
+		return email;
+	}
+	
+	public String getselectchpwdvalue(String k, String l, String m) throws Exception {
+		String pwd = udao.selectchpwdvalue(k, l, m);
+		if(pwd == null) {
+			pwd = udao.selectchpwdvalue(k, l, m);
+		}
+		if(pwd == null) {
+			pwd = "0";
+		}
+		return pwd;
+	}
+
 
 	
 }
