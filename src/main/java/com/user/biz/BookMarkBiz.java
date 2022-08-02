@@ -43,5 +43,9 @@ public class BookMarkBiz implements Biz<Integer, BookMarkVO>{
 	public BookMarkVO getcustomerbookmark(int i) throws Exception {
 		return bdao.selectcustomerbookmark(i);
 	}
+	
+	public List<BookMarkVO> getbyuid(String uid) throws Exception {
+		return bdao.getbyuid(uid);
+	}
 
 }

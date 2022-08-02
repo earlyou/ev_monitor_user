@@ -9,6 +9,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cd8a8e58779dc52947b1a9a342fd0506&libraries=services,clusterer"></script>
 
+<script th:inline="javascript">
+	const session = /*[[${session}]]*/null;
+	const bookmark = /*[[${bookmark}]]*/null;
+</script>
 <script th:inline="javascript" src="js/map.js"></script>
 <link rel="stylesheet" href="css/map.css" />
 

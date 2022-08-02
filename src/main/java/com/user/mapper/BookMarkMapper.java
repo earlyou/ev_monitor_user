@@ -17,5 +17,5 @@ public interface BookMarkMapper {
 	public BookMarkVO select(int obj) throws Exception;
 	public List<BookMarkVO> selectall() throws Exception;
 	public BookMarkVO selectcustomerbookmark(int obj) throws Exception;
-
+	public List<BookMarkVO> getbyuid(String uid) throws Exception;
 }
