@@ -31,7 +31,7 @@ public class MainController {
 	public String map(Model m) {
 		m.addAttribute("sideleftbar", "sideleftbar");
 		m.addAttribute("center", "mapcenter");
-		return "/map";
+		return "map";
 	}
 	
 	@RequestMapping("/example/elements")
