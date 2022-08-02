@@ -1,14 +1,21 @@
 package com.user.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.user.biz.BookMarkBiz;
 import com.user.biz.MailBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
+import com.user.vo.BookMarkVO;
+import com.user.vo.UsersVO;
 
 @Controller
 public class MainController {
@@ -22,15 +29,27 @@ public class MainController {
 	@Autowired
 	MailBiz mailbiz;
 	
+	@Autowired
+	BookMarkBiz bookmarkbiz;
+	
 	@RequestMapping("/")
 	public String main(Model m) {
 		return "/main";
 	}
 	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
-	public String map(Model m) {
+	public String map(Model m, HttpSession session) {
 		m.addAttribute("left", "sideleftbar");
 		m.addAttribute("center", "mapcenter");
+		m.addAttribute("session", session.getAttribute("loginmember"));
+		List<BookMarkVO> bookmark = null;
+		try {
+			UsersVO user = (UsersVO) session.getAttribute("loginmember");
+			bookmark = bookmarkbiz.getbyuid(user.getId());
+			m.addAttribute("bookmark", bookmark);
+		} catch (Exception e) {
+			
+		}
 		return "map";
 	}
 	

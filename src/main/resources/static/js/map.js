@@ -89,22 +89,21 @@ function mkmarker(station,chger,map,markers) {
 	    
 		var content = 
 		'<div class="wrap">' + 
-        '    <div class="info">' + 
-        '        <div class="title">' + 
-        '           <div class="Nm">' +
-        	           	 v.statNm + 
-        '			</div>' + 
-        '           <div class="bookmark">' +
-        '           	<a href="#" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
-        '			</div>' + 
-        '			<div class="close" title="닫기"></div>' + 
-        '        </div>' + 
-        '        <div class="body">' + 
-        '           <div class="img">' +
-        '           	<img src="https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png" width="73" height="70">' +
-        '			</div>' + 
+		'    <div class="info">' + 
+		'        <div class="title">' + 
+		'           <div class="Nm">' + v.statNm + 
+		'			</div>' +
+		'           <div class="bookmark">' +
+		'           	<a href="#" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
+		'			</div>' + 
+		'			<div class="close" title="닫기"></div>' + 
+		'        </div>' + 
+		'        <div class="body">' + 
+		'           <div class="img">' +
+		'           	<img src="https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png" width="73" height="70">' +
+		'			</div>' + 
 		'			<div class="desc">' + 
-        '			<div>'+
+		'			<div>'+
 		'				<p>충전소 명: '+v.statNm+
 		'				</p><p>충전소ID: '+v.statId+
 		'				</p><p>주소: '+v.addr+
@@ -197,16 +196,42 @@ function mkmarker(station,chger,map,markers) {
 			zIndex: 4
 		});
      	
-		
-		$('.icon').on('click',function(){
-			if ($('#'+v.statId+'').attr("src") == 'images/bookmark/unchecked.png') {
+		$.each(bookmark,function(i,b){
+			if(b.statid == v.statId) {
+				console.log(b.statid);
 				$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
-				$.ajax({
-					url:'/evcsmonitor/bookmarked',
-					data: {'statId':v.statId,'uid':/*[[${session.uid}]]*/'','zcode':v.zcode,'statNm':v.statNm}
-				});
-			}else if ($('#'+v.statId+'').attr("src") == 'images/bookmark/checked.png') {
-				$('#'+v.statId+'').attr('src', 'images/bookmark/unchecked.png');
+			}
+		});
+		
+		$('#'+v.statId+'').on('click',function(){
+			console.log(session.id);
+			if (session.id == null) {
+				if(confirm('로그인 하시겠습니까?')){
+					$(location).attr('href','/evcsmonitor/login')
+				}
+			}else {
+				if ($('#'+v.statId+'').attr("src") == 'images/bookmark/unchecked.png') {
+					$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
+					
+					$.ajax({
+						url:'/evcsmonitor/addbookmark',
+						data: {'statId':v.statId,'uid':session.id},
+						success:function(){
+							alert('북마크가 추가되었습니다.');
+						}
+					});
+				
+				}else if ($('#'+v.statId+'').attr("src") == 'images/bookmark/checked.png') {
+					$('#'+v.statId+'').attr('src', 'images/bookmark/unchecked.png');
+					
+					$.ajax({
+						url:'/evcsmonitor/rmbookmark',
+						data: {'statId':v.statId},
+						success:function(){
+							alert('북마크가 삭제되었습니다.');
+						}
+					});
+				}
 			}
 		});
 		
