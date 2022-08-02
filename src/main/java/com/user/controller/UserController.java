@@ -29,9 +29,8 @@ public class UserController {
 	
 	@RequestMapping("/login") // 로그인 화면
 	public String login(Model m, String msg) {
-		m.addAttribute("left", "left");
 		m.addAttribute("center", "/login");
-		return "/index";
+		return "/main";
 	}
 	
 	@RequestMapping("/loginimpl") // 로그인 인증 절차
@@ -45,26 +44,22 @@ public class UserController {
 			}			
 			if(customer.getPwd().equals(pwd) && customer.getUsertypeid()==100) {
 				session.setAttribute("loginmember", customer);
-				m.addAttribute("left", "left");
 				m.addAttribute("center","center");	
-				return "/index";
+				return "/main";
 			}else if(customer.getPwd().equals(pwd) && customer.getUsertypeid()!=100){	
 				m.addAttribute("msg","사용자 계정이 아닙니다.");
-				m.addAttribute("left", "left");
 				m.addAttribute("center","/login");		
-				return "/index";	
+				return "/main";	
 			}else{
 				m.addAttribute("msg"," 아이디 또는 비밀번호를 잘못 입력했습니다. ");
-				m.addAttribute("left", "left");
 				m.addAttribute("center","/login");		
-				return "/index";							
+				return "/main";							
 			}		
 		} catch (Exception e) {
 		
 			m.addAttribute("msg"," 아이디 또는 비밀번호를 잘못 입력했습니다. ");
-			m.addAttribute("left", "left");
 			m.addAttribute("center","/login");		
-			return "/index";
+			return "/main";
 		}
 	}
 	
@@ -73,7 +68,7 @@ public class UserController {
 		if(session != null) {
 			session.invalidate();
 		}
-		return "/index";
+		return "/main";
 	}
 	
 	@RequestMapping("/register") // 회원등록
@@ -87,9 +82,14 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		m.addAttribute("left", "left");
 		m.addAttribute("center", "/register");
-		return "/index";
+		return "/main";
+	}
+	
+	@RequestMapping("tos") // 회원등록
+	public String tos(Model m) {
+		m.addAttribute("center", "tos");
+		return "main";
 	}
 	
 	@RequestMapping("addimpl") // 회원등록 인증 절차
@@ -101,7 +101,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/index";
+		return "/main";
 	}
 	
 

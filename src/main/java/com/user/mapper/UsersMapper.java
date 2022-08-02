@@ -18,7 +18,9 @@ public interface UsersMapper {
 	public int selectcustomer() throws Exception;
 	public int selectadmin() throws Exception;
 	public List<UsersVO> selectcustomerauthoritydetail() throws Exception;
-		
+	public String selectchid(String name, String email) throws Exception;
+	public String selectchpwd(String name, String id, String email) throws Exception;
+	public String selectchpwdvalue(String name, String id, String email) throws Exception;	
 }
 
 

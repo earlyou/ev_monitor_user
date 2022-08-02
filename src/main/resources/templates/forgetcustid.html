@@ -1,0 +1,74 @@
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:inline ="javascript">
+$(document).ready(function(){
+	
+	$('#findidbtn').click(function(){
+		$('#findidcheck').empty();
+		var custname = $('input[name="idnamecheck"]').val();
+		var custemail = $('input[name="idemailcheck"]').val();
+		
+		if(custname==null || custname==""){
+			alert('이름을 입력해주십시오.');
+		}else if(custemail==null || custemail==""){
+			alert('이메일을 입력해주십시오.');
+		}else{
+		$.ajax({
+			url:'/findidimpl',
+			data:{
+				'name':custname,
+				'email':custemail
+			},
+			success: function(result){
+				if(result == "0"){
+					$('#findidcheck').append('<p class="idfindresult">일치하는 회원 정보가 없습니다.</p><p class="idfindresult">다시 입력해 주십시오.</p>');
+				}else{
+					$('#findidcheck').append('<p class="idfindresult">현재 일치 하는 아이디</p>'
+							+ '<p class="idfindresultprint">' + result + '</p>');
+				}
+			}
+		});
+	}
+		
+	});
+	
+});
+</script>
+<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+	<div class="container">
+		<div class="row justify-content-center mb-5 pb-3">
+			<div class="col-md-7 heading-section text-center ftco-animate">
+				<h2 class="mb-4">아이디 찾기</h2>
+			</div>
+		<div class="col-md-6 order-md-last d-flex">
+		
+		           <form class="bg-light p-4 p-md-5 contact-form choose" id="findidprofile">
+		           
+			              <div class="form-group">
+								<label>성함: </label>
+								<input type="text" class="form-control" name="idnamecheck">
+			              </div>
+			              
+			              <div class="form-group">
+								<label>이메일 주소: </label>
+								<input type="email" class="form-control" name="idemailcheck">
+						  </div>
+			              
+						<div class="form-group">
+							<div class="row">
+								<div class="col">
+									<button type="button" id="findidbtn" class="btn btn-primary py-2 px-3">확인</button>	
+									<a class="btn btn-info py-2 px-3" th:href="@{/login}"><span>로그인</span></a>
+									<div id="findidcheck" class="div result" style="color:blue; font-weight:bold; 
+         	 							background:#FA5858; text-align: center; 
+         	 							width:400px; height:50px;"></div>
+								</div>
+							</div>
+						</div>
+					
+					</form>
+	
+			</div>
+		</div>
+	</div>
+</section>

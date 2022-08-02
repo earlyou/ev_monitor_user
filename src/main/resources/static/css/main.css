@@ -2710,16 +2710,16 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 	font-style: normal;
 	font-variant: normal;
 	text-rendering: auto;
-	line-height: 1;
+	line-height: 2;
 	text-transform: none !important;
 	font-family: 'Font Awesome 5 Free';
 	font-weight: 900;
 }
 
 #search form:before {
-	-moz-transform: scaleX(-1);
-	-webkit-transform: scaleX(-1);
-	-ms-transform: scaleX(-1);
+	-moz-transform: scaleX(-3);
+	-webkit-transform: scaleX(-3);
+	-ms-transform: scaleX(-3);
 	transform: scaleX(-1);
 	color: #7f888f;
 	content: '\f002';
