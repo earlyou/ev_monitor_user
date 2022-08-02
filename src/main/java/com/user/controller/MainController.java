@@ -29,7 +29,7 @@ public class MainController {
 	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
 	public String map(Model m) {
-		m.addAttribute("sideleftbar", "sideleftbar");
+		m.addAttribute("left", "sideleftbar");
 		m.addAttribute("center", "mapcenter");
 		return "map";
 	}
