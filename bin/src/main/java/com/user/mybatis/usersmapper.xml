@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.mapper.UsersMapper">
+	
+	<select id="select" parameterType="String" resultType="usersVO">
+		SELECT * FROM users WHERE id=#{id}
+	</select>
+	<select id="selectall" resultType="usersVO">
+		SELECT * FROM users
+	</select>
+	<insert id="insert" parameterType="usersVO">
+		INSERT INTO users VALUES (#{id}, #{pwd}, #{name}, #{nickname}, #{phonenum}, #{email}, 
+		#{clp}, #{usertypeid}, SYSDATE(), #{carmodelid});
+	</insert>
+	<update id="update" parameterType="usersVO">
+		UPDATE users SET pwd=#{pwd}, name=#{name}, nickname=#{nickname}, 
+		phonenum=#{phonenum}, email=#{email}, clp=#{clp}, usertypeid=#{usertypeid},
+		carmodelid=#{carmodelid}
+		WHERE id = #{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM users WHERE id=#{id}
+	</delete>
+	
+	<!-- 일반회원 select -->
+	<select id="selectcustomer" parameterType="int" resultType="usersVO">
+		 SELECT * FROM users WHERE usertypeid=100
+	</select>
+	
+	<!-- 관리자 select -->
+	<select id="selectadmin" parameterType="int" resultType="usersVO">
+		 SELECT * FROM users WHERE usertypeid=200
+	</select>
+	
+	<!-- 사용자 권한 정보 select -->
+	<select id="selectcustomerauthoritydetail" parameterType="int" resultType="usersVO">
+		SELECT u.id, u.pwd, u.name, u.nickname, u.phonenum, u.email, u.clp, u.regdate, 
+		ua.userstypename as uauserstypename, cm.mname as cmmname
+		FROM users u
+		INNER JOIN userauthority ua ON u.usertypeid = ua.utid
+		INNER JOIN carmodel cm ON u.carmodelid = cm.carmodelid
+		WHERE u.id = #{id}
+	</select>
+	
+</mapper>

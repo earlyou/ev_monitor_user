@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.mapper.MainMapper">
+
+	<!-- 고객 정보 검색 -->
+   <select id="searchcustomer" parameterType="String" resultType="UsersVO">
+      SELECT * FROM users WHERE usertypeid=100 and name LIKE CONCAT('%',#{srchtext},'%')
+   </select>
+   
+   <!-- 관리자 정보 검색 -->
+   <select id="searchadmin" parameterType="String" resultType="UsersVO">
+      SELECT * FROM users WHERE usertypeid=200 and name LIKE CONCAT('%',#{srchtext},'%')
+   </select>
+   
+   <!-- 차량정보 검색 -->
+   <select id="searchev" parameterType="String" resultType="CarModelVO">
+      SELECT * FROM carmodel WHERE mname LIKE CONCAT('%',#{srchtext},'%')
+   </select>
+   
+   <!-- 충전요금 검색 -->
+    <select id="searchfare" parameterType="String" resultType="StationFareVO">
+     	SELECT * FROM stationfare WHERE bnm LIKE CONCAT('%',#{srchtext},'%');
+    </select>
+   
+   <!-- 충전기 검색 -->
+    <select id="searchcharger" parameterType="String" resultType="ChargerVO">
+     	SELECT * FROM charger WHERE chgernm LIKE CONCAT('%', #{srchtext},'%');
+    </select>
+   
+   <!-- 커뮤니티 검색 -->
+   
+
+    <!-- 일반회원 인원 수 select -->
+	<select id="getcustomercnt" resultType="int">
+		SELECT count(*) FROM users WHERE usertypeid=100
+	</select>
+   
+   	<!-- 관리자 인원 수 select -->
+	<select id="getadmincnt" resultType="int">
+		SELECT count(*) FROM users WHERE usertypeid=200
+	</select>
+	
+	<!-- 차량 모델 수 select -->
+	<select id="getcarmodelcnt" resultType="int">
+		SELECT count(*) FROM carmodel
+	</select>
+	
+	<!-- 커뮤니티 수 select -->
+	<select id="getcommunitycnt" resultType="int">
+		SELECT count(*) FROM community
+	</select>	
+	
+	<!-- 충전기 수 select -->
+	<select id="getchargercnt" resultType="int">
+		SELECT count(*) FROM charger
+	</select>	
+	
+	<!-- 충전소 수 select -->
+	<select id="getstationcnt" resultType="int">
+		SELECT count(*) FROM station
+	</select>
+	
+	<!-- 6개월간 회원가입자 수 select -->
+	<select id="getmemberschartdata" resultType="ChartVO">
+ 	SELECT DATE_FORMAT(regdate, '%b. %Y') AS evcdate,
+	count(CASE WHEN usertypeid=100 THEN 1 END) as UA100members,
+	count(CASE WHEN usertypeid=200 THEN 1 END) as UA200members
+	FROM users
+	WHERE regdate BETWEEN DATE_ADD(NOW(), INTERVAL -6 MONTH) AND NOW()
+	GROUP BY evcdate;
+   </select> 
+
+</mapper>

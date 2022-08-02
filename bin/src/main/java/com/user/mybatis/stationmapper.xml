@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.mapper.StationMapper">
+	
+	<select id="select" parameterType="int" resultType="stationVO">
+		SELECT * FROM station WHERE statId=#{statId}
+	</select>
+	<select id="selectall" resultType="stationVO">
+		SELECT * FROM station
+	</select>
+	<insert id="insert" parameterType="stationVO">
+		INSERT INTO station VALUES (#{statId}, #{statNm}, #{addr}, #{location}, 
+		#{zcode}, #{lat}, #{lng}, #{useTime}, #{parkingFree}, #{note}, #{limitYn}, #{limitDetail},
+		#{busiId}, #{bnm}, #{busiNm},#{busiCall})
+	</insert>
+	<update id="update" parameterType="stationVO">
+		UPDATE station SET statNm=#{statNm}, addr=#{addr}, location=#{location}, zcode=#{zcode},
+		lat=#{lat}, lng=#{lng}, useTime=#{useTime}, parkingFree=#{parkingFree}, note=#{note}, 
+		limityn=#{limitYn}, limitDetail=#{limitDetail},
+		busiId=#{busiId}, bnm=#{bnm}, busiNm=#{busiNm},busiCall=#{busiCall}
+		WHERE statId=#{statId}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM station WHERE statId=#{statId}
+	</delete>
+	
+	
+	<sql id="filter">
+		<trim prefix="where (" suffix=")" prefixOverrides="AND">
+	  		<foreach item="filter" collection="filterArr">
+  				<choose>
+  					<!-- REGION 무조건 작성
+  					<when test="filter == 'R'.toString()">
+  						<trim prefix="AND (" suffix=")">
+	  						s.lat BETWEEN (#{minlat}) AND (#{maxlat})
+					    </trim>
+  						<trim prefix="AND (" suffix=")">
+	  						s.lng BETWEEN (#{minlng}) AND (#{maxlng})
+					    </trim>
+  					</when> -->
+  				
+  					<!-- CarmoedelID 무조건 하나만 선택-->
+  					<when test="filter == 'C'.toString()">
+  						<!-- 중복선택 쿼리문 필요 -->
+  						<trim prefix="AND (">
+	  						<choose>
+								<when test="carmodelid == 601 or carmodelid == 34"> <!-- 1,2(차데모, 완속) -->
+									c.chgerType IN (1,2,3,5,6)
+								</when>
+								<when test="carmodelid == 62"> <!-- SM3ZE / 7,7(AC3상) -->
+									c.chgerType IN (3,6,7)
+								</when>
+								<when test="carmodelid == 701 or carmodelid == 702 or carmodelid == 703 or carmodelid == 704"> <!-- 테슬라 / 7,7(AC3상) -->
+									c.chgerType IN (8)
+								</when>
+								<otherwise> <!-- 4,2(콤보, 완속)-->
+									c.chgerType IN (2,4,5,6)
+								</otherwise>
+							</choose>
+					    </trim>
+  					</when> 
+  					
+  					<!-- Adapter 중복 선택 가능 --> 					
+  					<when test="filter == 'A'.toString()">
+  					<choose>
+	  					<when test="adapter != null">
+		  					<trim prefix="OR " suffix=")" prefixOverrides="OR">
+		  						<foreach item="adapteritem" collection="adapterArr">
+			  						<trim prefix="OR">
+			  							<if test="adapteritem == '1'.toString()">
+			  								c.chgerType IN (2)
+			  							</if>
+			  							<if test="adapteritem == '2'.toString()">
+			  								c.chgerType IN (3,6,7)
+			  							</if>
+			  							<if test="adapteritem == '3'.toString()">
+			  								c.chgerType IN (1,5)
+			  							</if>
+			  							<if test="adapteritem == '4'.toString()">
+			  								c.chgerType IN (4,5)
+			  							</if>
+			  						</trim>
+		  						</foreach>
+		  					</trim>	
+	  					</when>
+	  					<otherwise>
+	  						)
+	  					</otherwise>
+					</choose>
+  					</when>
+  					
+  					
+  					<!-- Bnm(사업자) 중복 선택 가능 --> 	
+  					<when test="filter == 'B'.toString()">
+  						<!-- 중복선택 쿼리문 -->
+  						<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+	  						<foreach item="bnm" collection="bnmArr">
+		  						<trim prefix="OR">
+		  							s.bnm=#{bnm}
+		  						</trim>
+	  						</foreach>
+	  					</trim>
+  					</when>
+  					
+  					<!-- Speed(충전속도) 중복 선택 가능 --> 	
+  					<when test="filter == 'S'.toString()">
+  						<!-- 중복선택 쿼리문 -->
+  						<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+	  						<foreach item="chargespeed" collection="chargespeedArr">
+		  						<trim prefix="OR">
+		  							<if test="chargespeed == '초급속'">
+		  								c.output >= 100
+		  							</if>
+		  							<if test="chargespeed == '급속'">
+		  								c.output >= 40
+		  							</if>
+		  							<if test="chargespeed == '완속'">
+		  								40 > c.output
+		  							</if>
+		  						</trim>
+	  						</foreach>
+	  					</trim>
+  					</when>	
+  					
+  					<!-- chagersTatus(충전가능여부) 중복 선택 가능 --> 	
+  					<when test="filter == 'T'.toString()">
+  						<!-- 중복선택 쿼리문 -->
+  						<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+	  						<foreach item="chargerstat" collection="chargerstatArr">
+		  						<trim prefix="OR">
+		  							<if test="chargerstat == '가능'">
+		  								c.stat = 2
+		  							</if>
+		  							<if test="chargerstat == '불가능'">
+		  								c.stat = 1 OR c.stat = 3 OR c.stat = 4 OR c.stat = 5
+		  							</if>
+		  							<if test="chargerstat == '현장확인'">
+		  								c.stat = 9
+		  							</if>
+		  						</trim>
+	  						</foreach>
+	  					</trim>
+  					</when>	
+  					
+  					<!-- parkingfree(주차비) 중복 선택 가능 --> 	
+  					<when test="filter == 'P'.toString()">
+  						<!-- 중복선택 쿼리문 -->
+  						<trim prefix="AND (" suffix=")" prefixOverrides="OR">
+	  						<foreach item="parkingFree" collection="parkingFreeArr">
+		  						<trim prefix="OR">
+		  							<if test="parkingFree == 'Y'.toString()">
+		  								s.parkingFree = #{parkingFree}
+		  							</if>
+		  							<if test="parkingFree == 'N'.toString()">
+		  								s.parkingFree = #{parkingFree}
+		  							</if>
+		  							<if test="parkingFree == 'C'.toString()">
+		  								s.parkingFree = ""
+		  							</if>
+		  						</trim>
+	  						</foreach>
+	  					</trim>
+  					</when>								
+  				</choose>
+	  		</foreach>
+	  	</trim>
+	</sql>
+	
+	
+	<select id="selectfilter" resultType="stationVO">
+		SELECT a.statId, a.statNm, a.addr, a.location, a.zcode, a.lat, a.lng, a.useTime, a.parkingFree, a.note, a.limitYn, a.limitDetail, a.busiId, a.bnm, a.busiNm, a.busiCall FROM 
+		(SELECT s.statId,s.statNm,s.addr,s.location,s.zcode,s.lat,s.lng,s.useTime,s.parkingFree,s.note,s.limitYn,s.limitDetail,s.busiId,s.bnm,s.busiNm,s.busiCall,
+		c.chargerId,c.chgerId,c.stat,c.method,c.output,c.lastTsdt,c.lastTedt,c.nowTsdt,c.delYn,c.delDetail,c.chgerType
+		FROM station s 
+		LEFT JOIN chgerstatus c ON s.statId=c.statId 
+		<include refid="filter">
+		</include>
+		) AS a
+		GROUP BY s.statId;
+	</select>
+</mapper>

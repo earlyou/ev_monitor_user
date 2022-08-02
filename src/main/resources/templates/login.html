@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" th:href="@{/css/login.css}">
 
 <script>
 $(document).ready(function(){
@@ -82,7 +82,7 @@ function getCookie(cookieName) {
 		<!--웹페이지 상단-->
 		<header>
 			<div class="logo" style="margin-bottom: 40px;">
-				<img src="/images/loginlogo.png" class="image" style="width: 70%; height: 30%;">
+				<img th:src="@{/images/loginlogo.png}" class="image" style="width: 70%; height: 30%;">
 				<h1 class="heading-title" style="text-align:center"> 로그인 페이지 </h1>
 			</div>
 		</header>
