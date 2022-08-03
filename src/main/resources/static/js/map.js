@@ -203,7 +203,7 @@ function mkmarker(station,chger,map,markers) {
 		});
 		
 		$('#'+v.statId+'b').on('click',function(){
-			if (session == null) {
+			if (session.loginmember.id == null) {
 				if(confirm('로그인 하시겠습니까?')){
 					$(location).attr('href','/evcsmonitor/login')
 				}
