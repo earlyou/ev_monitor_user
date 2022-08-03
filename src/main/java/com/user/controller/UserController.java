@@ -45,21 +45,21 @@ public class UserController {
 			if(customer.getPwd().equals(pwd) && customer.getUsertypeid()==100) {
 				session.setAttribute("loginmember", customer);
 				m.addAttribute("center","center");	
-				return "/main";
+				return "main";
 			}else if(customer.getPwd().equals(pwd) && customer.getUsertypeid()!=100){	
 				m.addAttribute("msg","사용자 계정이 아닙니다.");
-				m.addAttribute("center","/login");		
-				return "/main";	
+				m.addAttribute("center","login");		
+				return "main";	
 			}else{
 				m.addAttribute("msg"," 아이디 또는 비밀번호를 잘못 입력했습니다. ");
-				m.addAttribute("center","/login");		
-				return "/main";							
+				m.addAttribute("center","login");		
+				return "main";							
 			}		
 		} catch (Exception e) {
 		
 			m.addAttribute("msg"," 아이디 또는 비밀번호를 잘못 입력했습니다. ");
-			m.addAttribute("center","/login");		
-			return "/main";
+			m.addAttribute("center","login");		
+			return "main";
 		}
 	}
 	

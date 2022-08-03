@@ -39,7 +39,8 @@ public class AjaxController {
 	@Autowired
 	BookMarkBiz bookmarkbiz;
 	
-	@RequestMapping("/getstation")
+  
+	@RequestMapping("getstation")
 	public String getstation(Model m, String filter, Integer carmodelid, 
 			String adapter, String bnm, String chargespeed, String chargerstat, String parkingFree) {
 

@@ -32,5 +32,4 @@ public class BookMarkVO {
 		this.statid = statid;
 		this.uid = uid;
 	}
-	
 }
