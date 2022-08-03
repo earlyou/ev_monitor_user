@@ -39,20 +39,25 @@
 </head>
 
 <script th:inline="javascript">
+var idpass=0, pwdpass=0, pwdcheckpass=0, namepass = 0, phonenumpass=0, nicknamepass=0, emailpass = 0;
 
 function sendId(id){
 	$.ajax({
-		url:'/checkid',
+		url:'checkid',
 		data:{'id':id},
 		success:function(data){
 			if(data == '1'){
-				$('#cidspan').text('이미 있는 ID입니다.');
+				$('#cidspan').text('사용불가능한 ID입니다.');
+				$('#cidspan').css('color','red');
+				idpass=0;
 			}else if(data == '2'){
-				$('#cidspan').text('필수 정보입니다.');	
-			}else if(data == '3'){
 				$('#cidspan').text('ID는 알파벳과 숫자만 사용가능합니다.');
+				$('#cidspan').css('color','red');
+				idpass=0;
 			}else{
 				$('#cidspan').text('사용 가능한 ID입니다.');
+				$('#cidspan').css('color','blue');
+				idpass=1;
 			}
 		}
 	});
@@ -60,19 +65,79 @@ function sendId(id){
 
 function sendClp(clp){
 	$.ajax({
-		url:'/checkclp',
+		url:'checkclp',
 		data:{'clp':clp},
 		success:function(dataclp){
 			if(dataclp == '1'){
-				$('#cclpspan').text('이미 있는 차량 등록 번호판입니다.');
+				$('#cclpspan').text('이미 있는 번호판입니다.');
 			}else{
-				$('#cclpspan').text('사용 가능한 차량번호판입니다.');
+				$('#cclpspan').text('사용 가능한 번호판입니다.');
 			}
 		}
 	});
 }
 
+function checkPwd(password) {
+    
+	var pwd = password;
+    
+    var cd1, cd2, cd3; 
+    
+    let number = pwd.search(/[0-9]/g);// 숫자 찾기 
+    let english = pwd.search(/[a-z]/ig);//영문자 찾기 
+    let spece = pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);//특수문자 찾기 
+    let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$/;//비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함
+    
+    // 자리수 확인 
+    if (pwd.length < 4 || pwd.length > 10) {
+		$('#pwd_cd_1').text('5자리 ~ 10자리 이내로 입력해주세요.');
+		$('#pwd_cd_1').css('color','red');
+		cd1 = false;
+
+    } else {
+		$('#pwd_cd_1').text('충족');
+		$('#pwd_cd_1').css('color','blue');
+		cd1 = true;
+    }
+    
+    // 공백 확인 
+    if (pwd.search(/\s/) != -1) {
+		$('#pwd_cd_2').text('비밀번호는 공백 없이 입력해주세요.');
+		$('#pwd_cd_2').css('color','red');
+		cd2 = false;
+		
+    } else {
+		$('#pwd_cd_2').text('충족');
+		$('#pwd_cd_2').css('color','blue');
+		cd2 = true;
+    }
+    
+    // 영문, 숫자, 특수문자 확인 
+   	if (number < 0 || english < 0 || spece < 0) {
+		$('#pwd_cd_3').text('영문,숫자,특수문자를 혼합하여 입력해주세요.');
+		$('#pwd_cd_3').css('color','red');
+		cd3 = false;
+    }else{
+		$('#pwd_cd_3').text('충족');
+		$('#pwd_cd_3').css('color','blue');
+		cd3 = true;
+    }
+    
+    if(cd1 && cd2 && cd3){// 모든 조건 만족시 실행 
+    	$('#pwdspan').text('사용할 수 있는 password 입니다. ');
+    	$('#pwdspan').css('color','blue');
+    	pwdpass=1;
+    }else{
+    	pwdpass=0;
+    }
+
+    
+};
+
 $(document).ready(function(){
+	
+	$('#pwdinfo').hide();
+	
 	$('input[name="id"]').keyup(function(){
 		var id = $(this).val(); 		
 		sendId(id);
@@ -83,62 +148,143 @@ $(document).ready(function(){
 		sendClp(clp);
 	});	
 	
- 	$('input[name="pwd"]').keyup(function(){
-		var pwd = $(this).val();
-		var pwdc = $('input[name="pwdc"]').val();		
-
-		if(!(pwdc==null||pwdc=='')){
-			if(pwd != pwdc){
-				$('#pwdcspan').text('비밀번호가 일치하지 않습니다.');
-			}else{
-				$('#pwdcspan').text('비밀번호가 일치합니다.');
-			} 	
-		}				
-	}); 	
+	$('#name').blur(function(){ // 이름
+		name = $(this).val();
+		if(name == null || name==''){
+			$('#nspan').text('이름을 입력해 주세요.');
+			$('#nspan').css('color','red');
+			namepass = 0;
+		}else{
+			$('#nspan').text('사용 가능한 이름입니다.');
+			$('#nspan').css('color','blue');
+			namepass = 1;
+		}
 		
-	$('input[name="pwdc"]').keyup(function(){
+	});
+	
+	$('#nickname').blur(function(){ // 닉네임
+		nickname = $(this).val();
+		if(nickname == null || nickname ==''){
+			$('#nickspan').text('닉네임을 입력해 주세요.');
+			$('#nickspan').css('color','red');
+			nicknamepass = 0;
+		}else{
+			$('#nickspan').text('사용 가능한 닉네임입니다.');
+			$('#nickspan').css('color','blue');
+			nicknamepass = 1;
+		}
+		
+	});
+	
+	$('#phonenum').blur(function(){// 핸드폰 번호 벗어나면 실행 
+		
+		phonenum = $(this).val();
+
+		if(phonenum.match(/\d{3}-\d{4}-\d{4}/g) == null){//null이면 조건에 맞지 않는것
+			$('#pnspan').text('전화번호 형식에 맞지 않습니다. 010-0000-0000 형식으로 작성하세요.');
+			$('#pnspan').css('color','red');
+			phonenumpass = 0;
+		}else{
+			$('#pnspan').text('사용 가능한 전화번호 형식입니다. ');
+			$('#pnspan').css('color','blue');
+			phonenumpass = 1;
+		}
+	});
+	
+	$('#email').blur(function(){// 핸드폰 번호 벗어나면 실행 
+		
+		email = $(this).val();
+
+		if(email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i) == null){//null이면 조건에 맞지 않는것
+			$('#emspan').text('이메일 형식에 맞지 않습니다.  you@example.com 형식으로 작성하세요.');
+			$('#emspan').css('color','red');
+			emailpass = 0;
+		}else{
+			$('#emspan').text('사용 가능한 이메일 형식입니다. ');
+			$('#emspan').css('color','blue');
+			emailpass = 1;
+		}
+	});
+
+	$('#pwd').focus(function() {	
+		
+		$('#pwdinfo').show();
+		
+		$('#pwd').keyup(function(){
+			var pwd = $(this).val();
+			checkPwd(pwd);	
+		});
+	});
+	
+	$('#pwd').blur(function() { 
+		$('#pwdinfo').hide();
+
+	});
+	
+	$('input[name="pwdc"]').keyup(function(){ // 패스워드 일치성 검사
 		var pwd = $('input[name="pwd"]').val();
 		var pwdc = $(this).val();
 		
 		if(!(pwd==null||pwd=='')){
 			if(pwd != pwdc){
 				$('#pwdcspan').text('비밀번호가 일치하지 않습니다.');
+				$('#pwdcspan').css('color','red');
+				pwdcheckpass=0;
 			}else{
 				$('#pwdcspan').text('비밀번호가 일치합니다.');
+				$('#pwdcspan').css('color','blue');
+				pwdcheckpass=1;
 			} 	
 		}
 	});
+
 	
+ 	
 	$('#add_bt').click(function(){
 		var id = $('input[name="id"]').val(); 
 		var pwd = $('input[name="pwd"]').val();
 		var pwdc = $('input[name="pwdc"]').val();	
 		var name = $('input[name="name"]').val();
+		var nickname = $('input[name="nickname"]').val();
 		var phonenum = $('input[name="phonenum"]').val();
 		var email = $('input[name="email"]').val();
 		var clp = $('input[name="clp"]').val();
 		
-		if(id==null||id==''){
+		if(id==null||id==''||pwd==null||pwd==''||pwdc==null||pwdc==''||name==null||name==''||
+				phonenum==null|| phonenum==''||email==null||email==''||nickname==null||nickname==''){
+			if(id == ''){
+				$('#cidspan').text('필수 입력 요소 입니다.');
+				$('#cidspan').css('color','red');
+				$('#id').focus();
+			}
+			if(pwd == ''){
+				$('#pwdspan').text('필수 입력 요소 입니다.');
+				$('#pwdspan').css('color','red');
+				$('#pwd').focus();
+			}
+			if(name == ''){
+				$('#nspan').text('필수 입력 요소 입니다.');
+				$('#nspan').css('color','red');
+				$('#name').focus();
+			}
+			if(phonenum == ''){
+				$('#pnspan').text('필수 입력 요소 입니다.');
+				$('#pnspan').css('color','red');
+				$('#phonenum').focus();
+			}
+			if(email == ''){
+				$('#emspan').text('필수 입력 요소 입니다.');
+				$('#emspan').css('color','red');
+				$('#email').focus();
+			}
+			if(nickname == ''){
+				$('#nickspan').text('필수 입력 요소 입니다.');
+				$('#nickspan').css('color','red');
+				$('#nickname').focus();
+			}
 			
-			alert('ID를 입력해주십시오.');
 			
-		}else if(pwd==null||pwd==''||pwdc==null||pwdc==''){
-			
-			alert('비밀번호를 입력해주십시오.');
-			
-		}else if(name==null||name==''){
-			
-			alert('이름을 입력해주세요.');
-			
-		}else if( phonenum==null|| phonenum==''){
-			
-			alert('휴대전화번호를 입력해주세요.');
-			
-		}else if(email==null||email==''){
-			
-			alert('이메일을 입력해주세요.');
-			
-		}else{
+		}else if(idpass && pwdpass && pwdcheckpass && namepass && phonenumpass && nicknamepass && emailpass){
 			
 			$('#add_form').attr({
 				'method':'post',
@@ -147,6 +293,10 @@ $(document).ready(function(){
 			$('#add_form').submit();
 			
 			alert('등록이 완료되었습니다.');
+			
+		}else{
+			$('#rgspan').text('모든 가입 조건을 충족해야 합니다.');
+			$('#rgspan').css('color','red');
 		}
 	});
 });
@@ -157,53 +307,62 @@ $(document).ready(function(){
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3" style="text-align:center">회원가입</h4>
-        <form class="validation-form" id="add_form" novalidate>
+        <form class="validation-form" id="add_form">
+        
+            <div class="mb-3">
+              <label for="id">아이디</label>
+              <input class="form-control" type="text" id="id" name="id" placeholder="사용하실 아이디를 입력해주세요.">
+              <span id="cidspan"></span>
+            </div>  
         
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label for="id">아이디</label>
-              <input class="form-control" type="text" id="id" name="id" placeholder="아이디를 입력해주세요.">
-              <span id="cidspan"></span>
-            </div>          
-            <div class="col-md-6 mb-3">
               <label for="pwd">비밀번호</label>
-              <input type="password" class="form-control" id="pwd" name="pwd" placeholder="비밀번호를 입력해주세요.">
-              <span id="pwdspan"></span>
+              <input type="password" class="form-control" id="pwd" name="pwd" placeholder="사용하실 비밀번호를 입력해주세요.">
+              <div id="pwdinfo">
+			        <div><li><span id="pwd_cd_1">5자 이상</span></div>
+					<div><li><span id="pwd_cd_2">비밀번호는 공백 없이 입력해주세요.</span></div>
+					<div><li><span id="pwd_cd_3">영문,숫자,특수문자를 혼합하여 입력해주세요.</span></div>
+			  </div>	
+					<div><span id="pwdspan"></span></div>
             </div>
+            <div class="col-md-6 mb-3">
+              <label for="pwdc">비밀번호 재확인</label>
+              <input type="password" class="form-control" id="pwdc" name="pwdc" placeholder="비밀번호를 다시 입력해주세요.">
+              <span id="pwdcspan"></span> 
+            </div>               
           </div>
 
           <div class="row">       
             <div class="col-md-6 mb-3">
-              <label for="pwdc">비밀번호 재확인</label>
-              <input type="password" class="form-control" id="pwdc" name="pwdc" placeholder="비밀번호를 재입력해주세요.">
-              <span id="pwdcspan"></span>            
-          	</div>
-            <div class="col-md-6 mb-3">
               <label for="name">이름</label>
               <input type="text" class="form-control" id="name" name="name" placeholder="이름을 입력해주세요.">
-            </div>          	
-         </div>
-          
-          <div class="row">
+              <span id="nspan"></span> 
+            </div>          
             <div class="col-md-6 mb-3">
               <label for="nickname">닉네임</label>
               <input type="text" class="form-control" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요.">
-            </div>
-            <div class="col-md-6 mb-3">
-              <label for="phonenum">휴대전화번호</label>
-              <input type="text" class="form-control" id="phonenum" name="phonenum" placeholder="010-0000-0000">
-            </div>
+              <span id="nickspan"></span> 
+            </div>          
           </div>
+          
+            <div class="mb-3">
+              <label for="phonenum">휴대전화번호</label>
+              <input type="text" class="form-control" id="phonenum" name="phonenum" 
+              pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="휴대전화번호를 입력해주세요.(형식: 010-0000-0000)" required maxlength="13">
+              <span id="pnspan"></span> 
+            </div>
           
           <div class="mb-3">
             <label for="email">이메일 주소</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+            <input type="email" class="form-control" id="email" name="email" placeholder="이메일을 입력해주세요.(형식: you@example.com)" required>
+            <span id="emspan"></span> 
           </div>
 
 		<div class="row">
           <div class="col-md-6 mb-3">
             <label for="clp">차량등록번호<span class="text-muted">&nbsp;(필수 아님)</span></label>
-            <input type="text" class="form-control" id="clp" name="clp" placeholder="OO아 OOOO">
+            <input type="text" class="form-control" id="clp" name="clp" placeholder="형식: OO아 OOOO">
             <span id="cclpspan"></span>
           </div>
 
@@ -219,6 +378,7 @@ $(document).ready(function(){
           </div>
 
           <button id="add_bt" type="submit" class="btn btn-primary btn-lg btn-block" >가입 완료 하기</button>
+          <span id="rgspan"></span>
         </form>
       </div>
     </div>

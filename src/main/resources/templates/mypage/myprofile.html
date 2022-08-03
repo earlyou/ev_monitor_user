@@ -14,22 +14,14 @@
     
     <div class="card-body">
         <div class="table-responsive">
-          <div th:each="m:${mlist}">
-              <div th:if="${m.id}==${session.loginmember.id}">
-                  <div><a th:href="@{/mypage/upcheckpwd}">마이 커뮤니티 목록</a></div>
-              </div>
-           </div> 
+            <div><a th:href="@{/mypage/mycomminity}">마이 커뮤니티</a></div>
         </div>
     </div>
     
     
     <div class="card-body">
         <div class="table-responsive">
-          <div th:each="m:${mlist}">
-              <div th:if="${m.id}==${session.loginmember.id}">
-                  <div><a th:href="@{/mypage/upcheckpwd}">즐겨찾기 리스트</a></div>
-              </div>
-           </div> 
+             <div><a th:href="@{/mypage/mybookmark}">즐겨찾기</a></div>
         </div>
     </div>
 

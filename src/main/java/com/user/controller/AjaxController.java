@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.user.biz.BookMarkBiz;
 import com.user.biz.ChgerstatusBiz;
 import com.user.biz.StationBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
+import com.user.vo.BookMarkVO;
 import com.user.vo.ChgerstatusVO;
 import com.user.vo.FilterVO;
 import com.user.vo.StationVO;
@@ -33,6 +35,9 @@ public class AjaxController {
 	
 	@Autowired
 	ChgerstatusBiz cbiz;
+	
+	@Autowired
+	BookMarkBiz bookmarkbiz;
 	
 	@RequestMapping("/getstation")
 	public String getstation(Model m, String filter, Integer carmodelid, 
@@ -120,14 +125,51 @@ public class AjaxController {
 		String result = "";
 		UsersVO uvo = null;
 		
-		if(id.equals("") || id == null) { 
-			return "2"; 
-		}		
 		if(!Pattern.matches("^[0-9a-zA-Z]*$",id)) { 
-			return "3"; 
+			return "2"; 
 		}		
 		try {
 			uvo = ubiz.get(id);
+			if(uvo == null) {
+				result = "0";
+			}else{
+				result = "1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return result;
+	}
+	
+	@RequestMapping("addbookmark")
+	public void addbookmark(String statId, String uid) {
+		BookMarkVO bm = new BookMarkVO(statId, uid);
+		
+		try {
+			bookmarkbiz.register(bm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("rmbookmark")
+	public void rmbookmark(String statId, String uid) {
+		BookMarkVO bm = new BookMarkVO(statId, uid);
+		
+		try {
+			bookmarkbiz.rmbookmark(bm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("checkclp") // 번호판 검사
+	public String checkclp(String clp) {		
+		String result = "";
+		UsersVO uvo = null;
+						
+		try {
+			uvo = ubiz.clpget(clp);
 			if(uvo == null) {
 				result = "0";
 			}else{

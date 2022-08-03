@@ -9,10 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.user.biz.BookMarkBiz;
 import com.user.biz.CarModelBiz;
 import com.user.biz.CommunityBiz;
+import com.user.biz.StationBiz;
 import com.user.biz.UsersBiz;
+import com.user.vo.BookMarkVO;
 import com.user.vo.CarModelVO;
+import com.user.vo.CommunityVO;
+import com.user.vo.StationVO;
 import com.user.vo.UserAuthorityVO;
 import com.user.vo.UsersVO;
 
@@ -28,6 +33,12 @@ public class MyPageController {
 	
 	@Autowired
 	CommunityBiz combiz;
+	
+	@Autowired
+	BookMarkBiz bmbiz;
+	
+	@Autowired
+	StationBiz stbiz;
 	
 	@RequestMapping("myprofile")
 	public String select(Model m, String id) {
@@ -95,5 +106,33 @@ public class MyPageController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	@RequestMapping("mycomminity") // 내 커뮤니티
+	public String mycomminity(Model m, Integer pid) {
+		List<CommunityVO> comlist = null;
+		try {
+			comlist = combiz.get();
+			m.addAttribute("comlist", comlist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		m.addAttribute("center", "/mypage/mycomminity");
+		return "main";
+	}
 
+	@RequestMapping("mybookmark") // 내 즐겨찾기
+	public String mybookmark(Model m, Integer bsid) {
+		List<BookMarkVO> bookmlist = null;
+		List<StationVO> stmlist = null;
+		try {
+			bookmlist = bmbiz.get();
+			m.addAttribute("bookmlist", bookmlist);
+			stmlist = stbiz.get();
+			m.addAttribute("stmlist", stmlist);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		m.addAttribute("center", "/mypage/mybookmark");
+		return "main";
+	}
 }
