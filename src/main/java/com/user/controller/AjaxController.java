@@ -39,6 +39,7 @@ public class AjaxController {
 	@Autowired
 	BookMarkBiz bookmarkbiz;
 	
+  
 	@RequestMapping("getstation")
 	public String getstation(Model m, String filter, Integer carmodelid, 
 			String adapter, String bnm, String chargespeed, String chargerstat, String parkingFree) {
@@ -125,11 +126,8 @@ public class AjaxController {
 		String result = "";
 		UsersVO uvo = null;
 		
-		if(id.equals("") || id == null) { 
-			return "2"; 
-		}		
 		if(!Pattern.matches("^[0-9a-zA-Z]*$",id)) { 
-			return "3"; 
+			return "2"; 
 		}		
 		try {
 			uvo = ubiz.get(id);
@@ -164,5 +162,23 @@ public class AjaxController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@RequestMapping("checkclp") // 번호판 검사
+	public String checkclp(String clp) {		
+		String result = "";
+		UsersVO uvo = null;
+						
+		try {
+			uvo = ubiz.clpget(clp);
+			if(uvo == null) {
+				result = "0";
+			}else{
+				result = "1";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return result;
 	}
 }

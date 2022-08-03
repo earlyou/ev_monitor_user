@@ -85,4 +85,29 @@ public class MainController {
 		}
 		return chid;
 	}
+	
+	@RequestMapping("forgetcustpwd")
+	public String forgetcustpwd(Model m) {
+		m.addAttribute("center", "forgetcustpwd");
+		return "main";
+	}	
+	
+	@ResponseBody
+	@RequestMapping("/findpwdimpl")
+	public String findpwdimpl(String name, String id, String email) { // 비밀번호 찾기
+		
+		String pwdresult = null;
+		try {
+			pwdresult = ubiz.getselectchpwd(name, id, email);
+			if(pwdresult != "0") {
+				String pwdvalue = ubiz.getselectchpwdvalue(name, id, email);
+				mailbiz.sendMail(pwdresult, pwdvalue);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+
+		return pwdresult;
+	}
 }

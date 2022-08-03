@@ -33,7 +33,7 @@ public class UserController {
 		return "/main";
 	}
 	
-	@RequestMapping("/loginimpl") // 로그인 인증 절차
+	@RequestMapping("loginimpl") // 로그인 인증 절차
 	public String loginimpl(Model m, String id, String pwd, HttpSession session) {
 
 		UsersVO customer = null;
@@ -86,7 +86,7 @@ public class UserController {
 		return "/main";
 	}
 	
-	@RequestMapping("tos") // 회원등록
+	@RequestMapping("tos") // 이용약관
 	public String tos(Model m) {
 		m.addAttribute("center", "tos");
 		return "main";
