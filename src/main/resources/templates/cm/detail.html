@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>전기차</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 게시글 상세페이지 -->
+<script>
+	$(function(){
+		$('#btn_cmdelete').click(function(){
+			var id = $('input[name="id"]').val();
+			var c = confirm('글을 삭제하시겠습니까?');
+			
+			if(c == true){
+				location.href = 'delete?id=' + id;
+			}
+			
+
+		});
+	});
+</script>
+<section class="ftco-section ftco-degree-bg">
+  <div class="container">
+     <div class="row">
+         <div class="col-lg-8 ftco-animate">
+         
+		     <div class="row justify-content-center mb-5 pb-3">
+		    	 <div>
+		    	 	<input type="hidden" th:value="${dpost.id}" name="pid">
+		    	 </div>
+		        <div class="col-md-7 heading-section ftco-animate text-center">		         
+		          	<h2 class="mb-4" th:text="${dpost.title}"></h2>
+		        	  <span class="subheading" th:text="${dpost.uid}"></span>
+		         	 <p th:text="${#dates.format(dpost.regdate, 'yyyy-MM-dd')}"></p>
+		         	 
+		         	<div class="tagcloud">
+		                <a id="btn_cmupdate" th:if="${logincust.id == dpost.uid}" th:href="'/cm/update?id='+${dpost.id}" class="tag-cloud-link">수정</a>
+		                <a id="btn_cmdelete" th:if="${logincust.id == dpost.uid}" href="#" class="tag-cloud-link">삭제</a>
+	             	</div>
+
+		        </div>
+	         </div>
+         
+             <img th:if="${dpost.imgname != null and dpost.imgname != ''}" th:src="'/img/'+${dpost.imgname}" class="img-fluid">
+             <p th:text="${dpost.content}"><p>
+             
+          
+           
+		</div>
+    </div>
+ </div>
+</section>
