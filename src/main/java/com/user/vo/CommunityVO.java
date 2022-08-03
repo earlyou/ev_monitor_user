@@ -5,50 +5,47 @@ import java.util.Date;
 public class CommunityVO  {
 	private int pid;
 	private String uid;
-	private int statId;
+	private String location;
+	private String title;
 	private String tf;
 	private String cimgname;
 	private Date regdate;
-	private int zcode;
-	private String statnm;
 	
 	public CommunityVO() {
 	}
 
-	public CommunityVO(int pid, String uid, int statId, String tf, String cimgname, Date regdate, int zcode,
-			String statnm) {
+	public CommunityVO(int pid, String uid, String location, String title, String tf, String cimgname, Date regdate) {
 		this.pid = pid;
 		this.uid = uid;
-		this.statId = statId;
+		this.location = location;
+		this.title = title;
 		this.tf = tf;
 		this.cimgname = cimgname;
 		this.regdate = regdate;
-		this.zcode = zcode;
-		this.statnm = statnm;
 	}
+	// insert
 
-	public CommunityVO(int pid, String uid, int statId, String tf, String cimgname, int zcode, String statnm) {
+	public CommunityVO(String uid, String location, String title, String tf, String cimgname) {
+		this.uid = uid;
+		this.location = location;
+		this.title = title;
+		this.tf = tf;
+		this.cimgname = cimgname;
+	}
+	// update
+
+	public CommunityVO(int pid, String uid, String location, String title, String tf, String cimgname) {
 		this.pid = pid;
 		this.uid = uid;
-		this.statId = statId;
+		this.location = location;
+		this.title = title;
 		this.tf = tf;
 		this.cimgname = cimgname;
-		this.zcode = zcode;
-		this.statnm = statnm;
 	}
-
-	// 커뮤니티 수정(업데이트) 생성자
-	public CommunityVO(String tf, String cimgname, String statnm) {
-		this.tf = tf;
-		this.cimgname = cimgname;
-		this.statnm = statnm;
-	}
-
 
 	public int getPid() {
 		return pid;
 	}
-
 
 	public void setPid(int pid) {
 		this.pid = pid;
@@ -62,12 +59,20 @@ public class CommunityVO  {
 		this.uid = uid;
 	}
 
-	public int getStatId() {
-		return statId;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setStatId(int statId) {
-		this.statId = statId;
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getTf() {
@@ -94,28 +99,11 @@ public class CommunityVO  {
 		this.regdate = regdate;
 	}
 
-	public int getZcode() {
-		return zcode;
-	}
-
-	public void setZcode(int zcode) {
-		this.zcode = zcode;
-	}
-
-	public String getStatnm() {
-		return statnm;
-	}
-
-	public void setStatnm(String statnm) {
-		this.statnm = statnm;
-	}
-
 	@Override
 	public String toString() {
-		return "CommunityVO [pid=" + pid + ", uid=" + uid + ", statId=" + statId + ", tf=" + tf + ", cimgname="
-				+ cimgname + ", regdate=" + regdate + ", zcode=" + zcode + ", statnm=" + statnm + "]";
+		return "CommunityVO [pid=" + pid + ", uid=" + uid + ", location=" + location + ", title=" + title + ", tf=" + tf
+				+ ", cimgname=" + cimgname + ", regdate=" + regdate + "]";
 	}
 	
-
-
 }
+	
