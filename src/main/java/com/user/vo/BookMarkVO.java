@@ -28,4 +28,9 @@ public class BookMarkVO {
 		this.uid = uid;
 	}
 	
+	public BookMarkVO( String statid, String uid) {
+		this.statid = statid;
+		this.uid = uid;
+	}
+	
 }

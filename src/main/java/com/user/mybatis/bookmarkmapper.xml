@@ -28,4 +28,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="getbyuid" parameterType="String" resultType="bookmarkVO">
 		SELECT * FROM bookmark WHERE uid=#{uid}
 	</select>
+	<delete id="rmbookmark" parameterType="bookmarkVO">
+		DELETE FROM bookmark WHERE statid=#{statid} AND uid=#{uid}
+	</delete>
 </mapper>
