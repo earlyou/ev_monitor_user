@@ -13,7 +13,7 @@ $(document).ready(function(){
 		$('#findpwdcheck').append('<p class="find_result pwd">정보를 찾고 있습니다. 잠시만 기다려주세요.</p>');
 			
 		$.ajax({
-			url:'/findpwdimpl',
+			url:'findpwdimpl',
 			data:{
 				'name':custname,
 				'id':custid,

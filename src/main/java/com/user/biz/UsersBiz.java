@@ -34,6 +34,7 @@ public class UsersBiz implements Biz<String, UsersVO>{
 	public UsersVO get(String k) throws Exception {
 		return udao.select(k);
 	}
+	
 
 	@Override
 	public List<UsersVO> get() throws Exception {
@@ -50,6 +51,10 @@ public class UsersBiz implements Biz<String, UsersVO>{
 	
 	public List<UsersVO> getCustomerad() throws Exception {
 		return udao.selectcustomerauthoritydetail();
+	}
+	
+	public UsersVO clpget(String k) throws Exception {
+		return udao.clpselect(k);
 	}
 	
 	public String getselectchid(String k, String l) throws Exception {

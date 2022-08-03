@@ -9,6 +9,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		SELECT * FROM users WHERE id=#{id}
 	</select>
 	
+	<!-- 차량번호판 조회(회원가입 시 확인) -->
+	<select id="clpselect" parameterType="String" resultType="usersVO">
+		SELECT clp FROM users WHERE clp = #{clp}
+	</select>
+	
 	<!-- 모든 회원에 대한 정보 조회 -->
 	<select id="selectall" resultType="usersVO">
 		SELECT * FROM users
@@ -53,7 +58,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		WHERE u.id = #{id}
 	</select>
 	
-		<!-- 아이디 찾기 -->
+	<!-- 아이디 찾기 -->
     <select id="selectchid" resultType="String">
 		SELECT <![CDATA[REGEXP_REPLACE(id, '(?<=.{3}).', '*') AS maskingemid]]>
 		FROM users
