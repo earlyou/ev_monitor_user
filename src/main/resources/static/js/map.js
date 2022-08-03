@@ -94,7 +94,7 @@ function mkmarker(station,chger,map,markers) {
 		'           <div class="Nm">' + v.statNm + 
 		'			</div>' +
 		'           <div class="bookmark">' +
-		'           	<a href="#" id="'+v.statId+'b'+'" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
+		'           	<a href="#" id="'+v.statId+'" class="icon"><img src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
 		'			</div>' + 
 		'			<div class="close" title="닫기"></div>' + 
 		'        </div>' + 
@@ -198,31 +198,31 @@ function mkmarker(station,chger,map,markers) {
      	
 		$.each(bookmark,function(i,b){
 			if(b.statid == v.statId) {
-				$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
+				console.log(v.statNm);
+				$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
 			}
 		});
 		
-		$('#'+v.statId+'b').on('click',function(){
+		$('#'+v.statId).on('click',function(){
+			console.log('bookmark clicked');
 			if (session.loginmember == null) {
 				if(confirm('로그인 하시겠습니까?')){
 					$(location).attr('href','/evcsmonitor/login')
 				}
-			}else {
-				if ($('#'+v.statId+'').attr("src") == 'images/bookmark/unchecked.png') {
-					$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
+			}else if(session.loginmember != null){
+				if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/unchecked.png') {
+					$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
 					
 					$.ajax({
 						url:'/evcsmonitor/addbookmark',
-						type: "POST",
 						data: {'statId':v.statId,'uid':session.loginmember.id}
 					});
 				
-				}else if ($('#'+v.statId+'').attr("src") == 'images/bookmark/checked.png') {
-					$('#'+v.statId+'').attr('src', 'images/bookmark/unchecked.png');
+				}else if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/checked.png') {
+					$('#'+v.statId+' img').attr('src', 'images/bookmark/unchecked.png');
 					
 					$.ajax({
 						url:'/evcsmonitor/rmbookmark',
-						type: "POST",
 						data: {'statId':v.statId,'uid':session.loginmember.id}
 					});
 				}
