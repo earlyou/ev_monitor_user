@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>전기차</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link th:href="@{/css/cm.css}" rel="stylesheet"/>
+<!-- 게시글 신규등록페이지 -->
+
+
+<script>
+    $(function(){
+        $('#btn_newpost').click(function(){	
+                    
+            $('#form_newpost').attr({
+                'enctype':'multipart/form-data',
+                'method':'post',
+                'action':'addimpl'
+            });
+            $('#form_newpost').submit();
+        });
+    });
+</script>
+
+</head>
+<body>
+
+<section class="ftco-section contact-section bg-light">
+  <div class="container">
+  
+    <div class="row block-9">
+      <div class="col-md-6 order-md-last d-flex">
+         <form class="bg-white p-5 contact-form" id="form_newpost">
+            <h2 class="mb-4">글쓰기</h2>
+            <label for="sel3">지역구</label>
+            <select id="sel3" name="gu">
+                <optgroup label="선택안함">
+                    <option text>선택안함</option>
+                </optgroup>
+                <optgroup label="ㄱ">
+                    <option text>강남구</option>
+                    <option text>강동구</option>
+                    <option text>강북구</option>
+                    <option text>강서구</option>
+                    <option text>관악구</option>
+                    <option text>광진구</option>
+                    <option text>구로구</option>
+                    <option text>금천구</option>
+                </optgroup>
+                <optgroup label="ㄴ">    
+                    <option text>노원구</option>
+                </optgroup>
+                <optgroup label="ㄷ">    
+                    <option text>도봉구</option>
+                    <option text>동대문구</option>
+                    <option text>동작구</option>
+                </optgroup>
+                <optgroup label="ㅁ">
+                    <option text=>마포구</option>
+                </optgroup>
+                <optgroup label="ㅅ">
+                    <option text=>서대문구</option>
+                    <option text>서초구</option>
+                    <option text>성동구</option>
+                    <option text>성북구</option>
+                    <option text>송파구</option>
+                </optgroup>
+                <optgroup label="ㅇ">
+                    <option text>양천구</option>
+                    <option text>영등포구</option>
+                    <option text>용산구</option>
+                    <option text>은평구</option>
+                </optgroup>
+                <optgroup label="ㅈ">
+                    <option text>종로구</option>
+                    <option text>중구</option>
+                    <option text>중랑구</option>
+                </optgroup>
+              </select>
+
+              <div class="form-group">
+                  <label>글제목 </label>
+                <input type="text" name="title" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="hidden" name="uid" class="form-control" th:value="${session.logincust.id}">
+              </div>
+             
+              <div class="form-group">
+                   <label>내용 </label>
+                 <textarea name="content" cols="15" rows="15" class="form-control"></textarea>          
+              </div>
+              <div class="form-group">
+                  <label>첨부파일 </label> 
+                  <input type="file" name="mf" class="form-control">                                   
+              </div>
+              <div class="form-group">
+                <input type="submit" value="글등록" id="btn_newpost" class="btn btn-primary py-3 px-5">
+              </div>
+        </form>
+      
+      </div>
+
+    </div>
+  </div>
+  
+ 
+  
+</section>
+             
+</body>
+</html>
