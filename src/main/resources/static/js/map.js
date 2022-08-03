@@ -94,7 +94,7 @@ function mkmarker(station,chger,map,markers) {
 		'           <div class="Nm">' + v.statNm + 
 		'			</div>' +
 		'           <div class="bookmark">' +
-		'           	<a href="#" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
+		'           	<a href="#" id="'+v.statId+'b'+'" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
 		'			</div>' + 
 		'			<div class="close" title="닫기"></div>' + 
 		'        </div>' + 
@@ -198,14 +198,12 @@ function mkmarker(station,chger,map,markers) {
      	
 		$.each(bookmark,function(i,b){
 			if(b.statid == v.statId) {
-				console.log(b.statid);
 				$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
 			}
 		});
 		
-		$('#'+v.statId+'').on('click',function(){
-			console.log(session.id);
-			if (session.id == null) {
+		$('#'+v.statId+'b').on('click',function(){
+			if (session.loginmember.id == null) {
 				if(confirm('로그인 하시겠습니까?')){
 					$(location).attr('href','/evcsmonitor/login')
 				}
@@ -215,10 +213,8 @@ function mkmarker(station,chger,map,markers) {
 					
 					$.ajax({
 						url:'/evcsmonitor/addbookmark',
-						data: {'statId':v.statId,'uid':session.id},
-						success:function(){
-							alert('북마크가 추가되었습니다.');
-						}
+						type: "POST",
+						data: {'statId':v.statId,'uid':session.loginmember.id}
 					});
 				
 				}else if ($('#'+v.statId+'').attr("src") == 'images/bookmark/checked.png') {
@@ -226,10 +222,8 @@ function mkmarker(station,chger,map,markers) {
 					
 					$.ajax({
 						url:'/evcsmonitor/rmbookmark',
-						data: {'statId':v.statId},
-						success:function(){
-							alert('북마크가 삭제되었습니다.');
-						}
+						type: "POST",
+						data: {'statId':v.statId,'uid':session.loginmember.id}
 					});
 				}
 			}
@@ -410,6 +404,7 @@ function ready(lat,lng){
 }
 
 $(document).ready(function(){
+	console.log(session.loginmember.id);
 	if (navigator.geolocation) { 
         navigator.geolocation.getCurrentPosition(function(position){
 			var lat = position.coords.latitude;

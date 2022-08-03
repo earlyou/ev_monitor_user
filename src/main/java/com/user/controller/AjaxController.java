@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.user.biz.BookMarkBiz;
 import com.user.biz.ChgerstatusBiz;
 import com.user.biz.StationBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
+import com.user.vo.BookMarkVO;
 import com.user.vo.ChgerstatusVO;
 import com.user.vo.FilterVO;
 import com.user.vo.StationVO;
@@ -34,7 +36,10 @@ public class AjaxController {
 	@Autowired
 	ChgerstatusBiz cbiz;
 	
-	@RequestMapping("/getstation")
+	@Autowired
+	BookMarkBiz bookmarkbiz;
+	
+	@RequestMapping("getstation")
 	public String getstation(Model m, String filter, Integer carmodelid, 
 			String adapter, String bnm, String chargespeed, String chargerstat, String parkingFree) {
 
@@ -137,5 +142,27 @@ public class AjaxController {
 			e.printStackTrace();
 		}		
 		return result;
+	}
+	
+	@RequestMapping("addbookmark")
+	public void addbookmark(String statId, String uid) {
+		BookMarkVO bm = new BookMarkVO(statId, uid);
+		
+		try {
+			bookmarkbiz.register(bm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("rmbookmark")
+	public void rmbookmark(String statId, String uid) {
+		BookMarkVO bm = new BookMarkVO(statId, uid);
+		
+		try {
+			bookmarkbiz.rmbookmark(bm);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
