@@ -203,7 +203,7 @@ function mkmarker(station,chger,map,markers) {
 		});
 		
 		$('#'+v.statId+'b').on('click',function(){
-			if (session.loginmember.id == null) {
+			if (session == null) {
 				if(confirm('로그인 하시겠습니까?')){
 					$(location).attr('href','/evcsmonitor/login')
 				}
@@ -404,7 +404,6 @@ function ready(lat,lng){
 }
 
 $(document).ready(function(){
-	console.log(session.loginmember.id);
 	if (navigator.geolocation) { 
         navigator.geolocation.getCurrentPosition(function(position){
 			var lat = position.coords.latitude;
