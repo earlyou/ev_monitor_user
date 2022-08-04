@@ -22,14 +22,13 @@
 
 	<!-- Wrapper -->
 	<div id="wrapper">
-	
 	<!-- Main -->
 		<div id="main">
-			<div th:insert="${center} ? ${center} : center"></div>
+			<div th:insert="${center} ? ${center} : mapcenter"></div>
 		</div>
 		
 		<!-- Side Bar  -->
-		<div th:insert="${left} ? ${left} : left"></div>
+		<div th:insert="${left} ? ${left} : sideleftbar"></div>
 	</div>
 	
 

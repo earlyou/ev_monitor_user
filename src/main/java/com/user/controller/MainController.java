@@ -39,8 +39,8 @@ public class MainController {
 	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
 	public String map(Model m, HttpSession session) {
-		m.addAttribute("left", "sideleftbar");
-		m.addAttribute("center", "mapcenter");
+		m.addAttribute("left", "map/sideleftbar");
+		m.addAttribute("center", "map/mapcenter");
 		m.addAttribute("session", session.getAttribute("loginmember"));
 		List<BookMarkVO> bookmark = null;
 		try {
@@ -50,7 +50,7 @@ public class MainController {
 		} catch (Exception e) {
 			
 		}
-		return "map";
+		return "map/map";
 	}
 	
 	@RequestMapping("/example/elements")
