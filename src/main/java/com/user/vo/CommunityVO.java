@@ -2,18 +2,28 @@ package com.user.vo;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class CommunityVO  {
 	private int pid;
 	private String uid;
 	private String location;
 	private String title;
+	private String statid;
 	private String tf;
 	private String cimgname;
 	private Date regdate;
 	
-	public CommunityVO() {
-	}
-
+  
 	public CommunityVO(int pid, String uid, String location, String title, String tf, String cimgname, Date regdate) {
 		this.pid = pid;
 		this.uid = uid;
@@ -42,62 +52,15 @@ public class CommunityVO  {
 		this.tf = tf;
 		this.cimgname = cimgname;
 	}
-
-	public int getPid() {
-		return pid;
-	}
-
-	public void setPid(int pid) {
-		this.pid = pid;
-	}
-
-	public String getUid() {
-		return uid;
-	}
-
-	public void setUid(String uid) {
+	
+	public CommunityVO(String uid, String statid, String tf, String cimgname, Date regdate) {
 		this.uid = uid;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getTf() {
-		return tf;
-	}
-
-	public void setTf(String tf) {
+		this.statid = statid;
 		this.tf = tf;
-	}
-
-	public String getCimgname() {
-		return cimgname;
-	}
-
-	public void setCimgname(String cimgname) {
 		this.cimgname = cimgname;
-	}
-
-	public Date getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
 	}
+
 
 	@Override
 	public String toString() {

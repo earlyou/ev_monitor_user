@@ -47,5 +47,9 @@ public class BookMarkBiz implements Biz<Integer, BookMarkVO>{
 	public List<BookMarkVO> getbyuid(String uid) throws Exception {
 		return bdao.getbyuid(uid);
 	}
+	
+	public void rmbookmark(BookMarkVO obj) throws Exception {
+		bdao.rmbookmark(obj);
+	}
 
 }

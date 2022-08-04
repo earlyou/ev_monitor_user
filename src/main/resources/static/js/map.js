@@ -92,10 +92,28 @@ function mkmarker(station,chger,map,markers) {
 		'    <div class="info">' + 
 		'        <div class="title">' + 
 		'           <div class="Nm">' + v.statNm + 
-		'			</div>' +
+		'			</div>';
+		
+		var boo = false;
+		$.each(bookmark,function(i,b){
+			if(b.statid == v.statId) {
+				boo = true;
+				return boo;
+			}
+		});
+			if(boo) {
+				content = content + 
 		'           <div class="bookmark">' +
-		'           	<a href="#" class="icon"><img id="'+v.statId+'" src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
-		'			</div>' + 
+		'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/checked.png" width="20" height="20"></a>' +
+		'			</div>';
+			}else {
+				content = content + 
+		'           <div class="bookmark">' +
+		'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
+		'			</div>';
+			}
+		
+		content = content +
 		'			<div class="close" title="닫기"></div>' + 
 		'        </div>' + 
 		'        <div class="body">' + 
@@ -195,57 +213,7 @@ function mkmarker(station,chger,map,markers) {
 			position : marker.getPosition(),
 			zIndex: 4
 		});
-     	
-		$.each(bookmark,function(i,b){
-			if(b.statid == v.statId) {
-				console.log(b.statid);
-				$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
-			}
-		});
-		
-		$('#'+v.statId+'').on('click',function(){
-			console.log(session.id);
-			if (session.id == null) {
-				if(confirm('로그인 하시겠습니까?')){
-					$(location).attr('href','/evcsmonitor/login')
-				}
-			}else {
-				if ($('#'+v.statId+'').attr("src") == 'images/bookmark/unchecked.png') {
-					$('#'+v.statId+'').attr('src', 'images/bookmark/checked.png');
-					
-					$.ajax({
-						url:'/evcsmonitor/addbookmark',
-						data: {'statId':v.statId,'uid':session.id},
-						success:function(){
-							alert('북마크가 추가되었습니다.');
-						}
-					});
-				
-				}else if ($('#'+v.statId+'').attr("src") == 'images/bookmark/checked.png') {
-					$('#'+v.statId+'').attr('src', 'images/bookmark/unchecked.png');
-					
-					$.ajax({
-						url:'/evcsmonitor/rmbookmark',
-						data: {'statId':v.statId},
-						success:function(){
-							alert('북마크가 삭제되었습니다.');
-						}
-					});
-				}
-			}
-		});
-		
-		
 
-        $('.wrap').mouseenter(function(){
-        	map.setDraggable(false);
-        	map.setZoomable(false);
-        });
-        $('.wrap').mouseleave(function(){
-        	map.setDraggable(true);
-        	map.setZoomable(true);
-        });
-	    
 	 	// 마커에 커스텀 오버레이 클릭 이벤트(열기,닫기) 붙이기
 		kakao.maps.event.addListener(marker, 'click', function() {
 		    overlay.setMap(map);
@@ -254,6 +222,47 @@ function mkmarker(station,chger,map,markers) {
 	        	map.setZoomable(true);
 		    	overlay.setMap(null);
 		    });
+		    
+		    $('.wrap').on('mouseenter',function(){
+	        	map.setDraggable(false);
+	        	map.setZoomable(false);
+	        });
+	        $('.wrap').on('mouseleave',function(){
+	        	map.setDraggable(true);
+	        	map.setZoomable(true);
+	        });
+		    
+		    $('.bmark').on('click',function(){
+//				console.log($('#'+v.statId+' img').attr('src'));
+				if (session.loginmember == null) {
+					if(confirm('로그인 하시겠습니까?')){
+						$(location).attr('href','/evcsmonitor/login')
+					}
+				}else if(session.loginmember != null){
+					if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/unchecked.png') {
+						$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
+						
+						$.ajax({
+							url:'/evcsmonitor/addbookmark',
+							data: {'statId':v.statId,'uid':session.loginmember.id},
+							success:function(){
+								console.log('bookmark added');
+							}
+						});
+					
+					}else if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/checked.png') {
+						$('#'+v.statId+' img').attr('src', 'images/bookmark/unchecked.png');
+						
+						$.ajax({
+							url:'/evcsmonitor/rmbookmark',
+							data: {'statId':v.statId,'uid':session.loginmember.id},
+							success:function(){
+								console.log('bookmark removed');
+							}
+						});
+					}
+				}
+			});
 		});
 		overlay.setMap(null);			// 마커 누르기 전에는 오버레이 표시 금지
      	

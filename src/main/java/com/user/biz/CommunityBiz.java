@@ -11,6 +11,7 @@ import com.user.vo.CommunityVO;
 
 @Service("communitybiz")
 public class CommunityBiz implements Biz<Integer, CommunityVO> {
+	
 	@Autowired
 	CommunityMapper commudao;
 	
