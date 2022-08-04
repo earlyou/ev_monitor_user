@@ -60,13 +60,6 @@ public class CommunityVO  {
 		this.cimgname = cimgname;
 		this.regdate = regdate;
 	}
-
-
-	@Override
-	public String toString() {
-		return "CommunityVO [pid=" + pid + ", uid=" + uid + ", location=" + location + ", title=" + title + ", tf=" + tf
-				+ ", cimgname=" + cimgname + ", regdate=" + regdate + "]";
-	}
 	
 }
 	
