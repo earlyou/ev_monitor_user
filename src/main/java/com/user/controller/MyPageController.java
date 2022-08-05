@@ -35,20 +35,13 @@ public class MyPageController {
 	CommunityBiz combiz;
 	
 	@Autowired
-	BookMarkBiz bmbiz;
+	BookMarkBiz bookmarkbiz;
 	
 	@Autowired
 	StationBiz stbiz;
 	
 	@RequestMapping("myprofile")
 	public String select(Model m, String id) {
-		List<UsersVO> list = null;
-		try {
-			list = ubiz.get();
-			m.addAttribute("mlist", list);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		m.addAttribute("center", "/mypage/myprofile");
 		return "/main";
 	}
@@ -120,19 +113,25 @@ public class MyPageController {
 		return "main";
 	}
 
-	@RequestMapping("mybookmark") // 내 즐겨찾기
-	public String mybookmark(Model m, Integer bsid) {
+	@RequestMapping("mybookmark") // 내 즐겨찾기 목록
+	public String mybookmark(Model m, String uid, HttpSession session) {
+		
 		List<BookMarkVO> bookmlist = null;
-		List<StationVO> stmlist = null;
+		m.addAttribute("session", session.getAttribute("loginmember"));
+		
 		try {
-			bookmlist = bmbiz.get();
-			m.addAttribute("bookmlist", bookmlist);
-			stmlist = stbiz.get();
-			m.addAttribute("stmlist", stmlist);
+			UsersVO user = (UsersVO) session.getAttribute("loginmember");	
+			bookmlist = bookmarkbiz.getcustomerbookmark(user.getId());
+			m.addAttribute("bookmlist", bookmlist);	
+			
+			System.out.println(bookmlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		m.addAttribute("center", "/mypage/mybookmark");
 		return "main";
 	}
+	
+
+
 }

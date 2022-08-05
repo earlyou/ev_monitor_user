@@ -1,5 +1,7 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/forgetcustid.css}">
+
 <script th:inline ="javascript">
 $(document).ready(function(){
 	
@@ -23,8 +25,7 @@ $(document).ready(function(){
 				if(result == "0"){
 					$('#findidcheck').append('<p class="idfindresult">일치하는 회원 정보가 없습니다.</p><p class="idfindresult">다시 입력해 주십시오.</p>');
 				}else{
-					$('#findidcheck').append('<p class="idfindresult">현재 일치 하는 아이디</p>'
-							+ '<p class="idfindresultprint">' + result + '</p>');
+					$('#findidcheck').append('<p class="idfindresult">일치 하는 아이디: ' + result + '</p>');
 				}
 			}
 		});
@@ -34,41 +35,47 @@ $(document).ready(function(){
 	
 });
 </script>
-<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-7 heading-section text-center ftco-animate">
-				<h2 class="mb-4">아이디 찾기</h2>
+
+<body>
+
+	<div class="main">
+		<!--웹페이지 상단-->
+		<header>
+			<div class="logo" style="margin-bottom: 40px;">
+				<img th:src="@{/images/findid.png}" class="image" style="width: 70%; height: 30%;">
+				<h1 class="heading-title" style="text-align:center"> 아이디 찾기 </h1>
 			</div>
-		<div class="col-md-6 order-md-last d-flex">
-		
-		           <form class="bg-light p-4 p-md-5 contact-form choose" id="findidprofile">
-		           
-			              <div class="form-group">
-								<label>성함: </label>
-								<input type="text" class="form-control" name="idnamecheck">
-			              </div>
-			              
-			              <div class="form-group">
-								<label>이메일 주소: </label>
-								<input type="email" class="form-control" name="idemailcheck">
-						  </div>
-			              
-						<div class="form-group">
-							<div class="row">
-								<div class="col">
-									<button type="button" id="findidbtn" class="btn btn-primary py-2 px-3">확인</button>	
-									<a class="btn btn-info py-2 px-3" th:href="@{/login}"><span>로그인</span></a>
-									<div id="findidcheck" class="div result" style="color:blue; font-weight:bold; 
-         	 							background:#FA5858; text-align: center; 
-         	 							width:400px; height:50px;"></div>
-								</div>
-							</div>
-						</div>
-					
-					</form>
-	
+		</header>
+
+		<!--로그인 부분-->
+		<form class="login-wrap" id="findidprofile">
+
+			<div class="name-id-wrap">
+				<input id="idnamecheck" name="idnamecheck" style="border: none; outline:none; width:100%;" placeholder="이름을 입력해주세요." type="text"></input>
 			</div>
-		</div>
+			
+			<div class="email-id-wrap">
+				<input id="idemailcheck" name="idemailcheck" style="border: none; outline:none; width:100%;" placeholder="이메일 주소를 입력해주세요." type="email"></input>
+			</div>
+			
+			<div class="find-idbtn-wrap">
+				<button type="button" id="findidbtn">확인</button>
+			</div>
+			
+			<div class="login-home-wrap">
+			<a th:href="@{/login}" id="backloginbtn"><span>로그인 화면으로</span></a>
+			</div>
+			
+			<hr>
+			
+			<div class="info-home-wrap">
+			<div style="border: none; outline:none; color:blue; 
+				background:#FA5858; font-size: 1.5em;
+				text-align:center" id="findidcheck"></div>
+			</div>
+
+		</form>
+
 	</div>
-</section>
+
+</body>

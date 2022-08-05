@@ -1,5 +1,7 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/forgetcustpwd.css}">
+
 <script th:inline ="javascript">
 $(document).ready(function(){
 	
@@ -36,46 +38,48 @@ $(document).ready(function(){
 });
 </script>
 
-<section class="ftco-section contact-section ftco-no-pb" id="contact-section">
-	<div class="container">
-		<div class="row justify-content-center mb-5 pb-3">
-			<div class="col-md-7 heading-section text-center ftco-animate">
-				<h2 class="mb-4">비밀번호 찾기</h2>
+	<div class="main">
+		<!--웹페이지 상단-->
+		<header>
+			<div class="logo" style="margin-bottom: 40px;">
+				<img th:src="@{/images/findpassword.png}" class="image" style="width: 70%; height: 20%;">
+				<h1 class="heading-title" style="text-align:center"> 비밀번호 찾기 </h1>
 			</div>
-		<div class="col-md-6 order-md-last d-flex">
-		
-		           <form class="bg-light p-4 p-md-5 contact-form choose" id="findpwdprofile">
-		           
-			              <div class="form-group">
-								<label>성함: </label>
-								<input type="text" class="form-control" name="pwdnamecheck">
-			              </div>
-			              
-			              <div class="form-group">
-								<label>아이디: </label>
-								<input type="text" class="form-control" name="pwdidcheck">
-			              </div>
-			              
-			              <div class="form-group">
-								<label>이메일 주소: </label>
-								<input type="email" class="form-control" name="pwdemailcheck">
-						  </div>
-			              
-						<div class="form-group">
-							<div class="row">
-								<div class="col">
-									<button type="button" id="findpwdbtn" class="btn btn-primary py-2 px-3">확인</button>	
-									<a class="btn btn-info py-2 px-3" th:href="@{/login}"><span>로그인</span></a>
-									<div id="findpwdcheck" style ="color:blue; font-weight:bold; 
-         	 							  background:#FA5858; text-align: center; 
-         	 							  width:400px; height:50px"></div>
-								</div>
-							</div>
-						</div>
-					
-					</form>
-	
+		</header>
+
+		<!--로그인 부분-->
+		<form class="login-wrap" id="findpwdprofile">
+
+			<div class="name-pwd-wrap">
+				<input id="pwdnamecheck" name="pwdnamecheck" style="border: none; outline:none; width:100%;" placeholder="이름을 입력해주세요." type="text"></input>
 			</div>
-		</div>
+			
+			<div class="id-pwd-wrap">
+				<input id="pwdidcheck" name="pwdidcheck" style="border: none; outline:none; width:100%;" placeholder="아이디를 입력해주세요." type="text"></input>
+			</div>
+			
+			<div class="email-pwd-wrap">
+				<input id="pwdemailcheck" name="pwdemailcheck" style="border: none; outline:none; width:100%;" placeholder="이메일 주소를 입력해주세요." type="email"></input>
+			</div>
+			
+			<div class="find-pwdbtn-wrap">
+				<button type="button" id="findpwdbtn">확인</button>
+			</div>
+			
+			<div class="back-home-wrap">
+				<a th:href="@{/login}" id="backloginbtn">로그인</a>
+			</div>
+			
+			<hr>
+			
+			<div class="info-home-wrap">
+			<div style="border: none; outline:none; color:blue; 
+				background:#FA5858; font-size: 1.5em;
+				text-align:center" id="findpwdcheck"></div>
+			</div>
+
+		</form>
+
 	</div>
-</section>
+
+</body>

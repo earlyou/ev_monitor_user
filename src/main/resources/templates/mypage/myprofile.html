@@ -1,14 +1,12 @@
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
 
     <div class="card-body">
         <div class="table-responsive">
-          <div th:each="m:${mlist}">
-              <div th:if="${m.id}==${session.loginmember.id}">
-                  <div><a th:href="@{/mypage/upcheckpwd}">마이페이지</a></div>
-              </div>
-           </div> 
+             <div><a th:href="@{/mypage/upcheckpwd}">마이페이지</a></div>
         </div>
     </div>
     
