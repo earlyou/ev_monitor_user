@@ -43,7 +43,7 @@ public class CommunityController {
 		
 		m.addAttribute("center", "cm/center");
 		m.addAttribute("communitylist", list);
-		return "cm/index";
+		return "index";
 	}
 	
 
@@ -53,7 +53,7 @@ public class CommunityController {
 			return "redirect:/login";
 		}else {
 			m.addAttribute("center", "cm/add");
-			return "cm/index";
+			return "index";
 		}	
 	}
 	

@@ -1,4 +1,5 @@
 <meta charset="UTF-8">
+
 <style>
 body{
     background-color: #f5f6f7;
@@ -40,27 +41,6 @@ input{
     background: #fff;
 }
 
-
-/* /*로그인버튼박스
-.login-btn-wrap{
-    height: 60px;
-    line-height: 55px;
-    width:440px;
-    margin: 0px 0px 8px 10px;
-    border: solid 1px rgba(0,0,0,.1);
-	background-color: #00D363;
-    color: #fff;
-    cursor: pointer;
-}
-/*로그인버튼
-#login-btn{
-    width:100px;
-    background-color: #00D363;
-    border: none;
-    color:#fff;
-    font-size: 18px;
-    outline:none;
-} */
 /*로그인 아래 박스*/
 .under-login{
     height: 50px;
@@ -275,7 +255,7 @@ function getCookie(cookieName) {
 		</form>
 
 		<!--아이디/비밀번호 찾기 부분-->
-		<section id="find-account-wrap">
+		<div id="find-account-wrap">
 			<div class="find-account">
 				<p id="find-account-text">아이디/비밀번호 찾기</p>
 			</div>
@@ -289,6 +269,5 @@ function getCookie(cookieName) {
 					<a th:href="@{/forgetcustpwd}">비밀번호 찾기</a>
 				</div>
 			</div>
-		</section>
-
+		</div>
 	</div>
