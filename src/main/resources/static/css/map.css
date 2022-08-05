@@ -11,7 +11,10 @@
 }
 
 /*Filter 영역*/
-
+#foverflow {
+	height: 200px;
+	overflow-y: scroll;
+}
 
 
 /*Custom Overlay 영역*/
