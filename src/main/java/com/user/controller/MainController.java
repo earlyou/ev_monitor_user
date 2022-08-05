@@ -35,7 +35,7 @@ public class MainController {
 	@RequestMapping("/")
 	public String main(Model m) {
 		m.addAttribute("center", "homecenter");
-		return "cm/index";
+		return "index";
 	}
 	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동

@@ -44,16 +44,17 @@ public class UserController {
 			}			
 			if(customer.getPwd().equals(pwd) && customer.getUsertypeid()==100) {
 				session.setAttribute("loginmember", customer);
-				m.addAttribute("center","center");	
-				return "main";
+				m.addAttribute("center","homecenter");	
+				System.out.println("로그인성공");
+				return "index";
 			}else if(customer.getPwd().equals(pwd) && customer.getUsertypeid()!=100){	
 				m.addAttribute("msg","사용자 계정이 아닙니다.");
 				m.addAttribute("center","login");		
-				return "main";	
+				return "index";	
 			}else{
 				m.addAttribute("msg"," 아이디 또는 비밀번호를 잘못 입력했습니다. ");
 				m.addAttribute("center","login");		
-				return "main";							
+				return "index";							
 			}		
 		} catch (Exception e) {
 		
@@ -68,7 +69,8 @@ public class UserController {
 		if(session != null) {
 			session.invalidate();
 		}
-		return "/index";
+		m.addAttribute("center","homecenter");
+		return "index";
 	}
 	
 	@RequestMapping("/register") // 회원등록
@@ -82,7 +84,6 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//m.addAttribute("center", "/register");
 		return "/register";
 	}
 	
@@ -101,7 +102,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/main";
+		return "index";
 	}
 	
 
