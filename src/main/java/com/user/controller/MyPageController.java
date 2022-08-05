@@ -50,7 +50,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		m.addAttribute("center", "/mypage/myprofile");
-		return "cm/index";
+		return "index";
 	}
 	
 	@RequestMapping("myprofiledetail")
