@@ -44,7 +44,7 @@ $(document).ready(function(){
 		var cd = confirm('회원탈퇴 하시겠습니까?');
 		
 		if(cd == true){
-			location.href='wdcheckpwd';
+			location.href='mypagewdcheckpwd';
 		}
 		
 	});
@@ -59,12 +59,22 @@ $(document).ready(function(){
 	
 });
 </script>
-
-
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-10">
+                    <div class="bradcam_text">
+                        <h3>고객 상세 정보</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
   <div class="container">
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
-        <h4 class="mb-3" style="text-align:center">고객 정보 상세</h4>
         <form class="validation-form" id="user_form">
         
           <div class="row">
@@ -113,11 +123,11 @@ $(document).ready(function(){
 
             <div class="col-md-6 mb-3">
               <label for="carmodelid">차량 모델</label>
-              <select class="custom-select d-block w-100" name = "carmodelid" id = "carmodelid">
+              <select class="serch_cat d-flex justify-content-end"  name="carmodelid">
 				<option th:each="cm:${cmlist}" 
-                 		th:if="${cm.carmodelid != 0}"
-                 		th:value="${cm.carmodelid}" 
-                 		th:text="${cm.mname}"
+            			th:if="${cm.carmodelid != 0}"
+            			th:value="${cm.carmodelid}" 
+            			th:text="${cm.mname}"
                  		th:selected="${cm.carmodelid} == ${members.carmodelid}">
           		</option>
               </select>

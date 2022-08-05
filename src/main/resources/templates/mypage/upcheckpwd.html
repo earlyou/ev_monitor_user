@@ -10,7 +10,7 @@ $(document).ready(function(){
 		if(pwdc == null || pwdc == ''){
 		alert('비밀번호를 삽입해 주세요.');
 		}else if(pwdc == pwdl){	
-		location.href="myprofiledetail?id="+idl;
+		location.href="mypagemyprofiledetail?id="+idl;
 		}else{
 		alert('비밀번호가 일치하지 않습니다.');
 		}
@@ -19,13 +19,25 @@ $(document).ready(function(){
 </script>
 
 <body>
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>업데이트 인증(필수)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
 
 	<div class="main">
 		<!--웹페이지 상단-->
 		<header>
 			<div class="logo" style="margin-bottom: 40px;">
 				<img th:src="@{/images/upcheck.png}" class="image" style="width: 70%; height: 30%;">
-				<h1 class="heading-title" style="text-align:center"> 업데이트 전 인증 </h1>
 			</div>
 		</header>
 

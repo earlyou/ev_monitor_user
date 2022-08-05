@@ -72,7 +72,7 @@ public class MainController {
 	@RequestMapping("forgetcustid")
 	public String forgetcustid(Model m, String msg) {
 		m.addAttribute("center", "forgetcustid");
-		return "main";
+		return "index";
 	}
 	
 	@ResponseBody
@@ -90,7 +90,7 @@ public class MainController {
 	@RequestMapping("forgetcustpwd")
 	public String forgetcustpwd(Model m) {
 		m.addAttribute("center", "forgetcustpwd");
-		return "main";
+		return "index";
 	}	
 	
 	@ResponseBody

@@ -11,7 +11,7 @@ $(document).ready(function(){
 		if(pwdw == null || pwdw == ''){
 			alert('비밀번호를 삽입해 주세요.');
 		}else if(pwdw == pwdl){	
-			location.href='delete?id='+idl;
+			location.href='mypagedelete?id='+idl;
 		}else{
 			alert('비밀번호가 일치하지 않습니다.');
 		}	
@@ -19,13 +19,22 @@ $(document).ready(function(){
 });
 </script>
 <body>
-
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>회원탈퇴 인증(필수)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 	<div class="main">
 		<!--웹페이지 상단-->
 		<header>
 			<div class="logo" style="margin-bottom: 40px;">
 				<img th:src="@{/images/wdcheck.png}" class="image" style="width: 70%; height: 30%;">
-				<h1 class="heading-title" style="text-align:center">회원탈퇴하기 위한 인증</h1>
 			</div>
 		</header>
 

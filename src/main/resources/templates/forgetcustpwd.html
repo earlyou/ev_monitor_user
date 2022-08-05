@@ -1,7 +1,63 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" th:href="@{/css/forgetcustpwd.css}">
+<style>
+body{
+    background-color: #f5f6f7;
+}
+select{
+    width:85px;
+    height:25px;
+    outline: none;
+    background: #f5f6f7;
+    border: 1px solid #999;
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+.main{
+    text-align: center;
+	margin-top: 20px;
+}
+input{
+    cursor: pointer
+}
 
+
+.find-pwnm-wrap{
+
+    margin: 0px 10px 8px 10px;
+    padding: 10px;
+    border: solid 1px #dadada;
+    background: #fff;
+}
+
+
+.find-pwem-wrap{
+
+    margin: 0px 10px 8px 10px;
+    padding: 10px;
+    border: solid 1px #dadada;
+    background: #fff;
+}
+
+.find-pwid-wrap{
+
+    margin: 0px 10px 8px 10px;
+    padding: 10px;
+    border: solid 1px #dadada;
+    background: #fff;
+}
+
+/*가로 800px 이상일때*/
+@media(min-width : 800px)
+{
+    .main{
+        width: 460px;
+        margin: auto;
+    }
+</style>
 <script th:inline ="javascript">
 $(document).ready(function(){
 	
@@ -38,48 +94,53 @@ $(document).ready(function(){
 });
 </script>
 
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>비밀번호 찾기</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
 	<div class="main">
 		<!--웹페이지 상단-->
-		<header>
-			<div class="logo" style="margin-bottom: 40px;">
-				<img th:src="@{/images/findpassword.png}" class="image" style="width: 70%; height: 20%;">
-				<h1 class="heading-title" style="text-align:center"> 비밀번호 찾기 </h1>
-			</div>
-		</header>
+		<div class="logo" style="margin-top: 40px; margin-bottom: 20px;">
+			<img th:src="@{/images/findpassword.png}" class="image" style="width: 60%; height: 60%;">
+		</div>
 
 		<!--로그인 부분-->
 		<form class="login-wrap" id="findpwdprofile">
 
-			<div class="name-pwd-wrap">
+			<div class="find-pwnm-wrap">
 				<input id="pwdnamecheck" name="pwdnamecheck" style="border: none; outline:none; width:100%;" placeholder="이름을 입력해주세요." type="text"></input>
 			</div>
-			
-			<div class="id-pwd-wrap">
-				<input id="pwdidcheck" name="pwdidcheck" style="border: none; outline:none; width:100%;" placeholder="아이디를 입력해주세요." type="text"></input>
+			<div class="find-pwid-wrap">
+				<input id="pwdidcheck" name="pwdidcheck" style="border: none; outline:none; width:100%;" placeholder="아이디를 입력해주세요." type="password"></input>
 			</div>
-			
-			<div class="email-pwd-wrap">
-				<input id="pwdemailcheck" name="pwdemailcheck" style="border: none; outline:none; width:100%;" placeholder="이메일 주소를 입력해주세요." type="email"></input>
+			<div class="find-pwem-wrap">
+				<input id="pwdemailcheck" name="pwdemailcheck" style="border: none; outline:none; width:100%;" placeholder="이메일 주소를 입력해주세요." type="password"></input>
 			</div>
-			
-			<div class="find-pwdbtn-wrap">
-				<button type="button" id="findpwdbtn">확인</button>
-			</div>
-			
-			<div class="back-home-wrap">
-				<a th:href="@{/login}" id="backloginbtn">로그인</a>
+			<div class="pwd-confirm-wrap">
+				<button class="boxed-btn3" style="width:440px; margin-bottom:10px;" type="button" id="findpwdbtn">확인</button>
+				<a class="boxed-btn3" type="button" style="width:440px; margin-bottom:10px; background-color: blue;" th:href="@{/login}">로그인</a>
 			</div>
 			
 			<hr>
 			
 			<div class="info-home-wrap">
-			<div style="border: none; outline:none; color:blue; 
-				background:#FA5858; font-size: 1.5em;
+			<div style="border: none; outline:none; color:#191007; 
+				height: 50px;
+				background:#FFF; font-size: 2.5em;
+				margin: 0px 5px 5px 5px; padding: 10px;
 				text-align:center" id="findpwdcheck"></div>
 			</div>
 
 		</form>
 
 	</div>
-
-</body>
