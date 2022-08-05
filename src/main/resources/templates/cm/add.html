@@ -1,14 +1,9 @@
-
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
 <meta charset="UTF-8">
-<title>전기차</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link th:href="@{/css/cm.css}" rel="stylesheet"/>
-<!-- 게시글 신규등록페이지 -->
-
-
+<style>
+#formdiv{
+	margin: 80px;
+}
+</style>
 <script>
     $(function(){
         $('#btn_newpost').click(function(){	
@@ -23,13 +18,111 @@
     });
 </script>
 
-</head>
-<body>
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>글작성</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+    
+    <!-- form area -->
+    <div id="formdiv">
+    <div class="col-lg-8 col-md-8">
+	<h3 class="mb-30">Form Element</h3>
+	<form action="#">
+		<div class="mt-10">
+			<input type="text" name="first_name" placeholder="First Name"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required
+				class="single-input">
+		</div>
+		<div class="mt-10">
+			<input type="text" name="last_name" placeholder="Last Name"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required
+				class="single-input">
+		</div>
+		<div class="mt-10">
+			<input type="text" name="last_name" placeholder="Last Name"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required
+				class="single-input">
+		</div>
+		<div class="mt-10">
+			<input type="email" name="EMAIL" placeholder="Email address"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required
+				class="single-input">
+		</div>
+		<div class="input-group-icon mt-10">
+			<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+			<input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''"
+				onblur="this.placeholder = 'Address'" required class="single-input">
+		</div>
+		<div class="input-group-icon mt-10">
+			<div class="icon"><i class="fa fa-plane" aria-hidden="true"></i></div>
+			<div class="form-select" id="default-select">
+				<select>
+				<option value=" 1">City</option>
+				<option value="1">Dhaka</option>
+				<option value="1">Dilli</option>
+				<option value="1">Newyork</option>
+				<option value="1">Islamabad</option>
+				</select>
+			</div>
+		</div>
+		<div class="input-group-icon mt-10">
+			<div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+			<div class="form-select" id="default-select">
+				<select>
+				<option value=" 1">Country</option>
+				<option value="1">Bangladesh</option>
+				<option value="1">India</option>
+				<option value="1">England</option>
+				<option value="1">Srilanka</option>
+				</select>
+			</div>
+		</div>
 
-<section class="ftco-section contact-section bg-light">
-  <div class="container">
+		<div class="mt-10">
+			<textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''"
+				onblur="this.placeholder = 'Message'" required></textarea>
+		</div>
+		<!-- For Gradient Border Use -->
+		<!-- <div class="mt-10">
+					<div class="primary-input">
+						<input id="primary-input" type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'">
+						<label for="primary-input"></label>
+					</div>
+				</div> -->
+		<div class="mt-10">
+			<input type="text" name="first_name" placeholder="Primary color"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'" required
+				class="single-input-primary">
+		</div>
+		<div class="mt-10">
+			<input type="text" name="first_name" placeholder="Accent color"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Accent color'" required
+				class="single-input-accent">
+		</div>
+		<div class="mt-10">
+			<input type="text" name="first_name" placeholder="Secondary color"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = 'Secondary color'"
+				required class="single-input-secondary">
+		</div>
+	</form>
+	</div>
+	</div>
+	
+	
+	
+	
+<!--  <div class="container">
   
-    <div class="row block-9">
+ <div class="row block-9">
       <div class="col-md-6 order-md-last d-flex">
          <form class="bg-white p-5 contact-form" id="form_newpost">
             <h2 class="mb-4">글쓰기</h2>
@@ -84,7 +177,7 @@
                 <input type="text" name="title" class="form-control">
               </div>
               <div class="form-group">
-                <input type="hidden" name="uid" class="form-control" th:value="${session.logincust.id}">
+                <input type="hidden" name="uid" class="form-control" th:value="${session.loginmember.id}">
               </div>
              
               <div class="form-group">
@@ -103,11 +196,4 @@
       </div>
 
     </div>
-  </div>
-  
- 
-  
-</section>
-             
-</body>
-</html>
+</div> -->
