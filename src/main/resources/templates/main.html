@@ -20,7 +20,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link" href="#!"><strong>소개</strong></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!"><strong>커뮤니티</strong></a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/cm}"><strong>커뮤니티</strong></a></li>
                         <li class="nav-item"><a class="nav-link" href="#!"><strong>고객센터</strong></a></li>
                         <li class="nav-item"><a class="nav-link" href="#!"><strong>공지사항</strong></a></li>
                     </ul>
@@ -58,10 +58,13 @@
         
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">
-         상호: EV-monitor &nbsp;&nbsp; 대표자: 신승욱 &nbsp;&nbsp; 개인정보책임자: 한규정 &nbsp;&nbsp; 이메일: gjhansc@gmail.com<br>
-         사업자번호: 123-12-12345 &nbsp;&nbsp; <br>
-         전화번호: (02)951-1234 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동</p></div>
+            <div class="container">
+            	<p>
+		         상호: EV-monitor &nbsp;&nbsp; 대표자: 신승욱 &nbsp;&nbsp; 개인정보책임자: 한규정 &nbsp;&nbsp; 이메일: gjhansc@gmail.com<br>
+		         사업자번호: 123-12-12345 &nbsp;&nbsp; <br>
+		         전화번호: (02)951-1234 &nbsp;&nbsp; 주소: 서울특별시 강남구 역삼동
+         		</p>
+         	</div>
         </footer>
         
         <!-- Bootstrap core JS-->

@@ -43,7 +43,7 @@ public class MyPageController {
 	@RequestMapping("myprofile")
 	public String select(Model m, String id) {
 		m.addAttribute("center", "/mypage/myprofile");
-		return "/main";
+		return "index";
 	}
 	
 	@RequestMapping("myprofiledetail")

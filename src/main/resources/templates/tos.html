@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
+
     <meta charset="UTF-8">
 
     <link rel="stylesheet" th:href="@{/css/tosjoin.css}">
@@ -11,7 +9,17 @@
     <link href='https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
    
-  </head>
+   
+<style>
+#checktable{
+	margin-top:50px;
+}
+#next_Btn{
+	height:40px;
+	line-height: 15px;
+}
+</style>
+   
 <script type="text/javascript">
 function checkAllCheckbox() { 
 	  var agreeAllCheckbox = document.getElementById("agreeAll"); 
@@ -36,8 +44,23 @@ function checkAllCheckbox() {
 	
 	
 </script>
-<body> 
 
+
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>회원가입</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+<div id="checktable">
   <table width=1000px align=center>
     <th style="text-align:center">
 
@@ -266,9 +289,9 @@ function checkAllCheckbox() {
       </td>
     </tr>
 </table>
-<br><br>
+<br>
   	<center>
-		<a type="button" id="next_Btn" class="btn_order" style="margin:10px;" th:href="@{/register}">다 음</a>
+		<a type="button" id="next_Btn" class="boxed-btn3" style="margin:10px;" th:href="@{/register}">다 음</a>
     </center>
-  </body>
-</html>
+    
+    </div>

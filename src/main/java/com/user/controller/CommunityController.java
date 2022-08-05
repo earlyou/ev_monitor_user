@@ -1,5 +1,7 @@
 package com.user.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,17 +9,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.user.vo.CommunityVO;
-import com.user.vo.UsersVO;
 import com.user.biz.CommunityBiz;
 import com.user.biz.UsersBiz;
-import com.user.frame.Util;
+import com.user.vo.CommunityVO;
+import com.user.vo.UsersVO;
 
 @Controller
-@RequestMapping("/cm")
 public class CommunityController {
 	
 	@Value("${admindir}")
@@ -31,15 +29,32 @@ public class CommunityController {
 
 	@Autowired
 	UsersBiz ubiz;
+	
+	
+	@RequestMapping("/cm")
+	public String cm(Model m) {
+		
+		List<CommunityVO> list = null;
+		try {
+			list = cbiz.get();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		m.addAttribute("center", "cm/center");
+		m.addAttribute("communitylist", list);
+		return "index";
+	}
+	
 
-	@RequestMapping("cm/add")
+	@RequestMapping("/cmadd")
 	public String add(Model m, HttpSession session) {
-		if(session.getAttribute("logincust") == null) {
-			return "redirect:/login?returnUrl="+"cm/add";
+		if(session.getAttribute("loginmember") == null) {
+			return "redirect:/login";
 		}else {
 			m.addAttribute("center", "cm/add");
 			return "index";
-		}		
+		}	
 	}
 	
 	@RequestMapping("cm/addimpl")
