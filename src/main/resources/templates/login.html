@@ -41,26 +41,26 @@ input{
 }
 
 
-/*로그인버튼박스*/
+/* /*로그인버튼박스
 .login-btn-wrap{
     height: 60px;
-    line-height: 50px;
+    line-height: 55px;
     width:440px;
     margin: 0px 0px 8px 10px;
     border: solid 1px rgba(0,0,0,.1);
-    background-color: #03c75a;
+	background-color: #00D363;
     color: #fff;
     cursor: pointer;
 }
-/*로그인버튼*/
+/*로그인버튼
 #login-btn{
     width:100px;
-    background-color: #03c75a;
+    background-color: #00D363;
     border: none;
     color:#fff;
     font-size: 18px;
     outline:none;
-}
+} */
 /*로그인 아래 박스*/
 .under-login{
     height: 50px;
@@ -106,8 +106,8 @@ input{
     content: '\2713';
     color: white;
     text-shadow: 1px 1px white;
-    background: #03c75a;
-    border-color: #03c75a;
+    background: #00f559;
+    border-color: #00f559;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
 }
 
@@ -130,7 +130,7 @@ input{
 /*QR코드 로그인*/
 .find-id{
     float: left;
-    border: 1px solid #03c75a;
+    border: 1px solid #00f559;
     background-color: #fff;
     margin: 0px 4px 0px 0px;
     line-height: 55px;
@@ -138,7 +138,7 @@ input{
 /*일회용 번호 로그인*/
 .find-pwd{
     float: right;
-    border: 1px solid #03c75a;
+    border: 1px solid #00f559;
     background-color: #fff;
     margin: 0px 0px 0px 4px;
     line-height: 55px;
@@ -243,8 +243,8 @@ function getCookie(cookieName) {
 
 	<div class="main">
 		<!--웹페이지 상단-->
-		<div class="logo" style="margin-bottom: 40px;">
-			<img th:src="@{/images/loginlogo.png}" class="image" style="width: 100%; height: 100%;">
+		<div class="logo" style="margin-top: 40px; margin-bottom: 20px;">
+			<img th:src="@{/img2/loginlogo.png}" class="image" style="width: 60%; height: 60%;">
 		</div>
 
 		<!--로그인 부분-->
@@ -257,7 +257,7 @@ function getCookie(cookieName) {
 				<input id="pwd" name="pwd" style="border: none; outline:none; width:100%;" placeholder="비밀번호" type="password"></input>
 			</div>
 			<div class="login-btn-wrap">
-				<button id="login-btn">로그인</button>
+				<button class="boxed-btn3" style="width:440px; margin-bottom:10px;" id="login-btn">로그인</button>
 			</div>
 			<div class="login-error-wrap" style="" th:if="${msg != null}">
 				<input style="border: none; outline:none; width:96%; color:blue; 
