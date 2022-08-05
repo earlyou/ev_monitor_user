@@ -1386,12 +1386,12 @@ h3 {
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/banner.png);
+  background-image: url(../img2/banner/banner.png);
 }
 
 /* line 4, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_bg_2 {
-  background-image: url(../img/banner/banner_2.png);
+  background-image: url(../img2/banner/banner_2.png);
 }
 
 /* line 7, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
@@ -2230,8 +2230,8 @@ h3 {
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 145px;
-  padding-bottom: 129px;
+  padding-top: 80px;
+  padding-bottom: 35px;
 }
 
 @media (max-width: 767px) {
@@ -2252,7 +2252,7 @@ h3 {
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 17, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
   .footer .footer_top .footer_widget {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
   }
 }
 
@@ -2262,14 +2262,14 @@ h3 {
   font-weight: 500;
   color: #FFFFFF;
   text-transform: capitalize;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   font-family: "Roboto", sans-serif;
 }
 
 @media (max-width: 767px) {
   /* line 24, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
   .footer .footer_top .footer_widget .footer_title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
 
@@ -2279,13 +2279,13 @@ h3 {
   font-weight: 400;
   color: #FFFFFF;
   text-transform: capitalize;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
 }
 
 @media (max-width: 767px) {
   /* line 35, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
   .footer .footer_top .footer_widget .footer_logo {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
   }
 }
 
@@ -3720,6 +3720,7 @@ h3 {
 .top_companies_area {
   background: #F5F7FA;
   padding-bottom: 70px;
+  padding-top: 70px;
 }
 
 @media (max-width: 767px) {
@@ -3749,14 +3750,13 @@ h3 {
 
 /* line 21, ../../Arafath/CL/December/235. Job board/HTML/scss/_compani.scss */
 .top_companies_area .single_company .thumb {
-  width: 82px;
-  height: 82px;
+  width: 200px;
+  height: 200px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  padding: 15px;
+  padding: 5px;
   background: #F5F7FA;
-  margin-right: 25px;
   border: 1px solid #F0F0F0;
 }
 
@@ -3764,8 +3764,9 @@ h3 {
 .top_companies_area .single_company h3 {
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 18px;
+  margin-bottom: 10px;
   margin-top: 20px;
+  text-align: center;
 }
 
 /* line 38, ../../Arafath/CL/December/235. Job board/HTML/scss/_compani.scss */
@@ -3774,6 +3775,7 @@ h3 {
   color: #AAB1B7;
   margin-bottom: 0;
   font-weight: 400;
+  text-align: center;
 }
 
 /* line 43, ../../Arafath/CL/December/235. Job board/HTML/scss/_compani.scss */

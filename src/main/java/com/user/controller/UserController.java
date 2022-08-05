@@ -30,7 +30,7 @@ public class UserController {
 	@RequestMapping("/login") // 로그인 화면
 	public String login(Model m, String msg) {
 		m.addAttribute("center", "/login");
-		return "/main";
+		return "index";
 	}
 	
 	@RequestMapping("loginimpl") // 로그인 인증 절차
