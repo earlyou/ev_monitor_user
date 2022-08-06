@@ -19,7 +19,7 @@ function rmbookmark(bsid,obj) {
 		url:"/evcsmonitor/delete",
 		data:{"bsid":bsid},
 		success: function(){
-			deleteItem(obj);
+			deleteItem(obj);	// db에 book mark 데이터가 삭제되면 화면의 테이블에서 행 삭제
 		}
 	});
 }

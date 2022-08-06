@@ -82,6 +82,20 @@ function getstation(station) {
 	return station;
 }
 
+function getchger(chger){
+	var start = new Date();
+	$.ajax({
+		url:'/evcsmonitor/getchger',
+		data:{},
+		async:false,
+		success:function(data){
+			chger = JSON.parse(data);
+		}
+	});
+	var end = new Date();
+	console.log('getchger: '+(end-start)/1000+'초');
+	return chger;
+}
 
 function mkmarker(station,chger,map,markers,stationId) {
 	var start = new Date();
@@ -339,21 +353,6 @@ function mkmarker(station,chger,map,markers,stationId) {
 	console.log('mkmarker: '+(end-start)/1000+'초');
 }
 
-function getchger(chger){
-	var start = new Date();
-	$.ajax({
-		url:'/evcsmonitor/getchger',
-		data:{},
-		async:false,
-		success:function(data){
-			chger = JSON.parse(data);
-		}
-	});
-	var end = new Date();
-	console.log('getchger: '+(end-start)/1000+'초');
-	return chger;
-}
-
 function ready(lat,lng,stationId){
 	var start = new Date();
 	// 지도를 표시할 div 선언
@@ -483,6 +482,7 @@ function ready(lat,lng,stationId){
 
 $(document).ready(function(){
 	if (bmstation != null) {
+		$('input[value="'+bmstation.bnm+'"]').prop('checked',true);
 		ready(bmstation.lat,bmstation.lng,bmstation.statId);
 	}else if (navigator.geolocation) { 
         navigator.geolocation.getCurrentPosition(function(position){
