@@ -56,9 +56,7 @@ public class MainController {
 			
 		}
 		if (stat != null) {
-			m.addAttribute("lat", stat.getLat());
-			m.addAttribute("lng", stat.getLng());
-			m.addAttribute("stationId", stat.getStatId());
+			m.addAttribute("bmstation", stat);
 		}
 		m.addAttribute("left", "map/sideleftbar");
 		m.addAttribute("center", "map/mapcenter");

@@ -482,8 +482,8 @@ function ready(lat,lng,stationId){
 }
 
 $(document).ready(function(){
-	if (initiallat != null && initiallng != null) {
-		ready(initiallat,initiallng,stationId);
+	if (bmstation != null) {
+		ready(bmstation.lat,bmstation.lng,bmstation.statId);
 	}else if (navigator.geolocation) { 
         navigator.geolocation.getCurrentPosition(function(position){
 			var lat = position.coords.latitude;
