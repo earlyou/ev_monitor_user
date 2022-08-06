@@ -193,7 +193,7 @@ public class AjaxController {
 		}
 		return "redirect:mybookmark?bsid="+bsid;
 	}
-	
+	/*
 	@RequestMapping("/movemap") // 즐겨찾기에서 지도 이동
 	public String movemap(int bsid, Model m, HttpSession session, BookMarkVO obj) {
 		try {
@@ -203,5 +203,5 @@ public class AjaxController {
 		}
 		return "redirect:mybookmark?bsid="+bsid;
 	}
-	
+	*/
 }

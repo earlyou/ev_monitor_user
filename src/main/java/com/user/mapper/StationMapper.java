@@ -12,9 +12,9 @@ import com.user.vo.StationVO;
 @Mapper
 public interface StationMapper {
 	public void insert(StationVO obj) throws Exception;
-	public void delete(int obj) throws Exception;
+	public void delete(String statId) throws Exception;
 	public void update(StationVO obj) throws Exception;
-	public StationVO select(int obj) throws Exception;
+	public StationVO select(String statId) throws Exception;
 	public List<StationVO> selectall() throws Exception;
 	public List<StationVO> selectfilter(FilterVO obj) throws Exception;
 }
