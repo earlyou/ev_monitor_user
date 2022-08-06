@@ -17,10 +17,8 @@ public class BookMarkVO {
 	private String statid;
 	private String uid;
 	
-	private String uname;
-	private String unickname;
-	private String uclp;
-	private int ucarmodelid;
+	private String sstatNm;
+	private String saddr;
 	
 	public BookMarkVO(int bsid, String statid, String uid) {
 		this.bsid = bsid;

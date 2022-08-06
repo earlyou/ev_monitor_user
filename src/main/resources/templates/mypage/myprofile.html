@@ -1,15 +1,26 @@
 <meta charset="UTF-8">
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>My Profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
 
     <div class="card-body">
         <div class="table-responsive">
-          <div th:each="m:${mlist}">
-              <div th:if="${m.id}==${session.loginmember.id}">
-                  <div><a th:href="@{/mypage/upcheckpwd}">마이페이지</a></div>
-              </div>
-           </div> 
-        </div>
+            <div><a th:href="@{/mypageupcheckpwd}">마이페이지</a></div>
+        </div> 
     </div>
     
     <div class="card-body">
@@ -21,7 +32,7 @@
     
     <div class="card-body">
         <div class="table-responsive">
-             <div><a th:href="@{/mypage/mybookmark}">즐겨찾기</a></div>
+             <div><a th:href="@{/mypagemybookmark}">즐겨찾기</a></div>
         </div>
     </div>
 

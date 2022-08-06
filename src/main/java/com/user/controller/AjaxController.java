@@ -3,6 +3,8 @@ package com.user.controller;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,4 +183,25 @@ public class AjaxController {
 		}		
 		return result;
 	}
+	
+	@RequestMapping("/delete") // 즐겨찾기 삭제
+	public String deletebtn(int bsid, Model m, HttpSession session, BookMarkVO obj) {
+		try {
+			bookmarkbiz.remove(bsid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:mybookmark?bsid="+bsid;
+	}
+	
+	@RequestMapping("/movemap") // 즐겨찾기에서 지도 이동
+	public String movemap(int bsid, Model m, HttpSession session, BookMarkVO obj) {
+		try {
+			bookmarkbiz.get(bsid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:mybookmark?bsid="+bsid;
+	}
+	
 }

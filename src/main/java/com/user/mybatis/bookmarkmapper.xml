@@ -7,29 +7,33 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<select id="select" parameterType="int" resultType="bookmarkVO">
 		SELECT * FROM bookmark WHERE bsid=#{bsid}
 	</select>
+	
 	<select id="selectall" resultType="bookmarkVO">
 		SELECT * FROM bookmark
 	</select>
+	
 	<insert id="insert" parameterType="bookmarkVO">
 		INSERT INTO bookmark VALUES (#{bsid}, #{statid}, #{uid});
 	</insert>
+	
 	<delete id="delete" parameterType="int">
 		DELETE FROM bookmark WHERE bsid=#{bsid}
 	</delete>
 	
-	<!-- 즐겨찾기 JOIN select -->
-	<select id="selectcustomerbookmark" parameterType="int" resultType="usersVO">
-		SELECT b.bsid, b.statid, u.id as uid, u.name as uname, u.nickname as unickname, u.clp as uclp, u.carmodelid as ucarmodelid
-		FROM bookmark b
-		INNER JOIN users u ON b.uid = u.id 
-		WHERE b.uid = #{uid}
-	</select>
-	
-
 	<select id="getbyuid" parameterType="String" resultType="bookmarkVO">
 		SELECT * FROM bookmark WHERE uid=#{uid}
 	</select>
+	
 	<delete id="rmbookmark" parameterType="bookmarkVO">
 		DELETE FROM bookmark WHERE statid=#{statid} AND uid=#{uid}
 	</delete>	
+	
+	<!-- 즐겨찾기 JOIN select -->
+	<select id="selectcustomerbookmark" parameterType="String" resultType="bookmarkVO">
+		SELECT b.bsid, b.statid, b.uid, s.statNm AS sstatNm, s.addr AS saddr
+		FROM bookmark b
+		INNER JOIN station s ON b.statid = s.statId
+		WHERE b.uid = #{uid};
+	</select>
+	
 </mapper>
