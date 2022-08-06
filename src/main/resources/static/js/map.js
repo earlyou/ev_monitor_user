@@ -369,7 +369,6 @@ function ready(lat,lng,stationId){
 	// 즐겨찾는 충전소를 찾을 때는 지도가 더 확대가 된 상태로 로드
     if (stationId != '') {
 		map.setLevel(4);
-		console.log(stationId);
 	}
 	
 	// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다

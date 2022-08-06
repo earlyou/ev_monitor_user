@@ -44,18 +44,25 @@ public class MainController {
 	}
 	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
-	public String map(Model m, HttpSession session) {
-		m.addAttribute("left", "map/sideleftbar");
-		m.addAttribute("center", "map/mapcenter");
-		m.addAttribute("session", session.getAttribute("loginmember"));
+	public String map(Model m, HttpSession session, String statid) {
 		List<BookMarkVO> bookmark = null;
+		StationVO stat = null;
 		try {
+			stat = stationbiz.get(statid);
 			UsersVO user = (UsersVO) session.getAttribute("loginmember");
 			bookmark = bookmarkbiz.getbyuid(user.getId());
 			m.addAttribute("bookmark", bookmark);
 		} catch (Exception e) {
 			
 		}
+		if (stat != null) {
+			m.addAttribute("lat", stat.getLat());
+			m.addAttribute("lng", stat.getLng());
+			m.addAttribute("stationId", stat.getStatId());
+		}
+		m.addAttribute("left", "map/sideleftbar");
+		m.addAttribute("center", "map/mapcenter");
+		m.addAttribute("session", session.getAttribute("loginmember"));
 		return "map/map";
 	}
 	
@@ -115,29 +122,5 @@ public class MainController {
 		
 
 		return pwdresult;
-	}
-	
-	// mybookmark.html -> map.html
-	@RequestMapping("/movemap")
-	public String movemap(Model m, HttpSession session, String statid) {
-		List<BookMarkVO> bookmark = null;
-		StationVO stat = null;
-		try {
-			stat = stationbiz.get(statid);
-			UsersVO user = (UsersVO) session.getAttribute("loginmember");
-			bookmark = bookmarkbiz.getbyuid(user.getId());
-			m.addAttribute("bookmark", bookmark);
-		} catch (Exception e) {
-			
-		}
-		if (stat != null) {
-			m.addAttribute("lat", stat.getLat());
-			m.addAttribute("lng", stat.getLng());
-			m.addAttribute("stationId", stat.getStatId());
-		}
-		m.addAttribute("left", "map/sideleftbar");
-		m.addAttribute("center", "map/mapcenter");
-		m.addAttribute("session", session.getAttribute("loginmember"));
-		return "map/map";
 	}
 }
