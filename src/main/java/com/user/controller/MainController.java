@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.user.biz.BookMarkBiz;
 import com.user.biz.MailBiz;
+import com.user.biz.StationBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
 import com.user.vo.BookMarkVO;
+import com.user.vo.StationVO;
 import com.user.vo.UsersVO;
 
 @Controller
@@ -32,6 +34,9 @@ public class MainController {
 	@Autowired
 	BookMarkBiz bookmarkbiz;
 	
+	@Autowired
+	StationBiz stationbiz;
+	
 	@RequestMapping("/")
 	public String main(Model m) {
 		m.addAttribute("center", "homecenter");
@@ -39,18 +44,25 @@ public class MainController {
 	}
 	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
-	public String map(Model m, HttpSession session) {
-		m.addAttribute("left", "map/sideleftbar");
-		m.addAttribute("center", "map/mapcenter");
-		m.addAttribute("session", session.getAttribute("loginmember"));
+	public String map(Model m, HttpSession session, String statid) {
 		List<BookMarkVO> bookmark = null;
+		StationVO stat = null;
 		try {
+			stat = stationbiz.get(statid);
 			UsersVO user = (UsersVO) session.getAttribute("loginmember");
 			bookmark = bookmarkbiz.getbyuid(user.getId());
 			m.addAttribute("bookmark", bookmark);
 		} catch (Exception e) {
 			
 		}
+		if (stat != null) {
+			m.addAttribute("lat", stat.getLat());
+			m.addAttribute("lng", stat.getLng());
+			m.addAttribute("stationId", stat.getStatId());
+		}
+		m.addAttribute("left", "map/sideleftbar");
+		m.addAttribute("center", "map/mapcenter");
+		m.addAttribute("session", session.getAttribute("loginmember"));
 		return "map/map";
 	}
 	

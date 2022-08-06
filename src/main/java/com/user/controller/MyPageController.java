@@ -17,7 +17,6 @@ import com.user.biz.UsersBiz;
 import com.user.vo.BookMarkVO;
 import com.user.vo.CarModelVO;
 import com.user.vo.CommunityVO;
-import com.user.vo.UserAuthorityVO;
 import com.user.vo.UsersVO;
 
 @Controller
@@ -54,7 +53,7 @@ public class MyPageController {
 	@RequestMapping("/mypagemyprofiledetail")
 	public String myprofiledetail(Model m, String id) {
 		UsersVO obj = null;
-		List<UserAuthorityVO> list = null;
+//		List<UserAuthorityVO> list = null;
 		List<CarModelVO> cmlist = null;
 		try {
 			obj = ubiz.get(id);
@@ -129,7 +128,7 @@ public class MyPageController {
 			bookmlist = bookmarkbiz.getcustomerbookmark(user.getId());
 			m.addAttribute("bookmlist", bookmlist);	
 			
-			System.out.println(bookmlist);
+//			System.out.println(bookmlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

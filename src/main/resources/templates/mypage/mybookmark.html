@@ -4,23 +4,32 @@
 
 <script th:inline="javascript">
 $(document).ready(function(){
-	$('#deletebtn').click(function() {
-		var bsid = $('input[name="bsid"]').val();
-		var c = confirm('즐겨찾기 목록에서 삭제 하시겠습니까?');
-		if (c == true) {
-			location.href ='delete?bsid='+bsid;
-		};
-	});
-	
-	$('#mapmovebtn').click(function() {
-		var bsid = $('input[name="bsid"]').val();
-		var m = confirm('해당 위치로 이동하시겠습니까?');
-		if (m == true) {
-			location.href ='movemap?statid='+statid;
-		};
-	});
-	
+
 });
+
+// table의 행을 없애는 함수
+function deleteItem(obj) {
+	var tr = $(obj).closest("tr");
+	tr.remove();
+}
+
+// db의 북마크 데이터 삭제
+function rmbookmark(bsid,obj) {
+	$.ajax({
+		url:"/evcsmonitor/delete",
+		data:{"bsid":bsid},
+		success: function(){
+			deleteItem(obj);
+		}
+	});
+}
+
+// 해당 충전소로 지도이동
+function movemap(statid,sstatNm){
+	if (confirm('해당 위치로 이동하시겠습니까? ('+sstatNm+')')) {
+		location.href ='map?statid='+statid;
+	};
+}
 </script>
 
 <!-- bradcam_area  -->
@@ -42,7 +51,7 @@ $(document).ready(function(){
     <div class="card-body">
         <div class="table-responsive">
         
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered" id="dataTable" style="width: 100%; border-spacing: 0px;">
                 <thead>
                     <tr>
                         <th style="text-align:center;">충전소명</th>
@@ -54,10 +63,10 @@ $(document).ready(function(){
                 
                 <tbody>
                     <tr th:each="bookm:${bookmlist}">       		               
-						<td style="text-align:center;"><a th:text="${bookm.sstatNm}">충전소명</a></td>
-                        <td style="text-align:center;"><a th:text="${bookm.saddr}">충전소 주소</a></td>
-                        <td style="text-align:center;"><a name="mapmovebtn" id="mapmovebtn" type="button" class="btn btn-info" th:href="@{/movemap(statid=${bookm.statid})}">지도보기</a></td>
-                        <td style="text-align:center;"><a name="deletebtn" id="deletebtn" type="button" class="btn btn-danger" th:href="@{/delete(bsid=${bookm.bsid})}">삭제</a></td>             		    
+						<td style="text-align:center;"><span th:text="${bookm.sstatNm}">충전소명</span></td>
+                        <td style="text-align:center;"><span th:text="${bookm.saddr}">충전소 주소</span></td>
+                        <td style="text-align:center;"><a id="mapmovebtn" type="button" class="btn btn-info" href="#" th:onclick="javascript:movemap([[${bookm.statid}]],[[${bookm.sstatNm}]]);">지도보기</a></td>
+                        <td style="text-align:center;"><a id="deletebtn" type="button" class="btn btn-danger" href="#" th:onclick="javascript:rmbookmark([[${bookm.bsid}]],this);">삭제</a></td>             		    
                     </tr> 
                 </tbody>
             </table>
