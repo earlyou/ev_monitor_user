@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.StationMapper">
 	
-	<select id="select" parameterType="int" resultType="stationVO">
+	<select id="select" parameterType="String" resultType="stationVO">
 		SELECT * FROM station WHERE statId=#{statId}
 	</select>
 	<select id="selectall" resultType="stationVO">
@@ -22,7 +22,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		busiId=#{busiId}, bnm=#{bnm}, busiNm=#{busiNm},busiCall=#{busiCall}
 		WHERE statId=#{statId}
 	</update>
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="String">
 		DELETE FROM station WHERE statId=#{statId}
 	</delete>
 	

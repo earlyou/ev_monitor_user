@@ -1,5 +1,5 @@
 @charset "EUC-KR";
-/*map 영역*/
+
 #fixed{
 	position: relative;
 }
@@ -7,14 +7,16 @@
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	border: 1px solid black;
 }
 
-/*Filter 영역*/
+
+#foverflow {
+	height: 200px;
+	overflow-y: scroll;
+}
 
 
 
-/*Custom Overlay 영역*/
 .wrap {
 	position: absolute;
 	left: 0;
