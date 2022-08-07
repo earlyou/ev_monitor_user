@@ -23,7 +23,7 @@ a {
 }
 a:hover {
 	text-decoration: none;
-	color: #00d3bf;
+	color: #38a4ff;
 }
 a:focus {
 	outline: none;
@@ -100,11 +100,6 @@ button[class="btn btn-search"].btn-search {
   border-bottom: 1px solid #000;
   border-radius: 0 0 0 0em;
 }
-
-
-
-
-
 
 .hrsu{
   font-size: 26px;

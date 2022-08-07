@@ -84,7 +84,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "/register";
+		return "register";
 	}
 	
 	@RequestMapping("tos") // 이용약관
@@ -93,8 +93,8 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping("addimpl") // 회원등록 인증 절차
-	public String addimpl(Model m, UsersVO obj) {
+	@RequestMapping("/registerimpl") // 회원등록 인증 절차
+	public String registerimpl(Model m, UsersVO obj) {
 		
 		try {
 			obj.setUsertypeid(100);
@@ -102,7 +102,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "index";
+		return "redirect:/";
 	}
 	
 
