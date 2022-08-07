@@ -1,36 +1,104 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+body{
+    background:#f5f5f5;
+    margin-top:0px;
+}
+.card {
+    border: none;
+    -webkit-box-shadow: 1px 0 20px rgba(96,93,175,.05);
+    box-shadow: 1px 0 20px rgba(96,93,175,.05);
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+.table th {
+    font-weight: 500;
+    color: #827fc0;
+}
+.table thead {
+    background-color: #f3f2f7;
+}
+.table>tbody>tr>td, .table>tfoot>tr>td, .table>thead>tr>td {
+    padding: 14px 12px;
+    vertical-align: middle;
+}
+.table tr td {
+    color: #8887a9;
+}
+.thumb-sm {
+    height: 32px;
+    width: 32px;
+}
+.badge-soft-warning {
+    background-color: rgba(248,201,85,.2);
+    color: #f8c955;
+}
 
-<!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">마이 커뮤니티 목록</h1>
+.badge {
+    font-weight: 500;
+}
+.badge-soft-primary {
+    background-color: rgba(96,93,175,.2);
+    color: #605daf;
+}
+</style>
+<script>
 
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
+</script>
 
-    <div class="card-body">
-        <div class="table-responsive">
-        
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>지역번호</th>
-                        <th>게시글 내용</th>
-                        <th>등록일</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr th:each="com:${comlist}">
-                    <div th:if="${com.uid}==${session.loginmember.id}">
-                        <td th:text="${com.statid}">pwd</td>
-                        <td th:text="${com.tf}">name</td>
-                        <td th:text="${#dates.format(com.regdate,'yyyy-MM-dd')}">regdate</td>
-                    </div>    
-                    </tr> 
-                </tbody>
-            </table>
-            
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>내 커뮤니티 목록</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    
+<div class="container">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr class="align-self-center">
+                                	<th style="text-align:center;">번호</th>
+                                    <th style="text-align:center;">제목</th>
+                                    <th style="text-align:center;">지역</th>
+                                    <th style="text-align:center;">내용</th>
+                                    <th style="text-align:center;">이미지</th>
+                                    <th style="text-align:center;">등록일</th>
+                                    <th style="text-align:center;">삭제</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="com:${comlist}">
+                                  <div th:if="${com.uid}==${session.loginmember.id}">             
+                                	<td style="text-align:center;" th:text="${com.pid}">pid</td>
+                                    <td style="text-align:center;" th:text="${com.title}">title</td>
+                                    <td style="text-align:center;" th:text="${com.location}">location</td>
+                                    <td style="text-align:center;" th:text="${com.tf}">tf</td>
+                                    <td style="text-align:center; width: 50px;" th:text="@{'/img/'+${com.cimgname}}">img</td>
+                                    <td style="text-align:center;" th:text="${#dates.format(com.regdate,'yyyy-MM-dd hh:mm:ss')}">regdate</td>
+                                    <td style="text-align:center;"><a name="deletebtn" id="deletebtn" type="button" class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a></td>
+                                  </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--end table-responsive-->
+                </div>
+            </div>
         </div>
     </div>
 </div>
