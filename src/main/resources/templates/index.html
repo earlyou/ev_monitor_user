@@ -50,7 +50,7 @@
                         <div class="row align-items-center">
                             <div class="col-xl-3 col-lg-2">
                                 <div class="logo" id="logodiv">
-                                    <a href="/evcsmonitor/">
+                                    <a th:href="@{/}">
                                         <img src="/evcsmonitor/img2/logo.png" alt="" id="logoimgset">
                                     </a>
                                 </div>
@@ -59,7 +59,7 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a href="/evcsmonitor/">home</a></li>
+                                            <li><a th:href="@{/}">home</a></li>
                                             <!-- 
                                             호버 메뉴
                                             <li><a th:href="jobs.html">소개</a></li>
@@ -87,21 +87,21 @@
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="Appointment">
                                     <div th:if="${session.loginmember == null}">
-			                        	<a class="boxed-btn3" href="/evcsmonitor/tos">
+			                        	<a class="boxed-btn3"  th:href="@{/tos}">
 			                            	<i class="fa fa-pencil-square-o fa-lg"></i>
 			                            	회원가입 
 			                        	</a>
-			                        	<a class="boxed-btn3" href="/evcsmonitor/login">
+			                        	<a class="boxed-btn3" th:href="@{/login}">
 			                            	<i class="fa fa-sign-in fa-lg"></i>
 			                            	로그인 
 			                        	</a>
                    					</div>
                    					<div th:unless="${session.loginmember == null}">
-			                        	<a class="boxed-btn3" href="/evcsmonitor/mypagemyprofile">
+			                        	<a class="boxed-btn3" th:href="@{/mypagemyprofile}">
 			                            	<i class="fa fa-user-o fa-lg"></i>
 			                            	내 프로필 
 			                        	</a>                   		
-			                        	<a class="boxed-btn3" href="/evcsmonitor/logout">
+			                        	<a class="boxed-btn3" th:href="@{/logout}">
 			                            	<i class="fa fa-sign-out fa-lg"></i>
 			                            	로그아웃 
 			                        	</a>
