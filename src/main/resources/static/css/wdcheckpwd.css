@@ -29,25 +29,12 @@ input{
     background: #fff;
 }
 
-
-.wdcheck-btn-wrap{
-    height: 60px;
-    line-height: 50px;
-    width:440px;
-    margin: 0px 0px 8px 10px;
-    border: solid 1px rgba(0,0,0,.1);
-    background-color: #FA5858;
-    color: #fff;
-    cursor: pointer;
-}
-
 #deletebtn{
-    width:100px;
-    background-color: #FA5858;
-    border: none;
+    margin: 0px 0px 8px 10px;
     color:#fff;
     font-size: 18px;
     outline:none;
+    cursor: pointer;
 }
 
 /*가로 800px 이상일때*/

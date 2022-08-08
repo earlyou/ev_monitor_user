@@ -10,7 +10,7 @@ $(document).ready(function(){
 		if(pwdc == null || pwdc == ''){
 		alert('비밀번호를 삽입해 주세요.');
 		}else if(pwdc == pwdl){	
-		location.href="mypagemyprofiledetail?id="+idl;
+		location.href="myprofiledetail?id="+idl;
 		}else{
 		alert('비밀번호가 일치하지 않습니다.');
 		}
@@ -46,7 +46,7 @@ $(document).ready(function(){
 				placeholder="비밀번호를 입력해주세요." type="password"></input>
 			</div>
 			<div class="upcheck-btn-wrap">
-				<button id="checkbtn">제출(확인)</button>
+				<button class="boxed-btn3" id="checkbtn">제출(확인)</button>
 			</div>
 	</div>
 

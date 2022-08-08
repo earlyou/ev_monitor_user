@@ -1,6 +1,123 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+body{
+    background-color: #f6f6f6;
+    margin-top:0px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    position: relative;
+    margin-bottom: 50px;
+   	margin-top: 30px;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,0.1), 0 0.9375rem 1.40625rem rgba(90,97,105,0.1), 0 0.25rem 0.53125rem rgba(90,97,105,0.12), 0 0.125rem 0.1875rem rgba(90,97,105,0.1);
+}
+
+.card .card-header {
+    border-bottom-color: #f9f9f9;
+    line-height: 30px;
+    -ms-grid-row-align: center;
+    align-self: center;
+    width: 100%;
+    padding: 10px 55px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.card .card-header, .card .card-body, .card .card-footer {
+    background-color: transparent;
+    padding: 20px 25px;
+}
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.table:not(.table-sm) thead th {
+    border-bottom: none;
+    background-color: #e9e9eb;
+    color: #666;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.table .table-img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid #bbbbbb;
+    -webkit-box-shadow: 5px 6px 15px 0px rgba(49,47,49,0.5);
+    -moz-box-shadow: 5px 6px 15px 0px rgba(49,47,49,0.5);
+    -ms-box-shadow: 5px 6px 15px 0px rgba(49,47,49,0.5);
+    box-shadow: 5px 6px 15px 0px rgba(49,47,49,0.5);
+    text-shadow: 0 0 black;
+}
+
+.table .order-list li img {
+    border: 2px solid #ffffff;
+    box-shadow: 4px 3px 6px 0 rgba(0,0,0,0.2);
+}
+.table .team-member img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0;
+    border-radius: 1000px;
+}
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.table .order-list li+li {
+    margin-left: -14px;
+    background: transparent;
+}
+.avatar.avatar-sm {
+    font-size: 12px;
+    height: 30px;
+    width: 30px;
+}
+
+
+.table .order-list li .badge {
+    background: rgba(228,222,222,0.8);
+    color: #6b6f82;
+    margin-bottom: 6px;
+}
+
+.badge {
+    vertical-align: middle;
+    padding: 7px 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    border-radius: 30px;
+    font-size: 12px;
+}
+
+.progress {
+    -webkit-box-shadow: 0 0.4rem 0.6rem rgba(0,0,0,0.15);
+    box-shadow: 0 0.4rem 0.6rem rgba(0,0,0,0.15);
+}
+
+.btn-action {
+    color: #fff !important;
+    line-height: 25px;
+    font-size: 12px;
+    min-width: 35px;
+    min-height: 35px;
+}
+</style>
 
 <script th:inline="javascript">
 $(document).ready(function(){
@@ -46,31 +163,30 @@ function movemap(statid,sstatNm){
     </div>
     <!--/ bradcam_area  -->
 
-<div class="card shadow mb-4">
-
-    <div class="card-body">
+<div class="container">
+<div class="col-md-12 col-12 col-sm-12">
+    <div class="card">
+      <div class="card-body">
         <div class="table-responsive">
-        
-            <table class="table table-bordered" id="dataTable" style="width: 100%; border-spacing: 0px;">
-                <thead>
-                    <tr>
-                        <th style="text-align:center;">충전소명</th>
-                        <th style="text-align:center;">충전소주소</th>
-                        <th style="text-align:center;">충전소 보기</th>
-                        <th style="text-align:center;">삭제</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    <tr th:each="bookm:${bookmlist}">       		               
-						<td style="text-align:center;"><span th:text="${bookm.sstatNm}">충전소명</span></td>
-                        <td style="text-align:center;"><span th:text="${bookm.saddr}">충전소 주소</span></td>
-                        <td style="text-align:center;"><a id="mapmovebtn" type="button" class="btn btn-info" href="#" th:onclick="javascript:movemap([[${bookm.statid}]],[[${bookm.sstatNm}]]);">지도보기</a></td>
-                        <td style="text-align:center;"><a id="deletebtn" type="button" class="btn btn-danger" href="#" th:onclick="javascript:rmbookmark([[${bookm.bsid}]],this);">삭제</a></td>             		    
-                    </tr> 
-                </tbody>
-            </table>
-            
+          <table class="table table-striped">
+            <tbody><tr>
+              <th style="text-align:center;">충전소명</th>
+              <th style="text-align:center;">충전소 주소</th>
+              <th style="text-align:center;">충전소 위치보기</th>
+              <th style="text-align:center;">삭제</th>
+            </tr>
+            <tr th:each="bookm:${bookmlist}">
+              <td style="text-align:center;"><a th:text="${bookm.sstatNm}">충전소명</a></td>
+			  <td style="text-align:center;"><a th:text="${bookm.saddr}">충전소 주소</a></td>
+              <td style="text-align:center;"><a name="mapmovebtn" id="mapmovebtn" type="button" 
+              class="btn btn-info" href="#" th:onclick="javascript:movemap([[${bookm.statid}]],[[${bookm.sstatNm}]]);">지도보기</a></td>
+              <td style="text-align:center;"><a name="deletebtn" id="deletebtn" type="button" 
+              class="btn btn-danger" href="#" th:onclick="javascript:rmbookmark([[${bookm.bsid}]],this);"><i class="fa fa-trash"></i></a>	
+              </td>
+            </tr>
+          </tbody></table>
         </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -238,65 +238,64 @@ $(document).ready(function(){
 	});
 
 	
- 	
 	$('#add_bt').click(function(){
-		var id = $('input[name="id"]').val(); 
-		var pwd = $('input[name="pwd"]').val();
-		var pwdc = $('input[name="pwdc"]').val();	
-		var name = $('input[name="name"]').val();
-		var nickname = $('input[name="nickname"]').val();
-		var phonenum = $('input[name="phonenum"]').val();
-		var email = $('input[name="email"]').val();
-		var clp = $('input[name="clp"]').val();
+		var id = $('#id').val(); 
+		var pwd = $('#pwd').val();
+		var pwdc = $('#pwdc').val();	
+		var name = $('#name').val();
+		var nickname = $('#nickname').val();
+		var phonenum = $('#phonenum').val();
+		var email = $('#email').val();
+		var clp = $('#clp').val();
 		
 		if(id==null||id==''||pwd==null||pwd==''||pwdc==null||pwdc==''||name==null||name==''||
 				phonenum==null|| phonenum==''||email==null||email==''||nickname==null||nickname==''){
-			if(id == ''){
-				$('#cidspan').text('필수 입력 요소 입니다.');
-				$('#cidspan').css('color','red');
-				$('#id').focus();
-			}
-			if(pwd == ''){
-				$('#pwdspan').text('필수 입력 요소 입니다.');
-				$('#pwdspan').css('color','red');
-				$('#pwd').focus();
-			}
-			if(name == ''){
-				$('#nspan').text('필수 입력 요소 입니다.');
-				$('#nspan').css('color','red');
-				$('#name').focus();
-			}
-			if(phonenum == ''){
-				$('#pnspan').text('필수 입력 요소 입니다.');
-				$('#pnspan').css('color','red');
-				$('#phonenum').focus();
-			}
-			if(email == ''){
-				$('#emspan').text('필수 입력 요소 입니다.');
-				$('#emspan').css('color','red');
-				$('#email').focus();
-			}
-			if(nickname == ''){
-				$('#nickspan').text('필수 입력 요소 입니다.');
-				$('#nickspan').css('color','red');
-				$('#nickname').focus();
-			}
+				if(id==null||id==''){
+					$('#cidspan').text('필수 입력 요소 입니다. ');
+					$('#cidspan').css('color','red');
+					$('#id').focus();
+				}
+				if(pwd==null||pwd==''){
+					$('#pwdspan').text('필수 입력 요소 입니다. ');
+					$('#pwdspan').css('color','red');
+					$('#pwd').focus();
+				}
+				if(name==null||name==''){
+					$('#nspan').text('필수 입력 요소 입니다. ');
+					$('#nspan').css('color','red');
+					$('#name').focus();
+				}
+				if(phonenum==null|| phonenum==''){
+					$('#pnspan').text('필수 입력 요소 입니다. ');
+					$('#pnspan').css('color','red');
+					$('#phonenum').focus();
+				}
+				if(email==null||email==''){
+					$('#emspan').text('필수 입력 요소 입니다. ');
+					$('#emspan').css('color','red');
+					$('#email').focus();
+				}
+				if(nickname==null||nickname==''){
+					$('#nickspan').text('필수 입력 요소 입니다. ');
+					$('#nickspan').css('color','red');
+					$('#nickname').focus();
+				}				
+			}else if(idpass && pwdpass && pwdcheckpass && namepass && phonenumpass && nicknamepass && emailpass){//모든 조건 만족시 실행 
 			
-			
-		}else if(idpass && pwdpass && pwdcheckpass && namepass && phonenumpass && nicknamepass && emailpass){
-			
-			$('#add_form').attr({
-				'method':'post',
-				'action':'addimpl' 
-			});
-			$('#add_form').submit();
-			
-			alert('등록이 완료되었습니다.');
-			
-		}else{
-			$('#rgspan').text('모든 가입 조건을 충족해야 합니다.');
-			$('#rgspan').css('color','red');
-		}
+				$('#add_form').attr({
+					'method':'POST',
+					'action':'registerimpl'
+					
+				})
+				
+				$('#add_form').submit();
+				alert('회원가입이 완료되었습니다.');
+
+			}else{
+				$('#rgspan').text('모든 가입 조건을 충족해야 합니다. ');
+				$('#rgspan').css('color','red');
+			}
+		
 	});
 });
 </script>
@@ -367,7 +366,7 @@ $(document).ready(function(){
 
             <div class="col-md-6 mb-3">
               <label for="carmodelid">차량 모델<span class="text-muted">&nbsp;(필수 아님)</span></label>
-              <select class="custom-select d-block w-100" id="carmodelid" name = "carmodelid">
+              <select class="serch_cat d-flex justify-content-end" id="carmodelid" name = "carmodelid">
 				<option th:each="cm:${cmlist}" 
             		th:if="${cm.carmodelid != 0}"
             		th:value="${cm.carmodelid}" th:text="${cm.mname}">
@@ -377,6 +376,7 @@ $(document).ready(function(){
           </div>
 
           <button id="add_bt" type="submit" class="btn btn-primary btn-lg btn-block" >가입 완료 하기</button>
+          <a th:href="@{/}" class="btn btn-danger btn-lg btn-block">가입 취소 하기</a>
           <span id="rgspan"></span>
         </form>
       </div>

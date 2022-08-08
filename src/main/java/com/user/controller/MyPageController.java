@@ -50,7 +50,7 @@ public class MyPageController {
 		return "index";
 	}
 	
-	@RequestMapping("/mypagemyprofiledetail")
+	@RequestMapping("/myprofiledetail")
 	public String myprofiledetail(Model m, String id) {
 		UsersVO obj = null;
 //		List<UserAuthorityVO> list = null;
@@ -89,7 +89,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/mypagemyprofiledetail?id="+obj.getId();
+		return "redirect:/myprofiledetail?id="+obj.getId();
 	}
 	
 	@RequestMapping("/mypagedelete") // 회원탈퇴
@@ -104,7 +104,7 @@ public class MyPageController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("mypage/mycomminity") // 내 커뮤니티
+	@RequestMapping("/mypagemycomminity") // 내 커뮤니티
 	public String mycomminity(Model m, Integer pid) {
 		List<CommunityVO> comlist = null;
 		try {
@@ -114,7 +114,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		m.addAttribute("center", "/mypage/mycomminity");
-		return "main";
+		return "index";
 	}
 
 	@RequestMapping("/mypagemybookmark") // 내 즐겨찾기 목록
