@@ -353,17 +353,14 @@ function mkmarker(station,chger,map,markers,stationId) {
 	console.log('mkmarker: '+(end-start)/1000+'초');
 }
 
-function ready(lat,lng,stationId){
+function ready(lat,lng,stationId,map){
 	var start = new Date();
-	// 지도를 표시할 div 선언
-	var mapContainer = document.getElementById('map'),
-    mapOption = { 
-        center: new kakao.maps.LatLng(lat, lng),
-        level: 8
-    };
+	
+	// 이동할 위도 경도 위치를 생성합니다 
+    var moveLatLon = new kakao.maps.LatLng(lat, lng);
     
-    // 지도 생성
-	var map = new kakao.maps.Map(mapContainer, mapOption); 
+    // 지도 중심을 이동 시킵니다
+    map.setCenter(moveLatLon);
 	
 	// 즐겨찾는 충전소를 찾을 때는 지도가 더 확대가 된 상태로 로드
     if (stationId != '') {
@@ -480,20 +477,38 @@ function ready(lat,lng,stationId){
 	});
 }
 
+function movemap(statid) {
+	location.href ='map?statid='+statid;
+}
+
+
 $(document).ready(function(){
+	if(performance.getEntriesByType("navigation")[0].type == 'reload') {
+		location.href = '/evcsmonitor/map';
+	}
+	// 지도를 표시할 div 선언
+	var mapContainer = document.getElementById('map'),
+	mapOption = { 
+	    center: new kakao.maps.LatLng(37.55702316206885, 126.99452229408297),
+	    level: 8
+	};
+	
+	// 지도 생성
+	var map = new kakao.maps.Map(mapContainer, mapOption);
+	
 	if (bmstation != null) {
 		$('input[value="'+bmstation.bnm+'"]').prop('checked',true);
-		ready(bmstation.lat,bmstation.lng,bmstation.statId);
+		ready(bmstation.lat,bmstation.lng,bmstation.statId,map);
 	}else if (navigator.geolocation) { 
-        navigator.geolocation.getCurrentPosition(function(position){
+	    navigator.geolocation.getCurrentPosition(function(position){
 			var lat = position.coords.latitude;
 			var lng = position.coords.longitude;
-			ready(lat,lng,'');
+			ready(lat,lng,'',map);
 		});
-    } else {
+	} else {
 		var lat = 37.55702316206885;
 		var lng = 126.99452229408297;
-        alert('사용자의 위치 정보를 받아올 수 없습니다.');
-        ready(lat,lng,'');
-    }
+	    alert('사용자의 위치 정보를 받아올 수 없습니다.');
+	    ready(lat,lng,'',map);
+	}
 });

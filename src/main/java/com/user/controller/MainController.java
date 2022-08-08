@@ -46,12 +46,16 @@ public class MainController {
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
 	public String map(Model m, HttpSession session, String statid) {
 		List<BookMarkVO> bookmark = null;
+		List<BookMarkVO> bookmlist = null;
 		StationVO stat = null;
+		UsersVO user = null;
 		try {
 			stat = stationbiz.get(statid);
-			UsersVO user = (UsersVO) session.getAttribute("loginmember");
+			user = (UsersVO) session.getAttribute("loginmember");
 			bookmark = bookmarkbiz.getbyuid(user.getId());
 			m.addAttribute("bookmark", bookmark);
+			bookmlist = bookmarkbiz.getcustomerbookmark(user.getId());
+			m.addAttribute("bookmlist", bookmlist);
 		} catch (Exception e) {
 			
 		}

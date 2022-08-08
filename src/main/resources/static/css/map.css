@@ -14,7 +14,10 @@
 	height: 200px;
 	overflow-y: scroll;
 }
-
+.foverflow {
+	height: 200px;
+	overflow-y: scroll;
+}
 
 
 .wrap {

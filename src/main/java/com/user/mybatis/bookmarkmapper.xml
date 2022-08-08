@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<!-- 즐겨찾기 JOIN select -->
 	<select id="selectcustomerbookmark" parameterType="String" resultType="bookmarkVO">
-		SELECT b.bsid, b.statid, b.uid, s.statNm AS sstatNm, s.addr AS saddr
+		SELECT b.bsid, b.statid, b.uid, s.statNm AS sstatNm, s.addr AS saddr, s.lat AS slat, s.lng AS slng
 		FROM bookmark b
 		INNER JOIN station s ON b.statid = s.statId
 		WHERE b.uid = #{uid};

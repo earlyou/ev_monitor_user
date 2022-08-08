@@ -19,6 +19,8 @@ public class BookMarkVO {
 	
 	private String sstatNm;
 	private String saddr;
+	private double slat;
+	private double slng;
 	
 	public BookMarkVO(int bsid, String statid, String uid) {
 		this.bsid = bsid;
