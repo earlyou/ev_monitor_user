@@ -10,7 +10,7 @@
   <style>
     body {
       min-height: 100vh;
-
+	  margin-top: 50px;
       background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#1d466c));
       background: -webkit-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
       background: -moz-linear-gradient(bottom left, #92b5db 0%, #1d466c 100%);
@@ -366,7 +366,7 @@ $(document).ready(function(){
 
             <div class="col-md-6 mb-3">
               <label for="carmodelid">차량 모델<span class="text-muted">&nbsp;(필수 아님)</span></label>
-              <select class="serch_cat d-flex justify-content-end" id="carmodelid" name = "carmodelid">
+              <select class="custom-select d-block w-100" id="carmodelid" name = "carmodelid">
 				<option th:each="cm:${cmlist}" 
             		th:if="${cm.carmodelid != 0}"
             		th:value="${cm.carmodelid}" th:text="${cm.mname}">

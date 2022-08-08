@@ -43,6 +43,8 @@ public class CommunityBiz implements Biz<Integer, CommunityVO> {
 		return commudao.selectall();
 	}
 
-
+	public List<CommunityVO> getselectcustomercommdetail(String uid) throws Exception {
+		return commudao.selectcustomercommdetail(uid);
+	}
 	
 }
