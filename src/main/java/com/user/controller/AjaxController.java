@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.user.biz.BookMarkBiz;
 import com.user.biz.ChgerstatusBiz;
+import com.user.biz.CommunityBiz;
 import com.user.biz.StationBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
@@ -35,6 +36,9 @@ public class AjaxController {
 	
 	@Autowired
 	ChgerstatusBiz cbiz;
+	
+	@Autowired
+	CommunityBiz communitybiz;
 	
 	@Autowired
 	BookMarkBiz bookmarkbiz;
@@ -186,6 +190,15 @@ public class AjaxController {
 	public void deletebtn(int bsid, Model m) {
 		try {
 			bookmarkbiz.remove(bsid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("deletecom") // 커뮤니티 삭제
+	public void deletecombtn(int pid, Model m) {
+		try {
+			communitybiz.remove(pid);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

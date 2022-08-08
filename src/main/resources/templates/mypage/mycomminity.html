@@ -11,7 +11,7 @@ body{
     -webkit-box-shadow: 1px 0 20px rgba(96,93,175,.05);
     box-shadow: 1px 0 20px rgba(96,93,175,.05);
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 .table th {
     font-weight: 500;
@@ -46,6 +46,22 @@ body{
 </style>
 <script>
 
+//table의 행을 없애는 함수
+function deleteItem(obj) {
+	var tr = $(obj).closest("tr");
+	tr.remove();
+}
+
+//db의 북마크 데이터 삭제
+function rmcommunity(pid,obj) {
+	$.ajax({
+		url:"/evcsmonitor/deletecom",
+		data:{"pid":pid},
+		success: function(){
+			deleteItem(obj);	// db에 book mark 데이터가 삭제되면 화면의 테이블에서 행 삭제
+		}
+	});
+}
 </script>
 
 <!-- bradcam_area  -->
@@ -78,20 +94,21 @@ body{
                                     <th style="text-align:center;">내용</th>
                                     <th style="text-align:center;">이미지</th>
                                     <th style="text-align:center;">등록일</th>
+                                    <th style="text-align:center;">게시글 상세</th>
                                     <th style="text-align:center;">삭제</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="com:${comlist}">
-                                  <div th:if="${com.uid}==${session.loginmember.id}">             
-                                	<td style="text-align:center;" th:text="${com.pid}">pid</td>
+                                	<td style="text-align:center;" th:text="${com.pid}"></td>
                                     <td style="text-align:center;" th:text="${com.title}">title</td>
                                     <td style="text-align:center;" th:text="${com.location}">location</td>
                                     <td style="text-align:center;" th:text="${com.tf}">tf</td>
                                     <td style="text-align:center; width: 50px;" th:text="@{'/img/'+${com.cimgname}}">img</td>
                                     <td style="text-align:center;" th:text="${#dates.format(com.regdate,'yyyy-MM-dd hh:mm:ss')}">regdate</td>
-                                    <td style="text-align:center;"><a name="deletebtn" id="deletebtn" type="button" class="btn btn-danger" href="#"><i class="fa fa-trash"></i></a></td>
-                                  </div>
+                                    <td style="text-align:center;"><a th:href="@{cm_details(pid)=${o.pid}}" class="btn btn-primary"><i class="fa fa-commenting"></i></a></td>
+                                    <td style="text-align:center;"><a name="deletecombtn" id="deletecombtn" type="button" class="btn btn-danger" href="#"
+                                    th:onclick="javascript:rmcommunity([[${com.pid}]],this);"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
