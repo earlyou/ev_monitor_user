@@ -50,7 +50,7 @@ public class MyPageController {
 		return "index";
 	}
 	
-	@RequestMapping("/myprofiledetail")
+	@RequestMapping("/mypagemyprofiledetail")
 	public String myprofiledetail(Model m, String id) {
 		UsersVO obj = null;
 //		List<UserAuthorityVO> list = null;
@@ -63,8 +63,7 @@ public class MyPageController {
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}
-		m.addAttribute("center", "/mypage/myprofiledetail");
-		return "index";
+		return "/mypage/myprofiledetail";
 	}
 	
 	@RequestMapping("/mypageupcheckpwd")
@@ -89,7 +88,7 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/myprofiledetail?id="+obj.getId();
+		return "redirect:/mypagemyprofiledetail?id="+obj.getId();
 	}
 	
 	@RequestMapping("/mypagedelete") // 회원탈퇴
@@ -105,10 +104,14 @@ public class MyPageController {
 	}
 	
 	@RequestMapping("/mypagemycomminity") // 내 커뮤니티
-	public String mycomminity(Model m, Integer pid) {
+	public String mycomminity(Model m, Integer pid, HttpSession session) {
+		
 		List<CommunityVO> comlist = null;
+		m.addAttribute("session", session.getAttribute("loginmember"));
+		
 		try {
-			comlist = combiz.get();
+			UsersVO user = (UsersVO) session.getAttribute("loginmember");
+			comlist = combiz.getselectcustomercommdetail(user.getId());
 			m.addAttribute("comlist", comlist);
 		} catch (Exception e) {
 			e.printStackTrace();

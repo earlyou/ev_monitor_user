@@ -61,5 +61,10 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		DELETE FROM community WHERE pid=#{pid}
 	</delete>
 	
+	<!-- uid를 통한 커뮤니티 select list -->
+	<select id="selectcustomercommdetail" parameterType="String" resultType="communityVO">
+		SELECT * FROM community WHERE uid = #{uid}
+	</select>
+	
 </mapper>
 
