@@ -3,7 +3,45 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.CommunityMapper">
-		
+
+	<!-- 글목록 공지 select -->
+	<select id="selectalladminlist" resultType="communityVO">
+		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.regdate, u.usertypeid 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE u.usertypeid=200
+		ORDER BY c.pid DESC
+	</select>
+	
+	<!-- 글목록 일반회원 select -->
+	<select id="selectalluserlist" resultType="communityVO">
+		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.regdate, u.usertypeid 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE u.usertypeid=100
+		ORDER BY c.pid DESC
+	</select>
+	
+	<!-- 글 detail select -->
+	<select id="selectdetail" parameterType="int" resultType="communityVO">
+		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.tf, c.cimgname, c.regdate, u.usertypeid 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE c.pid=#{pid}
+		ORDER BY c.pid DESC
+	</select>
+	
+	<!-- 해당 충전소 관련글 5개 -->
+	<select id="selectdetailother" parameterType="string" resultType="communityVO">
+		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.regdate, u.usertypeid 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE c.statid=#{statid}
+		ORDER BY c.pid DESC
+		LIMIT 5 OFFSET 0
+	</select>
+
+
 	<select id="select" parameterType="int" resultType="communityVO">
 		SELECT * FROM community WHERE pid=#{pid}
 	</select>
@@ -12,11 +50,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insert" parameterType="communityVO">
-		INSERT INTO community VALUES (#{pid},#{uid},#{location},#{title},#{tf},#{cimgname},#{regdate})
+		INSERT INTO community VALUES (NULL,#{uid},#{statid},#{location},#{title},#{tf},#{cimgname},now())
 	</insert>
 	
 	<update id="update" parameterType="communityVO">
-		UPDATE community SET uid=#{uid},location=#{location},title=#{title},tf=#{tf},cimgname=#{cimgname}WHERE pid=#{pid}
+		UPDATE community SET statid=#{statid},location=#{location},title=#{title},tf=#{tf},cimgname=#{cimgname} WHERE pid=#{pid}
 	</update>
 	
 	<delete id="delete" parameterType="int">

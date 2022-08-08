@@ -35,14 +35,34 @@ public class CommunityController {
 	public String cm(Model m) {
 		
 		List<CommunityVO> list = null;
+		List<CommunityVO> list2 = null;
 		try {
-			list = cbiz.get();
+			list = cbiz.getalladminlist();
+			list2 = cbiz.getalluserlist();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		m.addAttribute("center", "cm/center");
-		m.addAttribute("communitylist", list);
+		m.addAttribute("communityadminlist", list);
+		m.addAttribute("communityuserlist", list2);
+		return "index";
+	}
+	
+	@RequestMapping("/cm_details")
+	public String cm_details(Model m, int pid, String statid) {
+		CommunityVO com_detail;
+		List<CommunityVO> other_list = null;
+		try {
+			com_detail = cbiz.selectdetail(pid);
+			other_list = cbiz.selectdetailother(statid);
+			m.addAttribute("communitydetail", com_detail);
+			m.addAttribute("otherlist", other_list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		m.addAttribute("center", "cm/cm_details");
+		
 		return "index";
 	}
 	
@@ -71,9 +91,9 @@ public class CommunityController {
 	}
 	
 
-	@RequestMapping("cm/update")
+	@RequestMapping("/cmupdate")
 	public String update(Model m, int id, HttpSession session) {
-		Object ss = session.getAttribute("logincust");
+		Object ss = session.getAttribute("loginmember");
 		if(ss != null) {			
 			try {
 				CommunityVO c = cbiz.get(id);
@@ -101,9 +121,9 @@ public class CommunityController {
 			return "redirect:detail?pid=" + obj.getPid();
 	}
 	
-	@RequestMapping("cm/delete")
+	@RequestMapping("/cmdelete")
 	public String delete(Model m, int pid, HttpSession session) {
-		Object ss = session.getAttribute("logincust");
+		Object ss = session.getAttribute("loginmember");
 		if(ss != null) {
 			CommunityVO cv;
 			try {

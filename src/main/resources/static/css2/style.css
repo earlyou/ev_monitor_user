@@ -1,5 +1,13 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=paybooc-Bold:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=paybooc-Bold:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap");
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_extend.scss */
 .flex-center-start {
   display: -webkit-box;
@@ -26,7 +34,7 @@
 /* Large Mobile :480px. */
 /* line 6, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   font-weight: normal;
   font-style: normal;
 }
@@ -78,7 +86,7 @@ button {
 
 /* line 40, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
 h1, h2, h3, h4, h5 {
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   color: #191d34;
 }
 
@@ -110,7 +118,7 @@ p {
   line-height: 28px;
   color: #7A838B;
   margin-bottom: 13px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 69, ../../Arafath/CL/December/235. Job board/HTML/scss/theme-default.scss */
@@ -410,7 +418,7 @@ h3 {
   color: #131313;
   display: inline-block;
   padding: 14px 44px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   font-size: 14px;
   font-weight: 400;
   border: 0;
@@ -440,7 +448,7 @@ h3 {
   color: #fff;
   display: inline-block;
   padding: 13px 29px 13px 29px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   font-size: 16px;
   font-weight: 500;
   border: 0;
@@ -474,7 +482,7 @@ h3 {
 .boxed-btn4 {
   display: inline-block;
   padding: 11px 29px 13px 29px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   font-size: 16px;
   font-weight: 500;
   -webkit-border-radius: 5px;
@@ -513,7 +521,7 @@ h3 {
   color: #F91842 !important;
   display: inline-block;
   padding: 14px 31px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   font-size: 15px;
   font-weight: 500;
   border: 0;
@@ -569,7 +577,7 @@ h3 {
   font-weight: 600;
   display: inline-block;
   padding: 12px 36px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   cursor: pointer;
 }
 
@@ -683,7 +691,7 @@ h3 {
   color: #7A838B;
   margin-bottom: 0;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -1142,7 +1150,7 @@ h3 {
   font-weight: 500;
   display: inline-block;
   padding: 35px 0px 35px 0px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   position: relative;
   text-transform: capitalize;
 }
@@ -1446,7 +1454,7 @@ h3 {
 
 /* line 34, ../../Arafath/CL/December/235. Job board/HTML/scss/_slider.scss */
 .slider_area .single_slider .slider_text h3 {
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   font-size: 56px;
   font-weight: 500;
   color: #fff;
@@ -1492,7 +1500,7 @@ h3 {
   font-size: 16px;
   font-weight: 400;
   color: #FFFFFF;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   margin-bottom: 35px;
 }
 
@@ -1540,7 +1548,7 @@ h3 {
   font-size: 14px;
   color: #fff;
   font-weight: #000;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
   padding: 5px 19px;
   display: inline-block;
   margin: 0 3px;
@@ -2225,7 +2233,7 @@ h3 {
 
 /* line 7, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
 .footer p {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "paybooc-Bold", sans-serif !important;
 }
 
 /* line 10, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2263,7 +2271,7 @@ h3 {
   color: #FFFFFF;
   text-transform: capitalize;
   margin-bottom: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -2356,7 +2364,7 @@ h3 {
 .footer .footer_top .footer_widget ul li a {
   color: #AAB1B7;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 98, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2381,7 +2389,7 @@ h3 {
   border: none;
   border: 1px solid #334A60;
   border-radius: 5px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 118, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2413,7 +2421,7 @@ h3 {
   right: 5px;
   font-size: 14px;
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 146, ../../Arafath/CL/December/235. Job board/HTML/scss/_footer.scss */
@@ -2619,7 +2627,7 @@ h3 {
   color: #fff;
   font-size: 16px;
   font-weight: 400;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 1, ../../Arafath/CL/December/235. Job board/HTML/scss/_category.scss */
@@ -3412,7 +3420,6 @@ h3 {
 .job_listing_area .job_lists .single_jobs .jobs_right .date p {
   margin-bottom: 0;
   font-size: 14px;
-  font-style: italic;
   color: #7A838B;
 }
 
@@ -3741,7 +3748,7 @@ h3 {
 /* line 16, ../../Arafath/CL/December/235. Job board/HTML/scss/_compani.scss */
 .top_companies_area .single_company {
   background: #fff;
-  padding: 25px;
+  padding: 27px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -3931,11 +3938,6 @@ h3 {
   }
 }
 
-/* line 42, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
-.job_details_area .single_jobs .jobs_left .jobs_conetent h4:hover {
-  color: #00D363;
-}
-
 @media (max-width: 767px) {
   /* line 46, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
   .job_details_area .single_jobs .jobs_left .jobs_conetent .links_locat {
@@ -3958,13 +3960,18 @@ h3 {
 /* line 55, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
 .job_details_area .single_jobs .jobs_left .jobs_conetent .links_locat .location p {
   margin-bottom: 0;
-  font-size: 16px;
+  font-size: 15px;
+  color: #AAB1B7;
+}
+
+.job_details_area .single_jobs .jobs_left .jobs_conetent .links_locat .location span {
   color: #AAB1B7;
 }
 
 /* line 59, ../../Arafath/CL/December/235. Job board/HTML/scss/_job_details.scss */
-.job_details_area .single_jobs .jobs_left .jobs_conetent .links_locat .location p i {
+.job_details_area .single_jobs .jobs_left .jobs_conetent .links_locat .location i {
   margin-right: 7px;
+  color: #AAB1B7;
 }
 
 @media (max-width: 767px) {
@@ -6324,7 +6331,7 @@ h6 {
 /* line 537, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */
 .blog_details p {
   margin-bottom: 30px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 542, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */
@@ -6762,7 +6769,7 @@ h6 {
   background: #fff;
   padding: 15px 15px 15px 20px;
   border-left: 2px solid;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -7076,7 +7083,7 @@ h6 {
   margin-bottom: 10px;
   color: #777777;
   font-size: 15px;
-  font-family: "Roboto", sans-serif;
+  font-family: "paybooc-Bold", sans-serif;
 }
 
 /* line 1393, ../../Arafath/CL/December/235. Job board/HTML/scss/_blog.scss */

@@ -22,7 +22,6 @@ import com.user.vo.UserAuthorityVO;
 import com.user.vo.UsersVO;
 
 @Controller
-@RequestMapping("/mypage")
 public class MyPageController {
 	
 	@Autowired
@@ -40,7 +39,7 @@ public class MyPageController {
 	@Autowired
 	StationBiz stbiz;
 	
-	@RequestMapping("myprofile")
+	@RequestMapping("/mypagemyprofile")
 	public String select(Model m, String id) {
 		List<UsersVO> list = null;
 		try {

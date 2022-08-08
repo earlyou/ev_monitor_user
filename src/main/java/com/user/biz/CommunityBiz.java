@@ -43,6 +43,19 @@ public class CommunityBiz implements Biz<Integer, CommunityVO> {
 		return commudao.selectall();
 	}
 
-
+	public List<CommunityVO> getalladminlist() throws Exception {
+		return commudao.selectalladminlist();
+	}
 	
+	public List<CommunityVO> getalluserlist() throws Exception {
+		return commudao.selectalluserlist();
+	}
+	
+	public CommunityVO selectdetail(Integer k) throws Exception {
+		return commudao.selectdetail(k);
+	}
+	
+	public List<CommunityVO> selectdetailother(String obj) throws Exception {
+		return commudao.selectdetailother(obj);
+	}
 }
