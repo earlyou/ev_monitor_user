@@ -3,19 +3,19 @@
 <head>
 <title>전기차</title>
 <meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="shortcut icon" type="image/x-icon" href="/evcsmonitor/img2/favicon.png">
 <link rel="stylesheet" href="css/main.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cd8a8e58779dc52947b1a9a342fd0506&libraries=services,clusterer"></script>
+<link rel="stylesheet" href="/evcsmonitor/css/map.css" />
 
 <script th:inline="javascript">
 	const session = /*[[${session}]]*/null;
 	const bookmark = /*[[${bookmark}]]*/null;
 	const bmstation = /*[[${bmstation}]]*/null; // 필터
 </script>
-<script th:inline="javascript" src="js/map.js"></script>
-<link rel="stylesheet" href="css/map.css" />
+<script th:inline="javascript" src="/evcsmonitor/js/map.js"></script>
 
 </head>
 
@@ -25,19 +25,19 @@
 	<div id="wrapper">
 	<!-- Main -->
 		<div id="main">
-			<div th:insert="${center} ? ${center} : mapcenter"></div> 
+			<div th:insert="${center} ? ${center} : mapcenter" id="inner"></div> 
 		</div>
 		
 		<!-- Side Bar  -->
-		<div th:insert="${left} ? ${left} : sideleftbar"></div>
+		<div th:insert="${left} ? ${left} : sideleftbar" id="sidebar"></div>
 	</div>
 	
 
 	<!-- Scripts -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/browser.min.js"></script>
-	<script src="js/breakpoints.min.js"></script>
-	<script src="js/util.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/evcsmonitor/js/jquery.min.js"></script>
+	<script src="/evcsmonitor/js/browser.min.js"></script>
+	<script src="/evcsmonitor/js/breakpoints.min.js"></script>
+	<script src="/evcsmonitor/js/util.js"></script>
+	<script src="/evcsmonitor/js/main.js"></script>
 </body>
 </html>
