@@ -181,4 +181,25 @@ public class AjaxController {
 		}		
 		return result;
 	}
+	
+	@RequestMapping("delete") // 즐겨찾기 삭제
+	public void deletebtn(int bsid, Model m) {
+		try {
+			bookmarkbiz.remove(bsid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/*
+	@RequestMapping("/movemap") // 즐겨찾기에서 지도 이동
+	public String movemap(int bsid, Model m, HttpSession session, BookMarkVO obj) {
+		try {
+			bookmarkbiz.get(bsid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:mybookmark?bsid="+bsid;
+	}
+	*/
 }

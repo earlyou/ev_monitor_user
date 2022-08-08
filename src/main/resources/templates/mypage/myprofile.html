@@ -1,4 +1,78 @@
 <meta charset="UTF-8">
+<style>
+body{
+background:#eee;
+height: 30px;    
+}
+
+.card-box {
+    position: relative;
+    color: #fff;
+    left:  50%;
+    right:  50%;
+    padding: 40px 10px 40px;
+    margin: 50px 0px;
+    height: 200px;
+}
+.card-box:hover {
+    text-decoration: none;
+    color: #f1f1f1;
+}
+.card-box:hover .icon i {
+    font-size: 100px;
+    transition: 1s;
+    -webkit-transition: 1s;
+}
+.card-box .inner {
+    padding: 5px 10px 0 10px;
+}
+.card-box h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    white-space: nowrap;
+    padding: 0;
+    text-align: left;
+}
+.card-box p {
+    font-size: 17px;
+    color: #415094;
+}
+.card-box .icon {
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 5px;
+    z-index: 0;
+    font-size: 72px;
+    color: rgba(0, 0, 0, 0.15);
+}
+.card-box .card-box-footer {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    text-align: center;
+    padding: 3px 0;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-decoration: none;
+}
+.card-box:hover .card-box-footer {
+    background: rgba(0, 0, 0, 0.3);
+}
+.bg-blue {
+    background-color: #38a4ff !important;
+}
+.bg-green {
+    background-color: #00D363 !important;
+}
+.bg-orange {
+    background-color: #f39c12 !important;
+}
+
+</style>
+
 <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
@@ -24,20 +98,57 @@
                   <div><a th:href="@{/mypage/upcheckpwd}">마이페이지</a></div>
               </div>
            </div> 
+                        <h3>마이페이지</h3>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    
-    <div class="card-body">
-        <div class="table-responsive">
-            <div><a th:href="@{/mypage/mycomminity}">마이 커뮤니티</a></div>
+    <!--/ bradcam_area  -->
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-blue">
+                <div class="inner">
+                    <h3> 내 정보 </h3>
+                    <p> My Profile Detail</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                </div>
+                <a th:href="@{/mypageupcheckpwd}" class="card-box-footer">자세히 보기 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
-    </div>
-    
-    
-    <div class="card-body">
-        <div class="table-responsive">
-             <div><a th:href="@{/mypage/mybookmark}">즐겨찾기</a></div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-green">
+                <div class="inner">
+                    <h3> 내 커뮤니티 </h3>
+                    <p> My Community </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-comments" aria-hidden="true"></i>
+                </div>
+                <a th:href="@{/mypagemycomminity}" class="card-box-footer">자세히 보기 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card-box bg-orange">
+                <div class="inner">
+                    <h3> 즐겨찾기 </h3>
+                    <p> My BookMark </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                </div>
+                <a th:href="@{/mypagemybookmark}" class="card-box-footer">자세히 보기 <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
         </div>
     </div>
 
 </div>
+

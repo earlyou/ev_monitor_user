@@ -1,5 +1,6 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" th:href="@{/css/upcheckpwd.css}">
 <script th:inline="javascript">
 $(document).ready(function(){
 	$('#checkbtn').click(function(){
@@ -17,18 +18,39 @@ $(document).ready(function(){
 });
 </script>
 
-	<div class="form-group">
-    	<h1 class="h2 text-gray-700 mb-25 text-center">업데이트하기 위한 인증</h1>
+<body>
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>업데이트 인증(필수)</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+	<div class="main">
+		<!--웹페이지 상단-->
+		<header>
+			<div class="logo" style="margin-bottom: 40px;">
+				<img th:src="@{/images/upcheck.png}" class="image" style="width: 70%; height: 30%;">
+			</div>
+		</header>
+
+			<div class="upcheck-pw-wrap">
+				<input id="pwdc" name="pwdc" style="border: none; outline:none; width:100%;" 
+				placeholder="비밀번호를 입력해주세요." type="password"></input>
+			</div>
+			<div class="upcheck-btn-wrap">
+				<button class="boxed-btn3" id="checkbtn">제출(확인)</button>
+			</div>
 	</div>
 
-   	<div class="form-group">
-    	<div class="col-sm-4">
-     		비밀번호<input type="password" class="form-control" 
-     		name="pwdc" placeholder="비밀번호 입력"> 
-     		<button id="checkbtn" class="btn btn-primary">제출</button>
-    	</div>
-  	</div>
-
+</body>
   
         
 

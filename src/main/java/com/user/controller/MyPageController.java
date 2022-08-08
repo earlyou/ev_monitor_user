@@ -17,8 +17,6 @@ import com.user.biz.UsersBiz;
 import com.user.vo.BookMarkVO;
 import com.user.vo.CarModelVO;
 import com.user.vo.CommunityVO;
-import com.user.vo.StationVO;
-import com.user.vo.UserAuthorityVO;
 import com.user.vo.UsersVO;
 
 @Controller
@@ -34,13 +32,13 @@ public class MyPageController {
 	CommunityBiz combiz;
 	
 	@Autowired
-	BookMarkBiz bmbiz;
+	BookMarkBiz bookmarkbiz;
 	
 	@Autowired
 	StationBiz stbiz;
 	
 	@RequestMapping("/mypagemyprofile")
-	public String select(Model m, String id) {
+	public String mypagemyprofile(Model m, String id) {
 		List<UsersVO> list = null;
 		try {
 			list = ubiz.get();
@@ -52,10 +50,10 @@ public class MyPageController {
 		return "index";
 	}
 	
-	@RequestMapping("myprofiledetail")
+	@RequestMapping("/myprofiledetail")
 	public String myprofiledetail(Model m, String id) {
 		UsersVO obj = null;
-		List<UserAuthorityVO> list = null;
+//		List<UserAuthorityVO> list = null;
 		List<CarModelVO> cmlist = null;
 		try {
 			obj = ubiz.get(id);
@@ -66,22 +64,22 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		m.addAttribute("center", "/mypage/myprofiledetail");
-		return "/main";
+		return "index";
 	}
 	
-	@RequestMapping("/upcheckpwd")
+	@RequestMapping("/mypageupcheckpwd")
 	public String upcheckpwd(Model m, String pwd, String id, HttpSession session) {
 		m.addAttribute("center", "/mypage/upcheckpwd");
-		return "/main";
+		return "index";
 	}
 	
-	@RequestMapping("/wdcheckpwd")
+	@RequestMapping("/mypagewdcheckpwd")
 	public String wdcheckpwd(Model m, String pwd, String id, HttpSession session) {
 		m.addAttribute("center", "/mypage/wdcheckpwd");
-		return "main";
+		return "index";
 	}
 	
-	@RequestMapping("/update")
+	@RequestMapping("/update") // 프로필 업데이트
 	public String update(Model m, UsersVO obj) {
 		
 		try {
@@ -91,10 +89,10 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/mypage/myprofiledetail?id="+obj.getId();
+		return "redirect:/myprofiledetail?id="+obj.getId();
 	}
 	
-	@RequestMapping("/delete")
+	@RequestMapping("/mypagedelete") // 회원탈퇴
 	public String delete(String id, Model m, HttpSession session) {
 		try {
 			ubiz.remove(id);
@@ -106,7 +104,7 @@ public class MyPageController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("mycomminity") // 내 커뮤니티
+	@RequestMapping("/mypagemycomminity") // 내 커뮤니티
 	public String mycomminity(Model m, Integer pid) {
 		List<CommunityVO> comlist = null;
 		try {
@@ -116,22 +114,28 @@ public class MyPageController {
 			e.printStackTrace();
 		}
 		m.addAttribute("center", "/mypage/mycomminity");
-		return "main";
+		return "index";
 	}
 
-	@RequestMapping("mybookmark") // 내 즐겨찾기
-	public String mybookmark(Model m, Integer bsid) {
+	@RequestMapping("/mypagemybookmark") // 내 즐겨찾기 목록
+	public String mybookmark(Model m, String uid, HttpSession session) {
+		
 		List<BookMarkVO> bookmlist = null;
-		List<StationVO> stmlist = null;
+		m.addAttribute("session", session.getAttribute("loginmember"));
+		
 		try {
-			bookmlist = bmbiz.get();
-			m.addAttribute("bookmlist", bookmlist);
-			stmlist = stbiz.get();
-			m.addAttribute("stmlist", stmlist);
+			UsersVO user = (UsersVO) session.getAttribute("loginmember");	
+			bookmlist = bookmarkbiz.getcustomerbookmark(user.getId());
+			m.addAttribute("bookmlist", bookmlist);	
+			
+//			System.out.println(bookmlist);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		m.addAttribute("center", "/mypage/mybookmark");
-		return "main";
+		return "index";
 	}
+	
+
+
 }

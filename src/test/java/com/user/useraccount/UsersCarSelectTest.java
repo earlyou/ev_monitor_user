@@ -8,7 +8,7 @@ import com.user.biz.UsersBiz;
 import com.user.vo.UsersVO;
 
 @SpringBootTest
-class UsersSelectTest {
+class UsersCarSelectTest {
 	
 	@Autowired
 	UsersBiz ubiz;

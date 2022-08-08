@@ -34,15 +34,30 @@ function checkAllCheckbox() {
 	}
 
 
-
-	function toggleAllCheckbox(source) { 
-	  var e = document.querySelectorAll('input[type="checkbox"]:not(#agreeAll)'); 
+function toggleAllCheckbox(source) { 
+	var e = document.querySelectorAll('input[type="checkbox"]:not(#agreeAll)'); 
 	  for(var i = 0, len = e.length; i < len; ++i) { 
 	    e[i].checked = source.checked; 
-	  } 
-	}
-	
-	
+   } 
+}
+
+$(document).ready(function(){
+    
+    $("#next_Btn").click(function(){    
+        if($("#agree1").is(":checked") == false){
+            alert("이용약관에 대해 동의해 주세요.");
+            return;
+        }else if($("#agree2").is(":checked") == false){
+            alert("개인정보 수집 및 이용에 대해 동의해 주세요.");
+            return;
+        }else if($("#agree3").is(":checked") == false){
+            alert("개인정보의 제3자 제공 및 취급에 대해 동의해 주세요.");
+            return;
+        }else{
+        	location.href='register';
+        }
+    });    
+});	
 </script>
 
 
@@ -74,7 +89,7 @@ function checkAllCheckbox() {
           <table width=810>
             <tr>
               <td>
-                <div>
+                <div style="margin-left: 65px;">
                  <font color="#00d3bf " size=4>01</font> <font size=3>이용약관</font>
                 </div>
              </td>
@@ -238,13 +253,15 @@ function checkAllCheckbox() {
             </tr>
             <tr>
               <td>
-                <input type="checkbox" id="agree1" onclick="checkAllCheckbox();" >이용약관에 동의합니다.<br><br><br><br>
+              	<div style="margin-left: 65px;">
+                 <input type="checkbox" id="agree1" onclick="checkAllCheckbox();" >이용약관에 동의합니다.<br><br><br><br>
+                </div>
               </td>
             </tr>
             
             <tr>
               <td>
-                <div>
+                <div style="margin-left: 65px;">
                  <font color="#00d3bf" size=4>02</font> <font size=3>개인정보 수집 및 이용에 대한 안내</font>
                 </div>
              </td>
@@ -276,13 +293,46 @@ function checkAllCheckbox() {
             </tr>
             <tr>
               <td>
+               <div style="margin-left: 65px;">
                 <input type="checkbox" id="agree2" onclick="checkAllCheckbox();">개인정보 수집 및 이용에 대한 안내에 동의합니다.
+               </div>	
+              </td>
+            </tr>
+
+			
+            <tr>
+              <td>
+                <div style="margin-left: 65px; margin-top: 55px;">
+                 <font color="#00d3bf" size=4>03</font> <font size=3>개인정보의 제3자 제공 및 취급 위탁</font>
+                </div>
+             </td>
+           </tr>
+           <tr>
+             <td align=center>
+               <textarea name="tos" rows=7 cols=100 readonly="readonly">
+1. 제공받는 자 : 대기환경보전법 제78조의 규정에 따라 설립된 사단법인“한국자동차환경협회”
+2. 제공받는 자의 개인정보 이용목적 : 공공충전인프라 운영 및 충전요금 정산 서비스 제공
+3. 제공하는 개인정보 항목 : 이름, 주소, 차량번호, 회원카드번호, 휴대폰번호, 사업자등록번호, 회사명, 부서명, 전화번호, 이메일주소, 충전이력
+4. 제공받는 자의 개인정보 보유 및 이용기간 : 회원 탈퇴시까지 보유 및 이용
+※ 개인정보 제공자는 개인정보의 제3자 제공에 대한 동의를 거부할 권리가 있으나, 위 항목 동의 거부시 전기자동차 충전 및 정산, 정보시스템 서비스 이용 등에 제한이 있습니다.              
+                </textarea>
+              </td>
+            </tr>
+            <tr>
+              <td>
+               <div style="margin-left: 65px;">
+                <input type="checkbox" id="agree3" onclick="checkAllCheckbox();">수집한 개인정보의 제3자 제공 및 취급 위탁에 동의합니다.(협회 이용약관 동의 포함)
+               </div>	
               </td>
             </tr>
             
-            <tr style="text-align:center">
+            
+            <tr>
               <td>
-                <input type="checkbox" id="agreeAll" onclick="toggleAllCheckbox(this);">모든 개인정보에 동의합니다.
+              <hr>
+              	<div style="text-align:center; margin-top: 20px;">
+                 <input type="checkbox" id="agreeAll" onclick="toggleAllCheckbox(this);">모든 개인정보에 동의합니다.
+              	<div>
               </td>
             </tr>
           </table>     
@@ -291,7 +341,7 @@ function checkAllCheckbox() {
 </table>
 <br>
   	<center>
-		<a type="button" id="next_Btn" class="boxed-btn3" style="margin:10px;" th:href="@{/register}">다 음</a>
+		<button type="button" id="next_Btn" class="boxed-btn3" style="margin:10px;">다 음</button>
     </center>
     
     </div>
