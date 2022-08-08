@@ -18,4 +18,9 @@ public interface CommunityMapper {
 	public List <CommunityVO> selectall() throws Exception;
 	public List<CommunityVO> selectcustomercommdetail(String uid) throws Exception;
 
+	public List <CommunityVO> selectalladminlist() throws Exception;
+	public List <CommunityVO> selectalluserlist() throws Exception;
+	
+	public CommunityVO selectdetail(int pid) throws Exception;
+	public List <CommunityVO> selectdetailother(String obj) throws Exception;
 }

@@ -2,6 +2,11 @@
 .buttonwraper{
 	float: right;
 }
+.location{
+	margin-top:10px;
+	color:#AAB1B7;
+	font-size: 14px;
+}
 </style>
 
 <meta charset="utf-8">
@@ -121,27 +126,46 @@
 
                     <div class="job_lists m-0">
                         <div class="row">
-                            <div class="col-lg-12 col-md-12" th:each="c:${communitylist}">
-                                <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="col-lg-12 col-md-12">
+                            
+                            <!-- 공지 -->
+                            <div class="single_jobs white-bg d-flex justify-content-between" id="admin" th:each="c:${communityadminlist}">
                                     <div class="jobs_left d-flex align-items-center">
                                         <div class="thumb">
-                                            <p th:text="${c.pid}"> number</p>
+                                            <p style="color:red;"><i class="fa fa-exclamation-triangle fa-lg"></i></p>
                                         </div>
                                         <div class="jobs_conetent">
-                                            <a th:href="job_details.html" th:text="${c.title}"><h4>Title</h4></a>
+                                            <a th:href="@{cm_details(pid=${c.pid})}" th:text="${c.title}" style="color:red;"><h4>Title</h4></a>
+                                        </div>
+                                    </div>
+                                    <div class="jobs_right">
+                                        <div class="date">
+                                            <p th:text="${#dates.format(c.regdate,'yyyy/MM/dd HH:mm:ss')}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                 <!-- 일반글 -->
+                                <div class="single_jobs white-bg d-flex justify-content-between" id="user" th:each="o:${communityuserlist}">
+                                    <div class="jobs_left d-flex align-items-center">
+                                        <div class="thumb">
+                                            <p th:text="${o.pid}"> number</p>
+                                        </div>
+                                        <div class="jobs_conetent">
+                                            <a th:href="@{cm_details(pid=${o.pid},statid=${o.statid})}" th:text="${o.title}"><h4>Title</h4></a>
                                             <div class="links_locat d-flex align-items-center">
                                                 <div class="location">
-                                                    <p th:text="${c.location}"> <i class="fa fa-map-marker"></i> California, USA</p>
+                                                    <i class="fa fa-user-o"></i><span th:text="' '+${o.uid}"> Uid</span>
                                                 </div>
                                                 <div class="location">
-                                                    <p th:text="${c.uid}"> <i class="fa fa-clock-o"></i> Uid</p>
+                                                    <i class="fa fa-map-marker"></i><span th:text="' '+${o.location}+' '+${o.statNm}"> California, USA</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="jobs_right">
                                         <div class="date">
-                                            <p th:text="${#dates.format(c.regdate,'yyyy/MM/dd HH:mm')}"></p>
+                                            <p th:text="${#dates.format(o.regdate,'yyyy/MM/dd HH:mm:ss')}"></p>
                                         </div>
                                     </div>
                                 </div>

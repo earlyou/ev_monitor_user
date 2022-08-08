@@ -1,0 +1,226 @@
+<meta charset="utf-8">
+<style>
+#detailtitle{
+	padding-bottom: 15px;
+}
+#dtitle{
+	display: inline-block;
+}
+.custombtn {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#F91842+0,fd8e5e+100 */
+  background: #00D363;
+  color: #fff;
+  display: inline-block;
+  padding: 7px 15px 7px 15px;
+  font-family: "paybooc-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: 0;
+  border: 1px solid transparent;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff !important;
+  text-transform: capitalize;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.custombtn:hover {
+  color: #00D363 !important;
+  border: 1px solid #00D363;
+  background: transparent;
+}
+
+.custombtn:focus {
+  outline: none;
+}
+#deletebtn{
+  background: #f44a40;
+}
+#deletebtn:hover{
+  color: #f44a40 !important;
+  border: 1px solid #f44a40;
+  background: #fff;
+}
+#otherdate{
+	font-size: 13px;
+	color:#AAB1B7;
+	text-align: right;
+}
+.location{
+	font-size: 14px;
+}
+#cm_crud{
+	margin-top:20px;
+	float: right;
+}
+#location_map{
+	margin-top:20px;
+}
+</style>
+
+    <!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>커뮤니티</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+    <div class="job_details_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="job_details_header">
+                        <div class="single_jobs white-bg d-flex justify-content-between">
+                            <div class="jobs_left d-flex align-items-center">
+                                
+                                <div class="jobs_conetent">
+                                   	<div id="dtitle">
+                                   		<h3 id="detailtitle" th:text="${communitydetail.title}">제목</h3> 
+                                   	</div>
+                                   	
+                                    <div class="links_locat d-flex align-items-center">
+                                        
+                                        <!-- 공지일경우 아이디는 관리자로 띄우기, 장소가 안보이도록 함, 장소가 없으면 지도도 안보이도록 함 -->
+                                        <div class="location" th:if="${communitydetail.usertypeid}!=200">
+                                          	<i class="fa fa-user-o"></i> <span th:text="${communitydetail.uid}">아이디</span>
+                                        </div>
+                                        <div class="location" th:unless="${communitydetail.usertypeid}!=200">
+                                          	<i class="fa fa-user-o"></i> <span>관리자</span>
+                                        </div>
+                                        <div class="location" th:if="${communitydetail.location}!=null">
+                                          	<i class="fa fa-map-marker"></i> <span th:text="${communitydetail.location}+' '+${communitydetail.statNm}">충전소 위치</span>
+                                        </div>
+                                        <div class="location">
+                                   			<i class="fa fa-clock-o"></i> <span th:text="${#dates.format(communitydetail.regdate,'yyyy/MM/dd HH:mm:ss')}">시간</span>
+                                  		</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="descript_wrap white-bg">
+                    	<div class="single_wrap">
+                            <img class="img-fluid" th:src="@{'images/cmimg/'+${communitydetail.cimgname}}" alt="">
+                        </div>
+                        <div class="single_wrap">
+                            <p th:text="${communitydetail.tf}">게시글내용</p>
+                        </div>
+                        
+                    </div>
+                    <div id="cm_crud">
+                        <div id="buttonbox" th:if="${session.loginmember}!=null">
+                            <a class="custombtn" th:href="@{/cmupdate}" id="updatebtn" th:if="${communitydetail.uid}==${session.loginmember.id}">수정</a>
+                            <a class="custombtn" th:href="@{/cmdelete}" id="deletebtn" th:if="${communitydetail.uid}==${session.loginmember.id}">삭제</a>
+                        </div>
+                   	</div>
+                    
+                    <!-- 댓글? -->
+                    <!-- <div class="apply_job_form white-bg">
+                        <h4>Apply for the job</h4>
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="input_field">
+                                        <input type="text" placeholder="Your name">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input_field">
+                                        <input type="text" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input_field">
+                                        <input type="text" placeholder="Website/Portfolio link">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <button type="button" id="inputGroupFileAddon03"><i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                          </button>
+                                        </div>
+                                        <div class="custom-file">
+                                          <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03">
+                                          <label class="custom-file-label" for="inputGroupFile03">Upload CV</label>
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="input_field">
+                                        <textarea name="#" id="" cols="30" rows="10" placeholder="Coverletter"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="submit_btn">
+                                        <button class="boxed-btn3 w-100" type="submit">Apply Now</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div> -->
+                </div>
+                
+                <!-- 해당 충전소의 다른 게시글 -->
+                <div class="col-lg-4" th:if="${communitydetail.location}!=null">
+                    <div class="job_sumary">
+                        <div class="summery_header">
+                            <h3 th:text="${communitydetail.statNm}">충전소 다른 게시글 보기</h3>
+                            <h3>충전소 최신 글</h3>
+                        </div>
+                        <div class="job_content">
+                            <ul>
+                               <li th:each="ot:${otherlist}"><a th:href="@{cm_details(pid=${ot.pid},statid=${ot.statid})}"><span th:text="${ot.title}">제목</span>&nbsp&nbsp&nbsp<span id="otherdate" th:text="${#dates.format(ot.regdate,'yyyy/MM/dd')}"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                   
+                   <!-- 해당 충전소의 지도 마커 -->
+                    <div id="location_map" class="job_location_wrap">
+                        <div class="job_lok_inner">
+                            <div id="map" style="height: 200px;"></div>
+                            <script>
+                              function initMap() {
+                                var uluru = {lat: -25.363, lng: 131.044};
+                                var grayStyles = [
+                                  {
+                                    featureType: "all",
+                                    stylers: [
+                                      { saturation: -90 },
+                                      { lightness: 50 }
+                                    ]
+                                  },
+                                  {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
+                                ];
+                                var map = new google.maps.Map(document.getElementById('map'), {
+                                  center: {lat: -31.197, lng: 150.744},
+                                  zoom: 9,
+                                  styles: grayStyles,
+                                  scrollwheel:  false
+                                });
+                              }
+                              
+                            </script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+                            
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
