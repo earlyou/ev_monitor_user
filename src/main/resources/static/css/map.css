@@ -24,8 +24,8 @@
 	position: absolute;
 	left: 0;
 	bottom: 40px;
-	width: 288px;
-	height: 232px;
+	width: 328px;
+	height: 312px;
 	margin-left: -144px;
 	text-align: left;
 	overflow: hidden;
@@ -38,8 +38,8 @@
     margin: 0;
 }
 .wrap .info {
-    width: 286px;
-    height: 220px;
+    width: 326px;
+    height: 300px;
     border-radius: 5px;
     border-bottom: 2px solid #ccc;
     border-right: 1px solid #ccc;
@@ -84,10 +84,11 @@
 .info .body {
     position: relative;
     overflow:auto;
+    height: 270px;
 }
 .info .desc {
     position: relative;
-    margin: 13px 0 0 90px;
+    margin-left: 5px;
     height: 175px;
 }
 .desc .ellipsis {

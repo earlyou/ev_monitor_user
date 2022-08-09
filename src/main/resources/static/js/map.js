@@ -105,8 +105,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 		'<div class="wrap">' + 
 		'    <div class="info">' + 
 		'        <div class="title">' + 
-		'           <div class="Nm">' + v.statNm + 
-		'			</div>';
+		'           <div class="Nm">' + v.statNm + '</div>';
 		
 		var boo = false;
 		$.each(bookmark,function(i,b){
@@ -129,31 +128,61 @@ function mkmarker(station,chger,map,markers,stationId) {
 		
 		content = content +
 		'			<div class="close" title="닫기"></div>' + 
-		'        </div>' + 
-		'        <div class="body">' + 
-		'           <div class="img">' +
-		'           	<img src="https://i1.daumcdn.net/dmaps/apis/n_local_blit_04.png" width="73" height="70">' +
-		'			</div>' + 
+		'		</div>' + 
+		'		<div class="body">' + 
 		'			<div class="desc">' + 
-		'			<div>'+
-		'				<p>충전소 명: '+v.statNm+
-		'				</p><p>충전소ID: '+v.statId+
-		'				</p><p>주소: '+v.addr+
-		'				</p><p>상세위치: '+v.location+
-		'				</p><p>위도: '+v.lat+
-		'				</p><p>경도: '+v.lng+
-		'				</p><p>이용가능한시간: '+v.useTime+
-		'				</p><p>기관 아이디: '+v.busiId+
-		'				</p><p>기관명: '+v.busiNm+
-		'				</p><p>운영기관명: '+v.busiNm+
-		'				</p><p>운영기관연락처: '+v.busiCall+
-		'				</p><p>지역코드: '+v.zcode+
-		'				</p><p>주차료무료: '+v.parkingFree+
-		'				</p><p>충전소 안내: '+v.note+
-		'				</p><p>이용자 제한: '+v.limitYn+
-		'				</p><p>이용제한 사유: '+v.limitDetail+
-		'			</div>'+
-		'			<div class="chger">';
+		'				<div class="table-wrapper">'+
+		'					<table style="margin-bottom:10px;margin-top:10px">'+
+		'						<tr>'+
+		'							<th>주소</th>'+
+        '							<td>'+v.addr+'</td>'+
+		'						</tr>'+
+		'						<tr>'+
+		'							<th>상세 위치</th>'+
+        '							<td>'+v.location+'</td>'+
+		'						</tr>'+
+		'						<tr>'+
+		'							<th>이용 가능 시간</th>'+
+        '							<td>'+v.useTime+'</td>'+
+		'						</tr>'+
+		'						<tr>'+
+		'							<th>운영 기관</th>'+
+        '							<td>'+v.bnm+'</td>'+
+        '						</tr>'+
+		'						<tr>'+
+		'							<th>운영 기관 연락처</th>'+
+        '							<td>'+v.busiCall+'</td>'+
+		'						</tr>'+
+		'						<tr>'+
+		'							<th>주차비</th>'+
+        '							<td>'+v.parkingFree+'</td>'+
+		'						</tr>';
+		
+		if (v.limitYn == 'Y') {
+			content = content + 
+		'						<tr>'+
+		'							<th>이용자 제한</th>'+
+        '							<td>'+v.limitDetail+'</td>'+
+		'						</tr>';
+		} else {
+			content = content + 
+		'						<tr>'+
+		'							<th>이용자 제한</th>'+
+        '							<td>해당 사항 없음</td>'+
+		'						</tr>';
+		}
+		content = content +
+		'   	     		</table>' + 
+		'				</div>'+
+		
+		'				<div class="table-wrapper">'+
+		'					<table class="alt" style="margin-bottom:10px;margin-top:10px">'+
+		'						<thead>'+
+		'							<tr>'+
+		'								<th>충전용량</th><th>충전기 타입</th><th>상태</th>'+
+		'							</tr>'+
+		'						<thead>'+
+		'						<tbody>';
 
 		var output = [];
 	    $.each(chger, function(i,c){
@@ -161,33 +190,65 @@ function mkmarker(station,chger,map,markers,stationId) {
         		output.push(c.output);
         		
 	        	var status = '';
+	        	var outclass = '';
+	        	var type = '';
 	        	if (c.stat == 1) {
 					status = '통신이상';
 				}else if (c.stat == 2) {
-					status = '충전대기';
+					status = '충전 가능';
 				}else if (c.stat == 3) {
 					status = '충전 중';
 				}else if (c.stat == 4) {
-					status = '운영중지'
+					status = '운영 중지'
 				}else if (c.stat == 5) {
-					status = '점검 중'
+					status = '점검중'
 				}else if (c.stat == 9) {
 					status = '상태미확인'
 				}
-        		content = content +
-		'				<p>'+
-		'					<span>'+c.chgerId+'번 충전기'+' : '+status+'</span>'+
-		'				</p>'+
-		'				<p>'+
-		'					<span>충전 용량'+' : '+c.output+'</span>'+
-		'				</p>';
+				if (c.output < 40) {
+					c.output = c.output + 'kW'
+					outclass = '(완속)';
+				}else if (c.output >= 100) {
+					c.output = c.output + 'kW'
+					outclass = '(초급속)';
+				}else if (c.output >= 40) {
+					c.output = c.output + 'kW'
+					outclass = '(급속)';
+				}else if (c.output == null) {
+					c.output = '정보 없음';
+					outclass = '';
+				}
+				if (c.chgerType == 1) {
+					type = 'DC차데모';
+				}else if (c.chgerType == 2) {
+					type = 'AC완속';
+				}else if (c.chgerType == 3) {
+					type = 'DC차데모+AC3상';
+				}else if (c.chgerType == 4) {
+					type = 'DC콤보';
+				}else if (c.chgerType == 5) {
+					type = 'DC차데모+DC콤보';
+				}else if (c.chgerType == 6) {
+					type = 'DC차데모+AC3상+DC콤보';
+				}else if (c.chgerType == 7) {
+					type = 'AC3상';
+				}
+        		content = content + 
+        		'					<tr>'+
+        		'						<td>'+c.output+outclass+'</td>'+
+        		'						<td>'+type+'</td>'+
+        		'						<td>'+status+'</td>'+
+        		'					</tr>'
 			}
         });
 	    
 	    content = content +
-        '            </div>' + 
-        '        </div>' + 
-        '    </div>' +    
+		'	            		</tbody>' + 
+		'   	     		</table>' + 
+    	'    			</div>' +    
+        '			</div>'+
+        '		</div>'+
+        '	</div>'+
         '</div>';
 
         var locations = new Object();
@@ -225,6 +286,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			map : map,
 			clickable: true,
 			position : marker.getPosition(),
+			xAnchor: 0.5,
 			zIndex: 4
 		});
 
