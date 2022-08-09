@@ -106,7 +106,7 @@ function rmcommunity(pid,obj) {
                                     <td style="text-align:center;" th:text="${com.tf}">tf</td>
                                     <td style="text-align:center; width: 50px;" th:text="@{'/img/'+${com.cimgname}}">img</td>
                                     <td style="text-align:center;" th:text="${#dates.format(com.regdate,'yyyy-MM-dd hh:mm:ss')}">regdate</td>
-                                    <td style="text-align:center;"><a th:href="@{cm_details(pid)=${o.pid}}" class="btn btn-primary"><i class="fa fa-commenting"></i></a></td>
+                                    <td style="text-align:center;"><a th:href="@{cm_details(pid=${com.pid})}" class="btn btn-primary"><i class="fa fa-commenting"></i></a></td>
                                     <td style="text-align:center;"><a name="deletecombtn" id="deletecombtn" type="button" class="btn btn-danger" href="#"
                                     th:onclick="javascript:rmcommunity([[${com.pid}]],this);"><i class="fa fa-trash"></i></a></td>
                                 </tr>
