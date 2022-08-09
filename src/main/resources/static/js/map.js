@@ -114,12 +114,12 @@ function mkmarker(station,chger,map,markers,stationId) {
 				return boo;
 			}
 		});
-			if(boo) {
+		if(boo) {
 				content = content + 
 		'           <div class="bookmark">' +
 		'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/checked.png" width="20" height="20"></a>' +
 		'			</div>';
-			}else {
+		}else {
 				content = content + 
 		'           <div class="bookmark">' +
 		'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
@@ -308,8 +308,8 @@ function mkmarker(station,chger,map,markers,stationId) {
 	        	map.setZoomable(true);
 	        });
 		    
-		    $('.bmark').on('click',function(){
-//				console.log($('#'+v.statId+' img').attr('src'));
+		    $('.bmark').on('click',function(e){
+				e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
 				if (session.loginmember == null) {
 					if(confirm('로그인 하시겠습니까?')){
 						$(location).attr('href','/evcsmonitor/login')
@@ -323,6 +323,8 @@ function mkmarker(station,chger,map,markers,stationId) {
 							data: {'statId':v.statId,'uid':session.loginmember.id},
 							success:function(){
 								console.log('bookmark added');
+								$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
+								$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
 							}
 						});
 					
@@ -334,6 +336,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 							data: {'statId':v.statId,'uid':session.loginmember.id},
 							success:function(){
 								console.log('bookmark removed');
+								$('#'+v.statId+v.statId).remove();
 							}
 						});
 					}
@@ -361,8 +364,8 @@ function mkmarker(station,chger,map,markers,stationId) {
 	        	map.setZoomable(true);
 	        });
 		    
-		    $('.bmark').on('click',function(){
-//				console.log($('#'+v.statId+' img').attr('src'));
+		    $('.bmark').on('click',function(e){
+				e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
 				if (session.loginmember == null) {
 					if(confirm('로그인 하시겠습니까?')){
 						$(location).attr('href','/evcsmonitor/login')
@@ -376,6 +379,8 @@ function mkmarker(station,chger,map,markers,stationId) {
 							data: {'statId':v.statId,'uid':session.loginmember.id},
 							success:function(){
 								console.log('bookmark added');
+								$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
+								$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
 							}
 						});
 					
@@ -387,6 +392,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 							data: {'statId':v.statId,'uid':session.loginmember.id},
 							success:function(){
 								console.log('bookmark removed');
+								$('#'+v.statId+v.statId).remove();
 							}
 						});
 					}
