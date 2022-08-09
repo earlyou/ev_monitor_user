@@ -387,8 +387,8 @@
 		<ul th:if="${session.loginmember != null}">
 			<li>
 				<span class="opener"><label>즐겨찾기</label></span>
-				<ul class="foverflow" id="simplebm">
-					<li th:each="bookm:${bookmlist}">
+				<ul class="foverflow" id="asdf">
+					<li th:each="bookm:${bookmlist}" th:id="${bookm.statid}+${bookm.statid}">
 						<a th:text="${bookm.sstatNm}" style="font-size: 15px;" th:onclick="javascript:movemap([[${bookm.statid}]]);"></a>
 					</li>
 				</ul>
