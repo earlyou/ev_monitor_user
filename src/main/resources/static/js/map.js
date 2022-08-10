@@ -165,7 +165,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'		<div class="body">' + 
 			'			<div class="desc">' + 
 			'				<div class="table-wrapper">'+
-			'					<table style="margin-bottom:10px;margin-top:10px">'+
+			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
 			'						<tr>'+
 			'							<th>주소</th>'+
 	        '							<td>'+v.addr+'</td>'+
@@ -197,7 +197,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'   	     		</table>' + 
 			'				</div>'+
 			'				<div class="table-wrapper">'+
-			'					<table class="alt" style="margin-bottom:10px;margin-top:10px">'+
+			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
 			'						<thead>'+
 			'							<tr>'+
 			'								<th>충전용량</th><th>충전기 타입</th><th>상태</th>'+
