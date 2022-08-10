@@ -241,25 +241,32 @@ function mkmarker(station,chger,map,markers,stationId) {
 					}
 					if (c.chgerType == 1) {
 						type = 'DC차데모';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모">DC차데모</a>'
 					}else if (c.chgerType == 2) {
 						type = 'AC완속';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="AC완속">AC완속</a>'
 					}else if (c.chgerType == 3) {
 						type = 'DC차데모+AC3상';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모+AC3상">DC차데모+AC3상</a>'
 					}else if (c.chgerType == 4) {
 						type = 'DC콤보';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC콤보">DC콤보</a>'
 					}else if (c.chgerType == 5) {
 						type = 'DC차데모+DC콤보';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모+DC콤보">DC차데모+DC콤보</a>'
 					}else if (c.chgerType == 6) {
 						type = 'DC차데모+AC3상+DC콤보';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모+AC3상+DC콤보">DC차데모+AC3상+DC콤보</a>'
 					}else if (c.chgerType == 7) {
 						type = 'AC3상';
+						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="AC3상">AC3상</a>'
 					}
 	        		content = content + 
 	        		'					<tr>'+
 	        		'						<td>'+c.output+outclass+'</td>'+
 	        		'						<td>'+type+'</td>'+
 	        		'						<td>'+status+'</td>'+
-	        		'					</tr>'
+	        		'					</tr>';
 				}
 	        });
 		    
