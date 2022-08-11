@@ -50,6 +50,14 @@ public class StationVO {
 		this.busiNm = busiNm;
 		this.busiCall = busiCall;
 	}
+
+
+	public StationVO(String statId, String statNm, String addr) {
+		super();
+		this.statId = statId;
+		this.statNm = statNm;
+		this.addr = addr;
+	}
 	
 	
 

@@ -101,7 +101,7 @@
                                           	<i class="fa fa-user-o"></i> <span>관리자</span>
                                         </div>
                                         <div class="location" th:if="${communitydetail.location}!=null">
-                                          	<i class="fa fa-map-marker"></i> <span th:text="${communitydetail.location}+' '+${communitydetail.statNm}">충전소 위치</span>
+                                          	<i class="fa fa-map-marker"></i> <span th:text="${communitydetail.location}">충전소 위치</span>
                                         </div>
                                         <div class="location">
                                    			<i class="fa fa-clock-o"></i> <span th:text="${#dates.format(communitydetail.regdate,'yyyy/MM/dd HH:mm:ss')}">시간</span>
@@ -124,8 +124,8 @@
                     </div>
                     <div id="cm_crud">
                         <div id="buttonbox" th:if="${session.loginmember}!=null">
-                            <a class="custombtn" th:href="@{/cmupdate}" id="updatebtn" th:if="${communitydetail.uid}==${session.loginmember.id}">수정</a>
-                            <a class="custombtn" th:href="@{/cmdelete}" id="deletebtn" th:if="${communitydetail.uid}==${session.loginmember.id}">삭제</a>
+                            <a class="custombtn" th:href="@{cmupdate(pid=${communitydetail.pid})}" id="updatebtn" th:if="${communitydetail.uid}==${session.loginmember.id}">수정</a>
+                            <a class="custombtn" th:href="@{cmdelete(pid=${communitydetail.pid})}" id="deletebtn" th:if="${communitydetail.uid}==${session.loginmember.id}">삭제</a>
                         </div>
                    	</div>
                     
@@ -177,7 +177,7 @@
                 </div>
                 
                 <!-- 해당 충전소의 다른 게시글 -->
-                <div class="col-lg-4" th:if="${communitydetail.location}!=null">
+                <div class="col-lg-4" th:if="${communitydetail.location}!=null and ${communitydetail.statid}!=null">
                     <div class="job_sumary">
                         <div class="summery_header">
                             <h3 th:text="${communitydetail.statNm}">충전소 다른 게시글 보기</h3>

@@ -90,9 +90,7 @@ function rmcommunity(pid,obj) {
                                 <tr class="align-self-center">
                                 	<th style="text-align:center;">번호</th>
                                     <th style="text-align:center;">제목</th>
-                                    <th style="text-align:center;">지역</th>
-                                    <th style="text-align:center;">내용</th>
-                                    <th style="text-align:center;">이미지</th>
+                                    <th style="text-align:center;">위치</th>
                                     <th style="text-align:center;">등록일</th>
                                     <th style="text-align:center;">게시글 상세</th>
                                     <th style="text-align:center;">삭제</th>
@@ -102,11 +100,9 @@ function rmcommunity(pid,obj) {
                                 <tr th:each="com:${comlist}">
                                 	<td style="text-align:center;" th:text="${com.pid}"></td>
                                     <td style="text-align:center;" th:text="${com.title}">title</td>
-                                    <td style="text-align:center;" th:text="${com.location}">location</td>
-                                    <td style="text-align:center;" th:text="${com.tf}">tf</td>
-                                    <td style="text-align:center; width: 50px;" th:text="@{'/img/'+${com.cimgname}}">img</td>
+                                    <td style="text-align:center;" th:text="${com.location}+' '+${com.statNm}">location</td>
                                     <td style="text-align:center;" th:text="${#dates.format(com.regdate,'yyyy-MM-dd hh:mm:ss')}">regdate</td>
-                                    <td style="text-align:center;"><a th:href="@{cm_details(pid)=${o.pid}}" class="btn btn-primary"><i class="fa fa-commenting"></i></a></td>
+                                    <td style="text-align:center;"><a th:href="@{cm_details(pid=${com.pid},statid=${com.statid})}" class="btn btn-primary"><i class="fa fa-commenting"></i></a></td>
                                     <td style="text-align:center;"><a name="deletecombtn" id="deletecombtn" type="button" class="btn btn-danger" href="#"
                                     th:onclick="javascript:rmcommunity([[${com.pid}]],this);"><i class="fa fa-trash"></i></a></td>
                                 </tr>

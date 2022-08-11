@@ -15,13 +15,15 @@ public static void saveFile(MultipartFile mf, String admindir, String userdir) {
 					new FileOutputStream(admindir+imgname);
 			adminfo.write(data);
 			adminfo.close();
+			System.out.println("저장완료");
 			
 			FileOutputStream userfo = 
 					new FileOutputStream(userdir+imgname);
 			userfo.write(data);
 			userfo.close();
+			System.out.println("저장완료");
 		}catch(Exception e) {
-			
+			System.out.println("저장실패");
 		}
 		
 	}

@@ -43,6 +43,10 @@ public class StationBiz implements Biz<String, StationVO>{
 	public List<StationVO> get() throws Exception {
 		return sdao.selectall();
 	}
+	
+	public List<StationVO> searchstat(String search) throws Exception{
+		return sdao.searchstat(search);
+	}
 
 	public List<StationVO> selectfilter(FilterVO obj) throws Exception{
 		return sdao.selectfilter(obj);
