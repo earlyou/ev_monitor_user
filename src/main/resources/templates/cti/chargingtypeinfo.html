@@ -1,0 +1,186 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<style>
+body{
+    background-color:#eee;    
+}
+.content{
+    margin-top:40px;    
+}
+.plan-one {
+    margin: 0 0 20px 0;
+    width: 100%;
+    position: relative;
+}
+
+.plan-card {
+    background: #fff;
+    margin-bottom: 30px;
+    transition: .5s;
+    border: 0;
+    border-radius: .55rem;
+    position: relative;
+    width: 100%;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.5);
+}
+
+.plan-one .pricing-header {
+    padding: 0;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.plan-one .pricing-header .plan-title {
+    -webkit-border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    border-radius: 10px 10px 0px 0px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    padding: 10px 0;
+    font-weight: 600;
+    background: #5a99ee;
+    margin: 0;
+}
+
+.plan-one .pricing-header .plan-cost {
+    color: #ffffff;
+    background: #71a7f0;
+    padding: 15px 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.plan-one .pricing-header .plan-save {
+    color: #ffffff;
+    background: #84b3f2;
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.plan-one .pricing-header.green .plan-title {
+    background: #47BCC7;
+}
+
+.plan-one .plan-features {
+    border: 1px solid #e6ecf3;
+    border-top: 0;
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.plan-one .plan-features li {
+    padding: 10px 15px 10px 40px;
+    margin: 5px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    position: relative;
+    border-bottom: 1px solid #e6ecf3;
+    line-height: 100%;
+}
+
+@media (max-width: 767px) {
+    .plan-one .pricing-header {
+        text-align: center;
+    }
+    .plan-one .pricing-header i {
+        display: block;
+        float: none;
+        margin-bottom: 20px;
+    }
+}
+</style>
+
+
+<body>
+<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>충전기 타입 안내 페이지</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ bradcam_area  -->
+
+
+<div class="container content">
+<div class="row gutters">
+	<div class="col-lg-3 col-md-5 col-sm-12">
+		<div class="plan-card plan-one">
+			<div class="pricing-header">
+				<h4 class="plan-title">AC3상</h4>
+				<div class="plan-cost"><img src="images/ctinfo/AC3s.png" width="110" height="130"></div>
+				<div class="plan-save">AC Type 2</div>
+			</div>
+			<ul class="plan-features">
+				<li>충전전류 | 32A</li>
+				<li>충전전압 | 220~440VAC</li>
+				<li>충전전력 | 3.52~14.08Kw</li>
+				<li>충전레벨 | 1~3</li>
+			</ul>
+		</div>
+	</div>
+		<div class="col-lg-3 col-md-5 col-sm-12">
+		<div class="plan-card plan-one">
+			<div class="pricing-header">
+				<h4 class="plan-title">AC완속</h4>
+				<div class="plan-cost"><img src="images/ctinfo/ACslow.png" width="110" height="130"></div>
+				<div class="plan-save">AC Type 1</div>
+			</div>
+			<ul class="plan-features">
+				<li>충전전류 | 80A</li>
+				<li>충전전압 | 120~240VAC</li>
+				<li>충전전력 | 0.96~19.20Kw</li>
+				<li>충전레벨 | 1,2</li>
+			</ul>
+		</div>
+	</div>
+		<div class="col-lg-3 col-md-5 col-sm-12">
+		<div class="plan-card plan-one">
+			<div class="pricing-header">
+				<h4 class="plan-title">DC콤보</h4>
+				<div class="plan-cost"><img src="images/ctinfo/DCcombo.png" width="110" height="130"></div>
+				<div class="plan-save">DC Combo</div>
+			</div>
+			<ul class="plan-features">
+				<li>충전전류 | 200A</li>
+				<li>충전전압 | 200~600VDC</li>
+				<li>충전전력 | 125Kw</li>
+				<li>충전레벨 | 3</li>
+			</ul>
+		</div>
+	</div>
+		<div class="col-lg-3 col-md-5 col-sm-12">
+		<div class="plan-card plan-one">
+			<div class="pricing-header">
+				<h4 class="plan-title">DC차데모</h4>
+				<div class="plan-cost"><img src="images/ctinfo/DCdemo.png" width="110" height="130"></div>
+			    <div class="plan-save">DC CHAdeMo</div>
+			</div>
+			<ul class="plan-features">
+				<li>충전전류 | 100~120A</li>
+				<li>충전전압 | 500VDC</li>
+				<li>충전전력 | 60Kw</li>
+				<li>충전레벨 | 3</li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+</div>
+
+</body>
+</html>
