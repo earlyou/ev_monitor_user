@@ -100,309 +100,404 @@ function getchger(chger){
 function mkmarker(station,chger,map,markers,stationId) {
 	var start = new Date();
 	$.each(station,function(i,v){
-	    
-		var content = 
-		'<div class="wrap">' + 
-		'    <div class="info">' + 
-		'        <div class="title">' + 
-		'           <div class="Nm">' + v.statNm + '</div>';
-		
-		var boo = false;
-		$.each(bookmark,function(i,b){
-			if(b.statid == v.statId) {
-				boo = true;
-				return boo;
+		if (v.delYn != 'N') {
+		    var parkingfree = '현장 확인'
+			if (v.parkingFree == 'Y') {
+				parkingfree = '무료';
+			}else if (v.parkingFree == 'N') {
+				parkingfree = '유료';
+			}else if (v.parkingFree == '') {
+				parkingfree = '현장 확인';
 			}
-		});
-		if(boo) {
-				content = content + 
-		'           <div class="bookmark">' +
-		'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/checked.png" width="20" height="20"></a>' +
-		'			</div>';
-		}else {
-				content = content + 
-		'           <div class="bookmark">' +
-		'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
-		'			</div>';
+			
+			var limitdetail = '해당사항 없음';
+			if (v.limitYn == 'Y') {
+				limitdetail = v.limitDetail;
+			} else {
+				limitdetail = '해당사항 없음';
 			}
-		
-		content = content +
-		'			<div class="close" title="닫기"></div>' + 
-		'		</div>' + 
-		'		<div class="body">' + 
-		'			<div class="desc">' + 
-		'				<div class="table-wrapper">'+
-		'					<table style="margin-bottom:10px;margin-top:10px">'+
-		'						<tr>'+
-		'							<th>주소</th>'+
-        '							<td>'+v.addr+'</td>'+
-		'						</tr>'+
-		'						<tr>'+
-		'							<th>상세 위치</th>'+
-        '							<td>'+v.location+'</td>'+
-		'						</tr>'+
-		'						<tr>'+
-		'							<th>이용 가능 시간</th>'+
-        '							<td>'+v.useTime+'</td>'+
-		'						</tr>'+
-		'						<tr>'+
-		'							<th>운영 기관</th>'+
-        '							<td>'+v.bnm+'</td>'+
-        '						</tr>'+
-		'						<tr>'+
-		'							<th>운영 기관 연락처</th>'+
-        '							<td>'+v.busiCall+'</td>'+
-		'						</tr>'+
-		'						<tr>'+
-		'							<th>주차비</th>'+
-        '							<td>'+v.parkingFree+'</td>'+
-		'						</tr>';
-		
-		if (v.limitYn == 'Y') {
-			content = content + 
-		'						<tr>'+
-		'							<th>이용자 제한</th>'+
-        '							<td>'+v.limitDetail+'</td>'+
-		'						</tr>';
-		} else {
-			content = content + 
-		'						<tr>'+
-		'							<th>이용자 제한</th>'+
-        '							<td>해당 사항 없음</td>'+
-		'						</tr>';
-		}
-		content = content +
-		'   	     		</table>' + 
-		'				</div>'+
-		
-		'				<div class="table-wrapper">'+
-		'					<table class="alt" style="margin-bottom:10px;margin-top:10px">'+
-		'						<thead>'+
-		'							<tr>'+
-		'								<th>충전용량</th><th>충전기 타입</th><th>상태</th>'+
-		'							</tr>'+
-		'						<thead>'+
-		'						<tbody>';
-
-		var output = [];
-	    $.each(chger, function(i,c){
-        	if (c.statId == v.statId) {
-        		output.push(c.output);
-        		
-	        	var status = '';
-	        	var outclass = '';
-	        	var type = '';
-	        	if (c.stat == 1) {
-					status = '통신이상';
-				}else if (c.stat == 2) {
-					status = '충전 가능';
-				}else if (c.stat == 3) {
-					status = '충전 중';
-				}else if (c.stat == 4) {
-					status = '운영 중지'
-				}else if (c.stat == 5) {
-					status = '점검중'
-				}else if (c.stat == 9) {
-					status = '상태미확인'
-				}
-				if (c.output < 40) {
-					c.output = c.output + 'kW'
-					outclass = '(완속)';
-				}else if (c.output >= 100) {
-					c.output = c.output + 'kW'
-					outclass = '(초급속)';
-				}else if (c.output >= 40) {
-					c.output = c.output + 'kW'
-					outclass = '(급속)';
-				}else if (c.output == null) {
-					c.output = '정보 없음';
-					outclass = '';
-				}
-				if (c.chgerType == 1) {
-					type = 'DC차데모';
-				}else if (c.chgerType == 2) {
-					type = 'AC완속';
-				}else if (c.chgerType == 3) {
-					type = 'DC차데모+AC3상';
-				}else if (c.chgerType == 4) {
-					type = 'DC콤보';
-				}else if (c.chgerType == 5) {
-					type = 'DC차데모+DC콤보';
-				}else if (c.chgerType == 6) {
-					type = 'DC차데모+AC3상+DC콤보';
-				}else if (c.chgerType == 7) {
-					type = 'AC3상';
-				}
-        		content = content + 
-        		'					<tr>'+
-        		'						<td>'+c.output+outclass+'</td>'+
-        		'						<td>'+type+'</td>'+
-        		'						<td>'+status+'</td>'+
-        		'					</tr>'
+			
+			var location = '정보 없음';
+			if (v.location != null) {
+				location = v.location;
+			}else {
+				location = '정보 없음';
 			}
-        });
-	    
-	    content = content +
-		'	            		</tbody>' + 
-		'   	     		</table>' + 
-    	'    			</div>' +    
-        '			</div>'+
-        '		</div>'+
-        '	</div>'+
-        '</div>';
-
-        var locations = new Object();
-		locations.title = v.statNm;
-		locations.latlng = new kakao.maps.LatLng(v.lat, v.lng);
-		
-		// 마커 이미지의 이미지 주소
-		var imageSrc = 'images/markers/1.png';
-		
-		if (Math.max.apply(Math,output) < 40) {
-			imageSrc = 'images/markers/1.png';
-		}else if(Math.max.apply(Math,output) >= 100) {
-			imageSrc = 'images/markers/3.png';
-		}else if(Math.max.apply(Math,output) >= 40) {
-			imageSrc = 'images/markers/2.png';
-		}
-		
-		// 마커 이미지 크기
-	    var imageSize = new kakao.maps.Size(24, 36);
-	    // 마커 이미지 생성   
-	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-	    // 마커 생성
-		var marker = new kakao.maps.Marker({
-		    map: map, // 마커를 표시할 지도
-		    position: locations.latlng, // 마커를 표시할 위치가 담긴 배열
-		    title : locations.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시
-		    image : markerImage, // 마커 이미지
-		    clickable: true,	// 클릭 가능 여부
-		    zIndex: 1		// 컴포넌트의 우선순위, zIndex가 클 수록 앞으로 표시
-		});
-        
-     	// 마커에 Custom Overlay 붙이기
-	    var overlay = new kakao.maps.CustomOverlay({
-			content : content,
-			map : map,
-			clickable: true,
-			position : marker.getPosition(),
-			xAnchor: 0.5,
-			zIndex: 4
-		});
-
-	 	// 마커에 커스텀 오버레이 클릭 이벤트(열기,닫기) 붙이기
-		kakao.maps.event.addListener(marker, 'click', function() {
-		    overlay.setMap(map);
-		    $('.close').click(function(){
-	        	map.setDraggable(true);
-	        	map.setZoomable(true);
-		    	overlay.setMap(null);
-		    });
+			
+			var busicall = '';
+			if (v.busiCall != 'null') {
+				busicall = v.busiCall;
+			}else {
+				busicall = '';
+			}
 		    
-		    $('.wrap').on('mouseenter',function(){
-	        	map.setDraggable(false);
-	        	map.setZoomable(false);
-	        });
-	        $('.wrap').on('mouseleave',function(){
-	        	map.setDraggable(true);
-	        	map.setZoomable(true);
-	        });
-		    
-		    $('.bmark').on('click',function(e){
-				e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
-				if (session.loginmember == null) {
-					if(confirm('로그인 하시겠습니까?')){
-						$(location).attr('href','/evcsmonitor/login')
-					}
-				}else if(session.loginmember != null){
-					if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/unchecked.png') {
-						$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
-						
-						$.ajax({
-							url:'/evcsmonitor/addbookmark',
-							data: {'statId':v.statId,'uid':session.loginmember.id},
-							success:function(){
-								console.log('bookmark added');
-								$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
-								$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
-							}
-						});
-					
-					}else if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/checked.png') {
-						$('#'+v.statId+' img').attr('src', 'images/bookmark/unchecked.png');
-						
-						$.ajax({
-							url:'/evcsmonitor/rmbookmark',
-							data: {'statId':v.statId,'uid':session.loginmember.id},
-							success:function(){
-								console.log('bookmark removed');
-								$('#'+v.statId+v.statId).remove();
-							}
-						});
-					}
+			var content = 
+			'<div class="wrap" style="white-space: normal;">' + 
+			'    <div class="info">' + 
+			'        <div class="title">' + 
+			'           <div class="Nm">' + v.statNm + '</div>';
+			
+			
+			var boo = false;
+			$.each(bookmark,function(i,b){
+				if(b.statid == v.statId) {
+					boo = true;
+					return boo;
 				}
 			});
-		});
-		
-		overlay.setMap(null);			// 마커 누르기 전에는 오버레이 표시 금지
-		
-		// 즐겨찾기 충전소 찾기를 눌렀을 때 작동
-     	if(stationId == v.statId) {
-			overlay.setMap(map);
-			$('.close').click(function(){
-	        	map.setDraggable(true);
-	        	map.setZoomable(true);
-		    	overlay.setMap(null);
-		    });
-		    
-		    $('.wrap').on('mouseenter',function(){
-	        	map.setDraggable(false);
-	        	map.setZoomable(false);
-	        });
-	        $('.wrap').on('mouseleave',function(){
-	        	map.setDraggable(true);
-	        	map.setZoomable(true);
-	        });
-		    
-		    $('.bmark').on('click',function(e){
-				e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
-				if (session.loginmember == null) {
-					if(confirm('로그인 하시겠습니까?')){
-						$(location).attr('href','/evcsmonitor/login')
-					}
-				}else if(session.loginmember != null){
-					if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/unchecked.png') {
-						$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
-						
-						$.ajax({
-							url:'/evcsmonitor/addbookmark',
-							data: {'statId':v.statId,'uid':session.loginmember.id},
-							success:function(){
-								console.log('bookmark added');
-								$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
-								$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
-							}
-						});
-					
-					}else if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/checked.png') {
-						$('#'+v.statId+' img').attr('src', 'images/bookmark/unchecked.png');
-						
-						$.ajax({
-							url:'/evcsmonitor/rmbookmark',
-							data: {'statId':v.statId,'uid':session.loginmember.id},
-							success:function(){
-								console.log('bookmark removed');
-								$('#'+v.statId+v.statId).remove();
-							}
-						});
-					}
+			
+			
+			if(boo) {
+					content = content + 
+			'           <div class="bookmark" style="margin-top: 7px;">' +
+			'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/checked.png" width="20" height="20"></a>' +
+			'			</div>';
+			}else {
+					content = content + 
+			'           <div class="bookmark" style="margin-top: 7px;">' +
+			'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
+			'			</div>';
 				}
+			
+			content = content +
+			'			<div class="close" title="닫기"></div>' + 
+			'		</div>' + 
+			'		<div class="body">' + 
+			'			<div class="desc">' + 
+			'				<div class="table-wrapper" style="white-space: normal;">'+
+			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
+			'						<tr>'+
+			'							<th>주소</th>'+
+	        '							<td>'+v.addr+'</td>'+
+			'						</tr>'+
+			'						<tr>'+
+			'							<th>상세 위치</th>'+
+	        '							<td>'+location+'</td>'+
+			'						</tr>'+
+			'						<tr>'+
+			'							<th>이용 가능 시간</th>'+
+	        '							<td>'+v.useTime+'</td>'+
+			'						</tr>'+
+			'						<tr>'+
+			'							<th>운영 기관</th>'+
+	        '							<td>'+v.bnm+'</td>'+
+	        '						</tr>'+
+			'						<tr>'+
+			'							<th>운영 기관 연락처</th>'+
+	        '							<td>'+busicall+'</td>'+
+			'						</tr>' + 
+			'						<tr>'+
+			'							<th>주차비</th>'+
+	    	'							<td>'+parkingfree+'</td>'+
+			'						</tr>' + 
+			'						<tr>'+
+			'							<th>이용자 제한</th>'+
+	        '							<td>'+limitdetail+'</td>'+
+			'						</tr>' + 
+			'   	     		</table>' + 
+			'				</div>'+
+			'				<div class="table-wrapper">'+
+			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
+			'						<thead style="text-align:center">'+
+			'							<tr>'+
+			'								<th>충전용량</th><th>충전기 타입</th><th>상태</th>'+
+			'							</tr>'+
+			'						<thead>'+
+			'						<tbody>';
+	
+			var output = [];
+		    $.each(chger, function(i,c){
+	        	if (c.statId == v.statId) {
+	        		output.push(c.output);
+	        		
+		        	var status = '';
+		        	var outclass = '';
+		        	var type = '';
+		        	if (c.stat == 1) {
+						status = '통신이상';
+					}else if (c.stat == 2) {
+						status = '충전 가능';
+					}else if (c.stat == 3) {
+						status = '충전 중';
+					}else if (c.stat == 4) {
+						status = '운영 중지'
+					}else if (c.stat == 5) {
+						status = '점검중'
+					}else if (c.stat == 9) {
+						status = '상태미확인'
+					}
+					if (c.output < 40) {
+						c.output = c.output + 'kW'
+						outclass = '(완속)';
+					}else if (c.output >= 100) {
+						c.output = c.output + 'kW'
+						outclass = '(초급속)';
+					}else if (c.output >= 40) {
+						c.output = c.output + 'kW'
+						outclass = '(급속)';
+					}else if (c.output == null) {
+						c.output = '정보 없음';
+						outclass = '';
+					}
+					
+					var DCcha = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/DC_CHAdeMO.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">DC차데모</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">블루온</span></li>'+
+					'		<li><span class="dropdown-item-text">레이</span></li>'+
+					'		<li><span class="dropdown-item-text">쏘울</span></li>'+
+					'		<li><span class="dropdown-item-text">아이오닉</span></li>'+
+					'		<li><span class="dropdown-item-text">Leaf</span></li>'+
+					'	</ul>'+
+					'</div>';
+						
+					var AC = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/AC.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">AC완속</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">블루온</span></li>'+
+					'		<li><span class="dropdown-item-text">레이</span></li>'+
+					'		<li><span class="dropdown-item-text">쏘울</span></li>'+
+					'		<li><span class="dropdown-item-text">아이오닉</span></li>'+
+					'		<li><span class="dropdown-item-text">스파크</span></li>'+
+					'		<li><span class="dropdown-item-text">i3</span></li>'+
+					'		<li><span class="dropdown-item-text">Leaf</span></li>'+
+					'		<li><span class="dropdown-item-text">볼트</span></li>'+
+					'	</ul>'+
+					'</div>';
+					
+					var AC3 = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/AC3.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">AC3상</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">SM3 ZE</span></li>'+
+					'	</ul>'+
+					'</div>';
+					
+					var DCcombo = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/DC_combo.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">DC콤보</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">아이오닉</span></li>'+
+					'		<li><span class="dropdown-item-text">스파크</span></li>'+
+					'		<li><span class="dropdown-item-text">볼트</span></li>'+
+					'		<li><span class="dropdown-item-text">i3</span></li>'+
+					'		<li><span class="dropdown-item-text">코나</span></li>'+
+					'		<li><span class="dropdown-item-text">쏘울</span></li>'+
+					'		<li><span class="dropdown-item-text">니로</span></li>'+
+					'	</ul>'+
+					'</div>';
+					
+					if (c.chgerType == 1) {
+						// DC차데모
+						type = DCcha;
+					}else if (c.chgerType == 2) {
+						// AC완속
+						type = AC;
+					}else if (c.chgerType == 3) {
+						// DC차데모+AC3상
+						type = DCcha+AC3;
+					}else if (c.chgerType == 4) {
+						// DC콤보
+						type = DCcombo;
+					}else if (c.chgerType == 5) {
+						// DC차데모+DC콤보
+						type = DCcha + DCcombo;
+					}else if (c.chgerType == 6) {
+						// DC차데모+AC3상+DC콤보
+						type = DCcha + AC3 + DCcombo;
+					}else if (c.chgerType == 7) {
+						// AC3상
+						type = AC3;
+					}
+	        		content = content + 
+	        		'					<tr>'+
+	        		'						<td>'+c.output+outclass+'</td>'+
+	        		'						<td>'+type+'</td>'+
+	        		'						<td>'+status+'</td>'+
+	        		'					</tr>';
+				}
+	        });
+		    
+		    content = content +
+			'	            		</tbody>' + 
+			'   	     		</table>' + 
+	    	'    			</div>' +    
+	        '			</div>'+
+	        '		</div>'+
+	        '	</div>'+
+	        '</div>';
+	
+	        var locations = new Object();
+			locations.title = v.statNm;
+			locations.latlng = new kakao.maps.LatLng(v.lat, v.lng);
+			
+			// 마커 이미지의 이미지 주소
+			var imageSrc = 'images/markers/1.png';
+			
+			if (Math.max.apply(Math,output) < 40) {
+				imageSrc = 'images/markers/1.png';
+			}else if(Math.max.apply(Math,output) >= 100) {
+				imageSrc = 'images/markers/3.png';
+			}else if(Math.max.apply(Math,output) >= 40) {
+				imageSrc = 'images/markers/2.png';
+			}
+			
+			// 마커 이미지 크기
+		    var imageSize = new kakao.maps.Size(24, 36);
+		    // 마커 이미지 생성   
+		    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		    // 마커 생성
+			var marker = new kakao.maps.Marker({
+			    map: map, // 마커를 표시할 지도
+			    position: locations.latlng, // 마커를 표시할 위치가 담긴 배열
+			    title : locations.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시
+			    image : markerImage, // 마커 이미지
+			    clickable: true,	// 클릭 가능 여부
+			    zIndex: 1		// 컴포넌트의 우선순위, zIndex가 클 수록 앞으로 표시
 			});
-		}
-		
-	    marker.setMap(map);
-	    markers.push(marker);
-	    marker.setVisible(false);
+	        
+	     	// 마커에 Custom Overlay 붙이기
+		    var overlay = new kakao.maps.CustomOverlay({
+				content : content,
+				map : map,
+				clickable: true,
+				position : marker.getPosition(),
+				xAnchor: 0.5,
+				zIndex: 4
+			});
+	
+		 	// 마커에 커스텀 오버레이 클릭 이벤트(열기,닫기) 붙이기
+			kakao.maps.event.addListener(marker, 'click', function() {
+			    overlay.setMap(map);
+			    $('.close').click(function(){
+		        	map.setDraggable(true);
+		        	map.setZoomable(true);
+			    	overlay.setMap(null);
+			    });
+			    
+			    $('.wrap').on('mouseenter',function(){
+		        	map.setDraggable(false);
+		        	map.setZoomable(false);
+		        });
+		        $('.wrap').on('mouseleave',function(){
+		        	map.setDraggable(true);
+		        	map.setZoomable(true);
+		        });
+			    
+			    $('.bmark').on('click',function(e){
+					e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
+					if (session.loginmember == null) {
+						if(confirm('로그인 하시겠습니까?')){
+							$(location).attr('href','/evcsmonitor/login')
+						}
+					}else if(session.loginmember != null){
+						if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/unchecked.png') {
+							$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
+							
+							$.ajax({
+								url:'/evcsmonitor/addbookmark',
+								data: {'statId':v.statId,'uid':session.loginmember.id},
+								success:function(){
+									console.log('bookmark added');
+									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
+									$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
+								}
+							});
+						
+						}else if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/checked.png') {
+							$('#'+v.statId+' img').attr('src', 'images/bookmark/unchecked.png');
+							
+							$.ajax({
+								url:'/evcsmonitor/rmbookmark',
+								data: {'statId':v.statId,'uid':session.loginmember.id},
+								success:function(){
+									console.log('bookmark removed');
+									$('#'+v.statId+v.statId).remove();
+								}
+							});
+						}
+					}
+				});
+			});
+			
+			overlay.setMap(null);			// 마커 누르기 전에는 오버레이 표시 금지
+			
+			// 즐겨찾기 충전소 찾기를 눌렀을 때 작동
+	     	if(stationId == v.statId) {
+				overlay.setMap(map);
+				$('.close').click(function(){
+		        	map.setDraggable(true);
+		        	map.setZoomable(true);
+			    	overlay.setMap(null);
+			    });
+			    
+			    $('.wrap').on('mouseenter',function(){
+		        	map.setDraggable(false);
+		        	map.setZoomable(false);
+		        });
+		        $('.wrap').on('mouseleave',function(){
+		        	map.setDraggable(true);
+		        	map.setZoomable(true);
+		        });
+			    
+			    $('.bmark').on('click',function(e){
+					e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
+					if (session.loginmember == null) {
+						if(confirm('로그인 하시겠습니까?')){
+							$(location).attr('href','/evcsmonitor/login')
+						}
+					}else if(session.loginmember != null){
+						if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/unchecked.png') {
+							$('#'+v.statId+' img').attr('src', 'images/bookmark/checked.png');
+							
+							$.ajax({
+								url:'/evcsmonitor/addbookmark',
+								data: {'statId':v.statId,'uid':session.loginmember.id},
+								success:function(){
+									console.log('bookmark added');
+									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
+									$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
+								}
+							});
+						
+						}else if ($('#'+v.statId+' img').attr("src") == 'images/bookmark/checked.png') {
+							$('#'+v.statId+' img').attr('src', 'images/bookmark/unchecked.png');
+							
+							$.ajax({
+								url:'/evcsmonitor/rmbookmark',
+								data: {'statId':v.statId,'uid':session.loginmember.id},
+								success:function(){
+									console.log('bookmark removed');
+									$('#'+v.statId+v.statId).remove();
+								}
+							});
+						}
+					}
+				});
+			}
+			
+		    marker.setMap(map);
+		    markers.push(marker);
+		    marker.setVisible(false);
+	    }
 	});
 	if (map.getLevel() <= 5) {
 		var bounds = map.getBounds();
@@ -551,6 +646,11 @@ function movemap(statid) {
 
 
 $(document).ready(function(){
+	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl)
+	})
+	
 	if(performance.getEntriesByType("navigation")[0].type == 'reload') {
 		location.href = '/evcsmonitor/map';
 	}
@@ -579,4 +679,10 @@ $(document).ready(function(){
 	    alert('사용자의 위치 정보를 받아올 수 없습니다.');
 	    ready(lat,lng,'',map);
 	}
+	
+	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl)
+	})
+	
 });
