@@ -5133,8 +5133,9 @@ h6 {
   outline: none;
   background: #f9f9ff;
   padding: 0 20px;
-  height: 100px;
+  height: 300px;
   resize: none;
+  padding-left: 45px;
 }
 
 /* line 555, ../../Arafath/CL/December/235. Job board/HTML/scss/_elements.scss */

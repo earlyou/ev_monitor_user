@@ -17,4 +17,6 @@ public interface StationMapper {
 	public StationVO select(String statId) throws Exception;
 	public List<StationVO> selectall() throws Exception;
 	public List<StationVO> selectfilter(FilterVO obj) throws Exception;
+	
+	public List<StationVO> searchstat(String search) throws Exception;
 }

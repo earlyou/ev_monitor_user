@@ -2,6 +2,8 @@ package com.user.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,8 @@ public class CommunityVO  {
 	private String tf;
 	private String cimgname;
 	private Date regdate;
+	
+	private MultipartFile mf;
 	
 	// join용 필드
 	private String statNm;
