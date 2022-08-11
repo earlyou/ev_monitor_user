@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.user.frame.Util;
 import com.user.biz.CommunityBiz;
 import com.user.biz.UsersBiz;
 import com.user.vo.CommunityVO;
@@ -77,26 +78,30 @@ public class CommunityController {
 		}	
 	}
 	
-	@RequestMapping("cm/addimpl")
+	@RequestMapping("/addimpl")
 	public String addimpl(CommunityVO obj, Model m) {
 		
-					try {
-						cbiz.register(obj);
-					} catch (Exception e) {
-						
-						e.printStackTrace();
-					}
+		String cimgname = obj.getMf().getOriginalFilename();
+		System.out.println(cimgname);
+		try {
+			obj.setCimgname(cimgname);
+			cbiz.register(obj);
+			Util.saveFile(obj.getMf(), admindir, userdir);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 				
 		return "redirect:/cm";
 	}
 	
 
 	@RequestMapping("/cmupdate")
-	public String update(Model m, int id, HttpSession session) {
+	public String update(Model m, int pid, HttpSession session) {
 		Object ss = session.getAttribute("loginmember");
 		if(ss != null) {			
 			try {
-				CommunityVO c = cbiz.get(id);
+				CommunityVO c = cbiz.selectdetail(pid);
 				String uid = c.getUid();
 				UsersVO users = ubiz.get(uid);
 				if(ss.toString().equals(users.toString())) {					
@@ -104,21 +109,39 @@ public class CommunityController {
 					m.addAttribute("center", "cm/update");
 				}				
 			} catch (Exception e) {
+				System.out.println("오류");
 				e.printStackTrace();
 			}			
+		}else {
+			//return "redirect:/login";
+			m.addAttribute("center", "/login");
 		}
 		return "index";
+		
 	}
 	
-	@RequestMapping("cm/updateimpl")
-	public String updateimpl(int pid, CommunityVO obj) {	
-					try {
-						cbiz.modify(obj);
-					} catch (Exception e) {
+	@RequestMapping("/updateimpl")
+	public String updateimpl(CommunityVO obj) {	
+			String iname = obj.getMf().getOriginalFilename();
+			
+			if(!(iname.equals(""))) {
+				obj.setCimgname(iname);
+				Util.saveFile(obj.getMf(), admindir, userdir);
+			}else {
+				try {
+					CommunityVO newvo = cbiz.selectdetail(obj.getPid());
+					obj.setCimgname(newvo.getCimgname());  
+				} catch (Exception e) {
 					e.printStackTrace();
-					}
-				
-			return "redirect:detail?pid=" + obj.getPid();
+				}
+			}
+			
+			try {
+				cbiz.modify(obj);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return "redirect:cm_details?pid=" + obj.getPid() + "&statid=" +obj.getStatid();
 	}
 	
 	@RequestMapping("/cmdelete")

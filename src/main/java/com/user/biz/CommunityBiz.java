@@ -42,10 +42,11 @@ public class CommunityBiz implements Biz<Integer, CommunityVO> {
 	public List<CommunityVO> get() throws Exception {
 		return commudao.selectall();
 	}
-
+	
 	public List<CommunityVO> getselectcustomercommdetail(String uid) throws Exception {
 		return commudao.selectcustomercommdetail(uid);
 	}
+
 	
 	public List<CommunityVO> getalladminlist() throws Exception {
 		return commudao.selectalladminlist();

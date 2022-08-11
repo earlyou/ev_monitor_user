@@ -1,118 +1,322 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
 <meta charset="UTF-8">
-<title>전기차</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<!-- 글수정페이지 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style>
+#formdiv{
+	margin: 80px;
+}
+#imgdiv{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+#addbutton{
+	margin-bottom:20px;
+	float: right;
+}
+.custombtn {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#F91842+0,fd8e5e+100 */
+  background: #00D363;
+  color: #fff;
+  display: inline-block;
+  padding: 9px 18px 9px 18px;
+  font-family: "paybooc-Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  border: 0;
+  border: 1px solid transparent;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  color: #fff !important;
+  text-transform: capitalize;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.custombtn:hover {
+  color: #00D363 !important;
+  border: 1px solid #00D363;
+  background: transparent;
+}
+
+.custombtn:focus {
+  outline: none;
+}
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip:rect(0,0,0,0);
+	border: 0;
+}
+
+.filebox label {
+margin: -1px;
+	display: inline-block;
+	padding: .5em .75em;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+}
+
+/* named upload */
+.filebox .upload-name {
+	color: #cccccc;
+	display: inline-block;
+	padding: .5em .75em;
+	font-size: inherit;
+	font-family: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color:  #f9f9ff;;
+  border: 0px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* imaged preview */
+.filebox .upload-display {
+	margin-bottom: 5px;
+}
+
+@media(min-width: 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb-wrap {
+	display: inline-block;
+	width: 54px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img {
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
+
+.filebox.bs3-primary label {
+  color: #fff;
+  background-color: #1482e6;
+	border-color: #2e6da4;
+}
+</style>
 <script>
-	$(function(){
-		
-		$('#btn_updatepost').click(function(){
-			$('input[name="location"]').val($.trim($('input[name="location"]').val()));
-			$('#form_updatepost').attr({
-				'enctype':'multipart/form-data',
-				'method':'post',
-				'action':'updateimpl'
-			});
-			$('#form_updatepost').submit();
-		});
-		
-	});
+    $(function(){
+        $('#btn_updatepost').click(function(){	
+                    
+            $('#form_updatepost').attr({
+                'enctype':'multipart/form-data',
+                'method':'post',
+                'action':'updateimpl'
+            });
+            $('#form_updatepost').submit();
+        });
+    });
+    
+    
+    $(document).ready(function(){
+    	   var fileTarget = $('.filebox .upload-hidden');
+
+    	    fileTarget.on('change', function(){
+    	        if(window.FileReader){
+    	            // 파일명 추출
+    	            var filename = $(this)[0].files[0].name;
+    	        } 
+
+    	        else {
+    	            // Old IE 파일명 추출
+
+    	            var filename = $(this).val().split('/').pop().split('\\').pop();
+    	        };
+
+    	        $(this).siblings('.upload-name').val(filename);
+    	        $('.upload-name').css('color', '#797979');
+    	    });
+
+    	    //preview image 
+    	    var imgTarget = $('.preview-image .upload-hidden');
+
+    	    imgTarget.on('change', function(){
+    	        var parent = $(this).parent();
+    	        parent.children('.upload-display').remove();
+
+    	        if(window.FileReader){
+    	            //image 파일만
+    	            if (!$(this)[0].files[0].type.match(/image\//)) return;
+    	            
+    	            var reader = new FileReader();
+    	            reader.onload = function(e){
+    	                var src = e.target.result;
+    	                parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+    	            }
+    	            reader.readAsDataURL($(this)[0].files[0]);
+    	        }
+
+    	        else {
+    	            $(this)[0].select();
+    	            $(this)[0].blur();
+    	            var imgSrc = document.selection.createRange().text;
+    	            parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+
+    	            var img = $(this).siblings('.upload-display').find('img');
+    	            img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";        
+    	        }
+    	    });
+    	
+    	    
+    	    $('#autoComplete').autocomplete({ // autocomplete 구현 시작부
+    	        source : function(reuqest, response) {
+    	            $.ajax({
+    	                type : 'POST',
+    	                url: '/evcsmonitor/autocomplete',
+    	                dataType: "json",
+    	                data: {searchValue:  $('#autoComplete').val()},
+    	                success : function(data) {
+    	                    // 서버에서 json 데이터 response 후 목록 추가
+    	                    response(
+    	                        $.map(data, function(item) {
+    	                            return {
+    	                                label : item.statNm,
+    	                                value : item.statNm,
+    	                                id : item.statId,
+    	                                addr : item.addr
+    	                            }
+    	                        })
+    	                    );
+    	                },
+    	                 error:function(request,status,error){       
+    	                	 alert("code = "+ request.status + " message = " + request.responseText + " error = " + error);       
+   	                	},
+    	            });
+    	        },
+    	        select : function(event, ui) { // item 선택 시 이벤트
+    	            console.log(ui.item);
+    	        	
+    	        	// hidden input에 statId, addr 자른값 넣기
+    	        	var location = ui.item.addr.split(' ', 2).join(" ");
+    	        	$("#statid").val(ui.item.id);
+    	        	$("#location").val(location);
+    	        },
+    	        focus : function(event, ui) { // 포커스 시 이벤트
+    	            return false;
+    	        },
+    	        minLength : 1, // 최소 글자 수
+    	        autoFocus : true, // true로 설정 시 메뉴가 표시 될 때, 첫 번째 항목에 자동으로 초점이 맞춰짐
+    	        classes : { // 위젯 요소에 추가 할 클래스를 지정
+    	            'ui-autocomplete' : 'highlight'
+    	        },
+    	        delay : 500, // 입력창에 글자가 써지고 나서 autocomplete 이벤트 발생될 떄 까지 지연 시간(ms)
+    	        disable : false, // 해당 값 true 시, 자동완성 기능 꺼짐
+    	        position : { my : 'right top', at : 'right bottom'}, // 제안 메뉴의 위치를 식별
+    	        close : function(event) { // 자동완성 창 닫아질 때의 이벤트
+    	            console.log(event);
+    	        }
+    	    });
+    
+    });
 </script>
-</head>
-<body>
 
-
-<section class="ftco-section contact-section bg-light">
-  <div class="container">
-  
-    <div class="row block-9">
-      <div class="col-md-6 order-md-last d-flex">
-        <form id="form_updatepost" class="bg-white p-5 contact-form">
-        <h2 class="mb-4">글수정</h2>
-          <div class="form-group">
-          	<label for="title">Title: </label>
-            <input type="text" name="title" class="form-control" th:value="${dpost.title}">
-             <input type="hidden" name="pid" class="form-control" th:value="${dpost.pid}">
-             <input type="hidden" name="uid" class="form-control" th:value="${dpost.uid}">
-          </div>
-           <label for="sel3">지역구</label>
-            <select id="sel3" name="gu">
-                <optgroup label="선택안함">
-                    <option text>선택안함</option>
-                </optgroup>
-                <optgroup label="ㄱ">
-                    <option text>강남구</option>
-                    <option text>강동구</option>
-                    <option text>강북구</option>
-                    <option text>강서구</option>
-                    <option text>관악구</option>
-                    <option text>광진구</option>
-                    <option text>구로구</option>
-                    <option text>금천구</option>
-                </optgroup>
-                <optgroup label="ㄴ">    
-                    <option text>노원구</option>
-                </optgroup>
-                <optgroup label="ㄷ">    
-                    <option text>도봉구</option>
-                    <option text>동대문구</option>
-                    <option text>동작구</option>
-                </optgroup>
-                <optgroup label="ㅁ">
-                    <option text=>마포구</option>
-                </optgroup>
-                <optgroup label="ㅅ">
-                    <option text=>서대문구</option>
-                    <option text>서초구</option>
-                    <option text>성동구</option>
-                    <option text>성북구</option>
-                    <option text>송파구</option>
-                </optgroup>
-                <optgroup label="ㅇ">
-                    <option text>양천구</option>
-                    <option text>영등포구</option>
-                    <option text>용산구</option>
-                    <option text>은평구</option>
-                </optgroup>
-                <optgroup label="ㅈ">
-                    <option text>종로구</option>
-                    <option text>중구</option>
-                    <option text>중랑구</option>
-                </optgroup>
-              </select>
-          <div class="form-group">
-          	<label>글제목 : </label>            
-            	 <textarea name="title" id="" cols="15" rows="15" class="form-control" th:text="${dpost.title}"></textarea> 
-            </select>
-            
-          </div>
-		  <div class="form-group">
-		  	 <label>내용: </label>
-             <textarea name="content" id="" cols="15" rows="15" class="form-control" th:text="${dpost.content}"></textarea>          
-          </div>
-          <div class="form-group">
-          	<label>첨부파일: </label>
-          	<input type="file" name="mf" class="form-control">
-          </div>
-          <div class="form-group">
-          	 <input type="hidden"  th:if="${dpost.imgname != null and dpost.imgname != ''}" th:value="${dpost.imgname}" name="imgname">
-             <input type="hidden"  th:if="${dpost.imgname == null or dpost.imgname == ''}" th:value="0" name="imgname">
-          </div>
-          <div class="form-group">
-            <input type="submit" value="수정등록" id="btn_updatepost" class="btn btn-primary py-3 px-5">
-          </div>
-        </form>
-      
-      </div>
-
+	<!-- bradcam_area  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>커뮤니티</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  
- 
-  
-</section>
-             
-</body>
-</html>
+    <!--/ bradcam_area  -->
+    
+    <!-- form area -->
+    <div id="formdiv">
+    <div class="col-lg-8 col-md-8">
+	
+	<form action="#" id="form_updatepost">
+	
+		
+		<div class="input-group-icon mt-10">
+			<input type="hidden" name="pid" placeholder="글번호" id="pid"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = '글번호'" required
+				class="single-input" th:value="${dpost.pid}">
+		</div>
+		
+		<div class="input-group-icon mt-10">
+			<input type="hidden" name="statid" placeholder="충전소아이디" id="statid"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = '충전소아이디'" required
+				class="single-input" th:value="${dpost.statid}">
+		</div>
+		
+		<div class="input-group-icon mt-10">
+			<input type="hidden" name="location" placeholder="지역" id="location"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = '지역'" required
+				class="single-input" th:value="${dpost.location}">
+		</div>
+		
+		
+		<div class="input-group-icon mt-10">
+			<div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+			<input type="text" name="title" placeholder="제목"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = '제목'" required
+				class="single-input" th:value="${dpost.title}">
+		</div>
+		
+		<div class="input-group-icon mt-10">
+			<div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+			<input type="text" name="statNm" id="autoComplete" placeholder="위치"
+				onfocus="this.placeholder = ''" onblur="this.placeholder = '위치'" required
+				class="single-input" th:value="${dpost.statNm}">
+		</div>
+		
+		<div class="input-group-icon mt-10">
+			<div class="icon"><i class="fa fa-align-left" aria-hidden="true"></i></div>
+			<textarea class="single-textarea" name="tf" placeholder="내용" onfocus="this.placeholder = ''"
+				onblur="this.placeholder = '내용'" th:text="${dpost.tf}"></textarea>
+		</div>
+		
+		<div id="imgdiv" class="filebox bs3-primary preview-image">
+			<div class="upload-display" th:if="${dpost.cimgname}!=null"><div class="upload-thumb-wrap"><img th:src="@{'images/cmimg/'+${dpost.cimgname}}" class="upload-thumb"></div></div>
+			
+			<input class="upload-name" type="text" name="cimgnamepreview" th:value="${dpost.cimgname}" disabled="disabled" style="width: 200px;">
+
+			<label for="input_file">업로드</label> 
+		  <input type="file" id="input_file" name="mf" class="upload-hidden"> 
+		</div>
+		
+		<div id="addbutton">
+        	<button class="custombtn" id="btn_updatepost">수정</button>
+        </div>
+	</form>
+	</div>
+	</div>
+	

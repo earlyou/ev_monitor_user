@@ -54,7 +54,8 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	</insert>
 	
 	<update id="update" parameterType="communityVO">
-		UPDATE community SET statid=#{statid},location=#{location},title=#{title},tf=#{tf},cimgname=#{cimgname} WHERE pid=#{pid}
+		UPDATE community SET statid=#{statid}, location=#{location},
+		title=#{title}, tf=#{tf}, cimgname=#{cimgname} WHERE pid=#{pid}
 	</update>
 	
 	<delete id="delete" parameterType="int">
@@ -63,7 +64,11 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<!-- uid를 통한 커뮤니티 select list -->
 	<select id="selectcustomercommdetail" parameterType="String" resultType="communityVO">
-		SELECT * FROM community WHERE uid = #{uid}
+		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.regdate, u.usertypeid 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE c.uid = #{uid}
+		ORDER BY c.pid DESC
 	</select>
 	
 </mapper>
