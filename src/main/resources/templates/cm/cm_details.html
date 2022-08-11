@@ -101,7 +101,7 @@
                                           	<i class="fa fa-user-o"></i> <span>관리자</span>
                                         </div>
                                         <div class="location" th:if="${communitydetail.location}!=null">
-                                          	<i class="fa fa-map-marker"></i> <span th:text="${communitydetail.location}">충전소 위치</span>
+                                          	<i class="fa fa-map-marker"></i> <span th:text="${communitydetail.location}">충전소 위치</span><span th:if="${communitydetail.statNm}!=null" th:text="' '+${communitydetail.statNm}">충전소 위치</span>
                                         </div>
                                         <div class="location">
                                    			<i class="fa fa-clock-o"></i> <span th:text="${#dates.format(communitydetail.regdate,'yyyy/MM/dd HH:mm:ss')}">시간</span>
