@@ -149,12 +149,12 @@ function mkmarker(station,chger,map,markers,stationId) {
 			
 			if(boo) {
 					content = content + 
-			'           <div class="bookmark">' +
+			'           <div class="bookmark" style="margin-top: 7px;">' +
 			'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/checked.png" width="20" height="20"></a>' +
 			'			</div>';
 			}else {
 					content = content + 
-			'           <div class="bookmark">' +
+			'           <div class="bookmark" style="margin-top: 7px;">' +
 			'           	<a href="#" id="'+v.statId+'" class="icon bmark"><img src="images/bookmark/unchecked.png" width="20" height="20"></a>' +
 			'			</div>';
 				}
