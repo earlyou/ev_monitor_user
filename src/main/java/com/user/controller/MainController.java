@@ -125,4 +125,114 @@ public class MainController {
 
 		return pwdresult;
 	}
+	
+	@RequestMapping("/cfichargingfareinfo") // 충전 요금 안내 페이지
+	public String chargingfareinfo(Model m) {
+		m.addAttribute("center", "/cfi/chargingfareinfo");
+		return "index";
+	}
+	
+	@RequestMapping("/ctichargingtypeinfo") // 충전기 타입 안내 페이지
+	public String chargingtypeinfo(Model m) {
+		m.addAttribute("center", "/cti/chargingtypeinfo");
+		return "index";
+	}
+	
+	@RequestMapping("/evielectricvehicleinfo") // 전기차 모델 안내 페이지
+	public String electricvehicleinfo(Model m) {
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/evicenter");		
+		return "index";
+	}
+	
+	@RequestMapping("/kiacar") 
+	public String kiacar(Model m) { // 기아 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/kiacar");		
+		return "index";
+	}
+	
+	@RequestMapping("/hyundaicar") 
+	public String hyundaicar(Model m) {// 현대 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/hyundaicar");		
+		return "index";
+	}
+	
+	@RequestMapping("/genesis") 
+	public String genesis(Model m) { // 제네시스 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/genesis");		
+		return "index";
+	}
+	
+	@RequestMapping("/sycar") 
+	public String sycar(Model m) { // 쌍용 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/sycar");		
+		return "index";
+	}	
+	
+	@RequestMapping("/samsungcar") 
+	public String samsungcar(Model m) { // 르노삼성 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/samsungcar");		
+		return "index";
+	}
+	
+	@RequestMapping("/chevroletcar") 
+	public String chevroletcar(Model m) {
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/chevroletcar");		
+		return "index";
+	}
+	
+	@RequestMapping("/teslacar") 
+	public String teslacar(Model m) { // 테슬라 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/teslacar");		
+		return "index";
+	}
+	
+	@RequestMapping("/benzcar") 
+	public String benzcar(Model m) { // 벤츠 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/benzcar");		
+		return "index";
+	}
+
+	@RequestMapping("/bmwcar") 
+	public String bmwcar(Model m) {
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/bmwcar");		
+		return "index";
+	}
+	
+	@RequestMapping("/audicar") 
+	public String audicar(Model m) { // 아우디 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/audicar");		
+		return "index";
+	}	
+	
+	@RequestMapping("/minicar") 
+	public String minicar(Model m) { // 미니 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/minicar");		
+		return "index";
+	}
+	
+	@RequestMapping("/nissancar") 
+	public String nissancar(Model m) { // 닛산 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/nissancar");		
+		return "index";
+	}	
+
+	@RequestMapping("volvocar") 
+	public String volvocar(Model m) { // 볼보 자동차 안내 페이지
+		m.addAttribute("center", "/evi/electricvehicleinfo");
+		m.addAttribute("evicenter", "/evi/volvocar");		
+		return "index";
+	}
 }
