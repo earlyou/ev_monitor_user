@@ -132,7 +132,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			}
 		    
 			var content = 
-			'<div class="wrap">' + 
+			'<div class="wrap" style="white-space: normal;">' + 
 			'    <div class="info">' + 
 			'        <div class="title">' + 
 			'           <div class="Nm">' + v.statNm + '</div>';
@@ -164,7 +164,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'		</div>' + 
 			'		<div class="body">' + 
 			'			<div class="desc">' + 
-			'				<div class="table-wrapper">'+
+			'				<div class="table-wrapper" style="white-space: normal;">'+
 			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
 			'						<tr>'+
 			'							<th>주소</th>'+
@@ -198,7 +198,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'				</div>'+
 			'				<div class="table-wrapper">'+
 			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
-			'						<thead>'+
+			'						<thead style="text-align:center">'+
 			'							<tr>'+
 			'								<th>충전용량</th><th>충전기 타입</th><th>상태</th>'+
 			'							</tr>'+
@@ -239,27 +239,93 @@ function mkmarker(station,chger,map,markers,stationId) {
 						c.output = '정보 없음';
 						outclass = '';
 					}
+					
+					var DCcha = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/DC_CHAdeMO.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">DC차데모</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">블루온</span></li>'+
+					'		<li><span class="dropdown-item-text">레이</span></li>'+
+					'		<li><span class="dropdown-item-text">쏘울</span></li>'+
+					'		<li><span class="dropdown-item-text">아이오닉</span></li>'+
+					'		<li><span class="dropdown-item-text">Leaf</span></li>'+
+					'	</ul>'+
+					'</div>';
+						
+					var AC = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/AC.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">AC완속</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">블루온</span></li>'+
+					'		<li><span class="dropdown-item-text">레이</span></li>'+
+					'		<li><span class="dropdown-item-text">쏘울</span></li>'+
+					'		<li><span class="dropdown-item-text">아이오닉</span></li>'+
+					'		<li><span class="dropdown-item-text">스파크</span></li>'+
+					'		<li><span class="dropdown-item-text">i3</span></li>'+
+					'		<li><span class="dropdown-item-text">Leaf</span></li>'+
+					'		<li><span class="dropdown-item-text">볼트</span></li>'+
+					'	</ul>'+
+					'</div>';
+					
+					var AC3 = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/AC3.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">AC3상</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">SM3 ZE</span></li>'+
+					'	</ul>'+
+					'</div>';
+					
+					var DCcombo = 
+					'<div class="dropdown dropend">'+
+					'	<a class="icon" href="#" data-bs-toggle="dropdown">'+
+					'		<img src="images/chgerimg/DC_combo.png" width="40px">'+
+					'	</a>'+
+					'	<ul class="dropdown-menu" style="overflow:scroll;height:140px;">'+
+					'		<li><span class="dropdown-item-text">DC콤보</span></li>'+
+					'		<li><hr class="dropdown-divider"></li>'+
+					'		<li><span class="dropdown-item-text">아이오닉</span></li>'+
+					'		<li><span class="dropdown-item-text">스파크</span></li>'+
+					'		<li><span class="dropdown-item-text">볼트</span></li>'+
+					'		<li><span class="dropdown-item-text">i3</span></li>'+
+					'		<li><span class="dropdown-item-text">코나</span></li>'+
+					'		<li><span class="dropdown-item-text">쏘울</span></li>'+
+					'		<li><span class="dropdown-item-text">니로</span></li>'+
+					'	</ul>'+
+					'</div>';
+					
 					if (c.chgerType == 1) {
-						type = 'DC차데모';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모">DC차데모</a>'
+						// DC차데모
+						type = DCcha;
 					}else if (c.chgerType == 2) {
-						type = 'AC완속';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="AC완속">AC완속</a>'
+						// AC완속
+						type = AC;
 					}else if (c.chgerType == 3) {
-						type = 'DC차데모+AC3상';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모+AC3상">DC차데모+AC3상</a>'
+						// DC차데모+AC3상
+						type = DCcha+AC3;
 					}else if (c.chgerType == 4) {
-						type = 'DC콤보';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC콤보">DC콤보</a>'
+						// DC콤보
+						type = DCcombo;
 					}else if (c.chgerType == 5) {
-						type = 'DC차데모+DC콤보';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모+DC콤보">DC차데모+DC콤보</a>'
+						// DC차데모+DC콤보
+						type = DCcha + DCcombo;
 					}else if (c.chgerType == 6) {
-						type = 'DC차데모+AC3상+DC콤보';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="DC차데모+AC3상+DC콤보">DC차데모+AC3상+DC콤보</a>'
+						// DC차데모+AC3상+DC콤보
+						type = DCcha + AC3 + DCcombo;
 					}else if (c.chgerType == 7) {
-						type = 'AC3상';
-						type = '<a data-bs-container="body" data-bs-toggle="popover" data-bs-placement="left" data-bs-content="AC3상">AC3상</a>'
+						// AC3상
+						type = AC3;
 					}
 	        		content = content + 
 	        		'					<tr>'+
@@ -580,6 +646,11 @@ function movemap(statid) {
 
 
 $(document).ready(function(){
+	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl)
+	})
+	
 	if(performance.getEntriesByType("navigation")[0].type == 'reload') {
 		location.href = '/evcsmonitor/map';
 	}
@@ -608,4 +679,10 @@ $(document).ready(function(){
 	    alert('사용자의 위치 정보를 받아올 수 없습니다.');
 	    ready(lat,lng,'',map);
 	}
+	
+	var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+	var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+		return new bootstrap.Popover(popoverTriggerEl)
+	})
+	
 });
