@@ -43,6 +43,12 @@ public class MainController {
 		return "index";
 	}
 	
+	@RequestMapping("/intro")
+	public String intro(Model m) {
+		m.addAttribute("center", "intro");
+		return "index";
+	}
+	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
 	public String map(Model m, HttpSession session, String statid) {
 		List<BookMarkVO> bookmark = null;
@@ -233,6 +239,12 @@ public class MainController {
 	public String volvocar(Model m) { // 볼보 자동차 안내 페이지
 		m.addAttribute("center", "/evi/electricvehicleinfo");
 		m.addAttribute("evicenter", "/evi/volvocar");		
+		return "index";
+	}
+	
+	@RequestMapping("/customercenter")
+	public String customercenter(Model m) {
+		m.addAttribute("center", "customercenter");
 		return "index";
 	}
 }
