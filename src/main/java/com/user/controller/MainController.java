@@ -43,12 +43,6 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("/intro")
-	public String intro(Model m) {
-		m.addAttribute("center", "intro");
-		return "index";
-	}
-	
 	@RequestMapping("/map") // 충전소 찾기를 클릭 시, 지도 화면으로 이동
 	public String map(Model m, HttpSession session, String statid) {
 		List<BookMarkVO> bookmark = null;
@@ -242,9 +236,44 @@ public class MainController {
 		return "index";
 	}
 	
-	@RequestMapping("/customercenter")
+	@RequestMapping("/customercenter") // 고객센터
 	public String customercenter(Model m) {
 		m.addAttribute("center", "customercenter");
+		return "index";
+	}
+	
+	@RequestMapping("/introintroduce") // 소개 페이지
+	public String introduce(Model m) {
+		m.addAttribute("center", "/intro/introduce");
+		m.addAttribute("introcenter", "/intro/introcenter");	
+		return "index";
+	}
+	
+	@RequestMapping("/introsummary") // 개요 페이지
+	public String summary(Model m) {
+		m.addAttribute("center", "/intro/introduce");
+		m.addAttribute("introcenter", "/intro/summary");	
+		return "index";
+	}
+	
+	@RequestMapping("/introintroev") // 환경적 측면 소개 페이지
+	public String introev(Model m) {
+		m.addAttribute("center", "/intro/introduce");
+		m.addAttribute("introcenter", "/intro/introev");	
+		return "index";
+	}
+	
+	@RequestMapping("/introintroec") // 경제적 측면 소개 페이지
+	public String introec(Model m) {
+		m.addAttribute("center", "/intro/introduce");
+		m.addAttribute("introcenter", "/intro/introec");	
+		return "index";
+	}
+	
+	@RequestMapping("/introintroindu") // 산업적 측면 소개 페이지
+	public String introindu(Model m) {
+		m.addAttribute("center", "/intro/introduce");
+		m.addAttribute("introcenter", "/intro/introindu");	
 		return "index";
 	}
 }
