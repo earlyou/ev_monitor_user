@@ -117,11 +117,11 @@ function mkmarker(station,chger,map,markers,stationId) {
 				limitdetail = '해당사항 없음';
 			}
 			
-			var location = '정보 없음';
+			var loc = '정보 없음';
 			if (v.location != null) {
-				location = v.location;
+				loc = v.location;
 			}else {
-				location = '정보 없음';
+				loc = '정보 없음';
 			}
 			
 			var busicall = '';
@@ -172,7 +172,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'						</tr>'+
 			'						<tr>'+
 			'							<th>상세 위치</th>'+
-	        '							<td>'+location+'</td>'+
+	        '							<td>'+loc+'</td>'+
 			'						</tr>'+
 			'						<tr>'+
 			'							<th>이용 가능 시간</th>'+
