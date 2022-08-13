@@ -1,0 +1,140 @@
+<meta charset="utf-8">
+<html class="no-js" xmlns:th="http://www.thymeleaf.org">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+body{margin-top:0px;}
+/* About Me 
+---------------------*/
+@media (max-width: 991px) {
+  .about-text {
+    margin-top: 40px;
+  }
+}
+.about-text h3 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 0 0 10px;
+}
+@media (max-width: 767px) {
+  .about-text h3 {
+    font-size: 35px;
+  }
+}
+.about-text h4 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .about-text h4 {
+    font-size: 18px;
+  }
+}
+.about-text p {
+  font-size: 18px;
+}
+.about-text p mark {
+  font-weight: 600;
+  color: #3a3973;
+}
+
+.about-list {
+  padding-top: 10px;
+}
+.about-list .media {
+  padding: 5px 0;
+}
+.about-list label {
+  color: #3a3973;
+  font-weight: 600;
+  width: 88px;
+  margin: 0;
+  position: relative;
+}
+.about-list label:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 11px;
+  width: 1px;
+  height: 12px;
+  background: #3a3973;
+  -moz-transform: rotate(15deg);
+  -o-transform: rotate(15deg);
+  -ms-transform: rotate(15deg);
+  -webkit-transform: rotate(15deg);
+  transform: rotate(15deg);
+  margin: auto;
+  opacity: 0.5;
+}
+.about-list p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.about-img {
+  box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.06);
+  background: #fff;
+  margin-left: -80px;
+  width: 470px;
+}
+@media (max-width: 1200px) {
+  .about-img {
+    margin-top: 10px;
+  }
+}
+
+.counter-section {
+  padding: 40px 20px;
+}
+.counter-section .count-data {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.counter-section .count {
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+.counter-section p {
+  font-weight: 500;
+  margin: 0;
+  color: #fe4f6c;
+}
+.theme-color {
+    color: #fe4f6c;
+}
+
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+.gray-bg {
+    background-color: #ebf4fa;
+}
+
+</style>
+
+
+<body>
+<h1>전기차 보급목적(산업적)</h1>
+<section class="section about-section white-bg" id="about">
+
+    <div class="container">
+        <div class="row align-items-center justify-content-around flex-row-reverse">
+            <div class="col-lg-6">
+                <div class="about-text">
+                    <h3 class="dark-color">전기차와 V2G</h3>
+                    <p>V2G는 Vehicle To Grid로, 자동차에서 전력망으로 전기를 이동하는 것을 의미하는데, 즉, V2G란 전기차에 저장한 배터리를 에너지저장장치(ESS)처럼 활용해 전력계통에 연계하는 기술을 의미합니다.</p>
+                    <p>이산화탄소의 배출을 줄이면서 친환경적이고 경제성을 갖추어 지속가능한 성장을 이어갈 수 있는 산업모델로 정착하게되고 향후 V2G사업자와 수요관리 사업자 등, V2G를 활용하여 피크절감 효과뿐 아니라 선진국과 같은 전력계통 주파수 조정, 신재생에너지 발판 등 다양한 전력보조서비스와 부가가치를 창출할 것입니다.</p>
+                </div>
+            </div>
+            <div class="col-lg-5 text-center">
+                <div class="about-img">
+                    <img src="images/intropage/evcar_08.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
