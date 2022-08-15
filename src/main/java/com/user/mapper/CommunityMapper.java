@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.user.vo.CommunityVO;
+import com.user.vo.SearchFilterVO;
 
 @Repository
 @Mapper
@@ -23,4 +24,8 @@ public interface CommunityMapper {
 	
 	public CommunityVO selectdetail(int pid) throws Exception;
 	public List <CommunityVO> selectdetailother(String obj) throws Exception;
+	public List <CommunityVO> selectfilteruserlist(SearchFilterVO obj) throws Exception;
+	
+	public int gettotal() throws Exception;
+	
 }

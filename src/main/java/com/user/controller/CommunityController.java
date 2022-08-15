@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.user.frame.Util;
 import com.user.biz.CommunityBiz;
 import com.user.biz.UsersBiz;
+import com.user.frame.Util;
 import com.user.vo.CommunityVO;
+import com.user.vo.PageMakerVO;
+import com.user.vo.SearchFilterVO;
 import com.user.vo.UsersVO;
 
 @Controller
@@ -33,13 +35,19 @@ public class CommunityController {
 	
 	
 	@RequestMapping("/cm")
-	public String cm(Model m) {
-		
+	public String cm(Model m, SearchFilterVO v) {
 		List<CommunityVO> list = null;
 		List<CommunityVO> list2 = null;
+		PageMakerVO pageMake = null;
+		int total = 0;
 		try {
 			list = cbiz.getalladminlist();
-			list2 = cbiz.getalluserlist();
+			list2 = cbiz.selectfilteruserlist(v);
+			
+			total = cbiz.gettotal();
+			pageMake = new PageMakerVO(v, total);
+			System.out.println(pageMake);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,6 +55,7 @@ public class CommunityController {
 		m.addAttribute("center", "cm/center");
 		m.addAttribute("communityadminlist", list);
 		m.addAttribute("communityuserlist", list2);
+		m.addAttribute("pageMaker", pageMake);
 		return "index";
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.user.frame.Biz;
 import com.user.mapper.CommunityMapper;
 import com.user.vo.CommunityVO;
+import com.user.vo.SearchFilterVO;
 
 @Service("communitybiz")
 public class CommunityBiz implements Biz<Integer, CommunityVO> {
@@ -62,5 +63,13 @@ public class CommunityBiz implements Biz<Integer, CommunityVO> {
 	
 	public List<CommunityVO> selectdetailother(String obj) throws Exception {
 		return commudao.selectdetailother(obj);
+	}
+	
+	public List <CommunityVO> selectfilteruserlist(SearchFilterVO obj) throws Exception{
+		return commudao.selectfilteruserlist(obj);
+	}
+	
+	public int gettotal() throws Exception{
+		return commudao.gettotal();
 	}
 }
