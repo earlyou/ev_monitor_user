@@ -126,12 +126,6 @@ public class MainController {
 		return pwdresult;
 	}
 	
-	@RequestMapping("/cfichargingfareinfo") // 충전 요금 안내 페이지
-	public String chargingfareinfo(Model m) {
-		m.addAttribute("center", "/cfi/chargingfareinfo");
-		return "index";
-	}
-	
 	@RequestMapping("/ctichargingtypeinfo") // 충전기 타입 안내 페이지
 	public String chargingtypeinfo(Model m) {
 		m.addAttribute("center", "/cti/chargingtypeinfo");
@@ -274,6 +268,27 @@ public class MainController {
 	public String introindu(Model m) {
 		m.addAttribute("center", "/intro/introduce");
 		m.addAttribute("introcenter", "/intro/introindu");	
+		return "index";
+	}
+	
+	@RequestMapping("/safetyinstructions") // 안전 수칙 페이지
+	public String safetyinstructions(Model m) {
+		m.addAttribute("center", "safetyinstructions");
+		return "index";
+	}
+	
+	
+	@RequestMapping("/cfichargingfareinfo") // 충전 요금 안내 페이지
+	public String chargingfareinfo(Model m) {
+		m.addAttribute("center", "/cfi/chargingfareinfo");
+		m.addAttribute("chargingfarecenter", "/cfi/chargingfarecenter");
+		return "index";
+	}
+	
+	@RequestMapping("/meinfo") // (환경부)충전 요금 안내 페이지
+	public String meinfo(Model m) {
+		m.addAttribute("center", "/cfi/chargingfareinfo");
+		m.addAttribute("chargingfarecenter", "/cfi/meinfo");
 		return "index";
 	}
 }
