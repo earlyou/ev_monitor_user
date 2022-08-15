@@ -4,6 +4,27 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.CommunityMapper">
 
+	<!-- 글목록 일반회원 필터 select -->
+	<select id="selectfilteruserlist" resultType="communityVO">
+		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.regdate, u.usertypeid 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE u.usertypeid=100
+		<!-- <include refid="filter">
+		</include> -->
+		ORDER BY c.pid DESC
+		limit #{dataStart}, #{perPageNum}
+	</select>
+	
+	<select id="gettotal" resultType="int">
+    	SELECT count(*) 
+		FROM community c INNER JOIN users u ON c.uid=u.id
+		LEFT JOIN station s ON c.statid=s.statId
+		WHERE u.usertypeid=100
+		<!-- <include refid="filter">
+		</include> -->
+    </select>
+	
 	<!-- 글목록 공지 select -->
 	<select id="selectalladminlist" resultType="communityVO">
 		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.regdate, u.usertypeid 
@@ -24,7 +45,7 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	
 	<!-- 글 detail select -->
 	<select id="selectdetail" parameterType="int" resultType="communityVO">
-		SELECT c.pid, c.uid, c.statid, s.statNm, c.location, c.title, c.tf, c.cimgname, c.regdate, u.usertypeid 
+		SELECT c.pid, c.uid, c.statid, s.statNm, s.lat, s.lng, c.location, c.title, c.tf, c.cimgname, c.regdate, u.usertypeid 
 		FROM community c INNER JOIN users u ON c.uid=u.id
 		LEFT JOIN station s ON c.statid=s.statId
 		WHERE c.pid=#{pid}
