@@ -30,6 +30,9 @@ public class StationVO {
 	private String busiNm;
 	private String busiCall;
 	
+	// 조인용 컬럼
+	private int output;
+	
 	
 	public StationVO(String statNm, String addr, String location, String zcode, String lat, String lng, String useTime,
 			String parkingFree, String note, String limitYn, String limitDetail, String busiId, String bnm,

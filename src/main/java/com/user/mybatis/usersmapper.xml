@@ -4,6 +4,13 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.UsersMapper">
 	
+	<!-- 충전 시간 알람 기능 차량 배터리 사이즈 조회 -->
+	<select id="alarmbattery" parameterType="String" resultType="usersVO">
+		SELECT u.id, u.name, u.carmodelid, c.batterysize FROM users u INNER JOIN carmodel c ON u.carmodelid=c.carmodelid
+        WHERE id=#{id}
+	</select>
+	
+	
 	<!-- 일반회원 조회 -->
 	<select id="select" parameterType="String" resultType="usersVO">
 		SELECT * FROM users WHERE id=#{id}

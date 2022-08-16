@@ -90,6 +90,7 @@ public class UsersBiz implements Biz<String, UsersVO>{
 		return pwd;
 	}
 
-
-	
+	public UsersVO alarmbattery(String k) throws Exception {
+		return udao.alarmbattery(k);
+	}
 }

@@ -79,6 +79,14 @@
     width: 20px;
     height: 20px;
 }
+.info .modalbutton {
+    position: absolute;
+    top: 0px;
+    right: 65px;
+    color: #888;
+    width: 20px;
+    height: 20px;
+}
 .info .close {
     position: absolute;
     top: 10px;

@@ -3,6 +3,10 @@
 PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.user.mapper.StationMapper">
+	<select id="selectoutput" parameterType="String" resultType="stationVO">
+		SELECT s.statId, s.statNm, c.output FROM station s INNER JOIN chgerstatus c ON s.statid=c.statId
+        WHERE s.statId=#{statId} limit 1
+	</select>
 	
 	<select id="select" parameterType="String" resultType="stationVO">
 		SELECT * FROM station WHERE statId=#{statId}

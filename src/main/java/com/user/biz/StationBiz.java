@@ -51,5 +51,9 @@ public class StationBiz implements Biz<String, StationVO>{
 	public List<StationVO> selectfilter(FilterVO obj) throws Exception{
 		return sdao.selectfilter(obj);
 	}
+
+	public StationVO selectoutput(String k) throws Exception {
+		return sdao.selectoutput(k);
+	}
 	
 }
