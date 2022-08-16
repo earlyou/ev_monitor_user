@@ -46,7 +46,7 @@ public class SSEBiz implements Biz<String, SSEVO> {
 		// alarm time으로 타이머 돌리기
 		// *1000 앞에 settime으로 수정 지금은 테스트 할것임
 		try {
-            Thread.sleep(5*1000);
+            Thread.sleep(20*1000);
            
             System.out.println("onalarm");
             

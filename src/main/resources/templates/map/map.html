@@ -34,15 +34,21 @@ $(function(){
     	$.ajax({
     		url:'/evcsmonitor/setalarm',
     		type:'GET',
-    		data:{'uid':session.loginmember.id,'statid':statid,'remainfuel':remainfuel},
+    		data:{'uid':session.loginmember.id,'statid':statid,'remainfuel':remainfuel,'alarm':"Y"},
     		success:function(data){
     			alert("알람이 설정되었습니다.");
+    			sessionStorage.setItem("alarm", "Y");
     			
     			const id = session.loginmember.id;
     		    console.log(id);
 
     		    const eventSource = new EventSource('/evcsmonitor/subscribe/' + id);
-
+				
+    		    eventSource.onerror = function(event) { 
+    		    	eventSource.close();
+    		    	console.log("Event Source Closed");
+   		       };
+    		    
     		    eventSource.addEventListener("sse", function (event) {
     		        console.log(event.data);
 
@@ -52,13 +58,16 @@ $(function(){
     		            // 브라우저 알림
     		            const showNotification = () => {
     		                
-    		                const notification = new Notification('코드 봐줘', {
-    		                    body: data.content
+    		                const notification = new Notification('EVMonitor', {
+    		                	requireInteraction : true,
+    		                	body: data.notifyContent
     		                });
     		                
+    		                eventSource.close();
+    		                
     		                notification.addEventListener('click', () => {
-    		                    window.open(data.url, '_blank');
-    		                    eventSource.close();
+    		                    window.open("map?statid="+data.statid, '_blank');
+    		                    sessionStorage.removeItem("alarm");
     		                });
     		            }
 

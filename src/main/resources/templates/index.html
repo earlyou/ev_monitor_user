@@ -331,7 +331,7 @@ img {
 }
 /* 챗봇 css 끝*/
 </style>
-<script>
+<script th:inline="javascript">
 // 챗봇 기능 구현 시작
 var stompClient = null;
 var id = null;
@@ -419,6 +419,59 @@ $(document).ready(function() {
 		scrollDown();
 	});
 	
+	var alarm = [[${session.alarm}]];
+	console.log(alarm);
+
+		
+		if(alarm!=null){
+			console.log("sse start");
+			
+			var id = [[${session.loginmember?.id}]];
+			console.log(id);
+		
+		    const eventSource = new EventSource('/evcsmonitor/subscribe/' + id);
+		
+		    eventSource.addEventListener("sse", function (event) {
+		        console.log(event.data);
+		
+		        const data = JSON.parse (event.data);
+		
+		        (async () => {
+		            // 브라우저 알림
+		            const showNotification = () => {
+		                
+		                const notification = new Notification('EVMonitor', {
+		                	requireInteraction : true,
+		                	body: data.notifyContent
+		                });
+		                
+		                console.log("알람완료");
+		                eventSource.close();
+		                
+		                notification.addEventListener('click', () => {
+		                    window.open("map?statid="+data.statid, '_blank');
+		                    // 세션 alarm 값 삭제
+		                });
+		            }
+		
+		            // 브라우저 알림 허용 권한
+		            let granted = false;
+		
+		            if (Notification.permission === 'granted') {
+		                granted = true;
+		            } else if (Notification.permission !== 'denied') {
+		                let permission = await Notification.requestPermission();
+		                granted = permission === 'granted';
+		            }
+		
+		            // 알림 보여주기
+		            if (granted) {
+		                showNotification();
+		            }
+		        })();
+		    })
+		
+		}
 });
 
 $(function() {
