@@ -1,7 +1,9 @@
 <!doctype html>
 <html class="no-js" xmlns:th="http://www.thymeleaf.org">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="/evcsmonitor/webjars/sockjs-client/sockjs.min.js"></script>
+   <script src="/evcsmonitor/webjars/stomp-websocket/stomp.min.js"></script>
 
-<head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
@@ -22,11 +24,15 @@
     <link rel="stylesheet" href="/evcsmonitor/css2/gijgo.css">
     <link rel="stylesheet" href="/evcsmonitor/css2/animate.min.css">
     <link rel="stylesheet" href="/evcsmonitor/css2/slicknav.css">
-
     <link rel="stylesheet" href="/evcsmonitor/css2/style.css">
     
+<<<<<<< HEAD
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+=======
+
+    
+>>>>>>> branch 'master' of https://github.com/earlyou/ev_monitor_user.git
     
 <style>
 #logoimgset{
@@ -37,14 +43,307 @@
 	width:75%;
 	height:75%;
 }
+
+/* 챗봇 css 시작*/
+.float{  
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color: #00D363;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+.chat_box .chat_message_wrapper ul.chat_message > li + li {
+    position:fixed;
+    margin-top: 4px;
+}
+.popup-box-on {
+    position:fixed;
+    display: block !important;
+}
+a:focus {
+    outline: none;
+    outline-offset: 0px;
+}
+.popup-head-left.pull-left h1 {
+    color: #fff;
+    float: left;
+    font-family: oswald;
+    font-size: 20px;
+    margin-top: 10px;
+   
+}
+.popup-head-left a small {
+    display: table;
+    font-size: 11px;
+    color: #fff;
+    line-height: 4px;
+    opacity: 0.5;
+    padding: 0 0 0 7px;
+}
+
+.popup-head-right {
+    margin: 9px 0 0;
+    position:fixed;
+    
+}
+.popup-head .btn-group {
+    margin: -5px 3px 0 -1px;
+}
+.gurdeepoushan .dropdown-menu {
+    padding: 6px;
+}
+.gurdeepoushan .dropdown-menu li a span {
+    border: 1px solid;
+    border-radius: 50px;
+    display: list-item;
+    font-size: 19px;
+    height: 40px;
+    line-height: 36px;
+    margin: auto;
+    text-align: center;
+    width: 40px;
+}
+.gurdeepoushan .dropdown-menu li {
+    float: left;
+    text-align: center;
+    width: 33%;
+}
+.gurdeepoushan .dropdown-menu li a {
+    border-radius: 7px;
+    font-family: oswald;
+    padding: 3px;
+   transition: all 0.3s ease-in-out 0s;
+}
+.gurdeepoushan .dropdown-menu li a:hover {
+    background:#00f559 none repeat scroll 0 0 !important;
+    color: #fff;
+}
+.popup-head {
+    background: #00f559 none repeat scroll 0 0 !important;
+    border-bottom: 3px solid #ccc;
+    color: #fff;
+    display: table;
+    width: 100%;
+    padding: 8px;
+}
+.popup-head .md-user-image {
+    border: 2px solid #00f559;
+    border-radius: 12px;
+    float: left;
+    width: 44px;
+}
+.uk-input-group-addon .glyphicon.glyphicon-send {
+    color: #ffffff;
+    font-size: 21px;
+    line-height: 36px;
+    padding: 0 6px;
+    position:fixed;
+}
+.chat_box_wrapper.chat_box_small.chat_box_active {
+    height: 330px;
+    width: 316px;
+    position:fixed;
+}
+aside {
+    position: fixed;
+    background-attachment: fixed;
+    background-clip: border-box;
+    background-color: #415094;
+    background-image: url("https://z-1-scontent-cdg2-1.xx.fbcdn.net/hphotos-xpt1/v/t1.0-9/12670232_624826600991767_3547881030871377118_n.jpg?oh=b4541268dfcdc6c8b2758066dba9c0c7&oe=572DDCE7");
+    background-origin: padding-box;
+    background-position: center top;
+    background-repeat: repeat;
+    border: 1px solid black;
+    bottom: 150px;
+    display: none;
+    height: 466px;
+    
+    right: 60px;
+    width: 320px;
+    font-family: 'Open Sans', sans-serif;
+}
+.chat_box {
+    padding: 16px;
+}
+.chat_box .chat_message_wrapper::after {
+    clear: both;
+}
+.chat_box .chat_message_wrapper::after, .chat_box .chat_message_wrapper::before {
+    content: " ";
+    display: table;
+}
+.chat_box .chat_message_wrapper .chat_user_avatar {
+    float: left;
+}
+.chat_box .chat_message_wrapper {
+    margin-bottom: 32px;
+}
+.md-user-image {
+    border-radius: 50%;
+    width: 34px;
+}
+img {
+    border: 0 none;
+    box-sizing: border-box;
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+.chat_box .chat_message_wrapper ul.chat_message, .chat_box .chat_message_wrapper ul.chat_message > li {
+    list-style: outside none none;
+    padding: 0;
+}
+.chat_box .chat_message_wrapper ul.chat_message {
+    float: left;
+    margin: 0 0 0 20px;
+    max-width: 77%;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-right-color: #616161;
+}
+.chat_box .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-color: transparent #ededed transparent transparent;
+    border-style: solid;
+    border-width: 0 16px 16px 0;
+    content: "";
+    height: 0;
+    left: -14px;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li {
+    background: #FCFBF6 none repeat scroll 0 0;
+    color: #000000;
+}
+
+.chat_box .chat_message_wrapper ul.chat_message > li {
+    background: #ededed none repeat scroll 0 0;
+    border-radius: 4px;
+    clear: both;
+    color: #212121;
+    display: block;
+    float: left;
+    font-size: 13px;
+    padding: 8px 16px;
+    position: relative;
+    word-break: break-all;
+}
+.chat_box .chat_message_wrapper ul.chat_message, .chat_box .chat_message_wrapper ul.chat_message > li {
+    list-style: outside none none;
+    padding: 0;
+}
+.chat_box .chat_message_wrapper ul.chat_message > li {
+    margin: 0;
+}
+.chat_box .chat_message_wrapper ul.chat_message > li p {
+    margin: 0;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li .chat_message_time {
+    color: rgba(185, 186, 180, 0.9);
+}
+.chat_box .chat_message_wrapper ul.chat_message > li .chat_message_time {
+    color: #727272;
+    display: block;
+    font-size: 11px;
+    padding-top: 2px;
+    text-transform: uppercase;
+}
+.chat_box .chat_message_wrapper.chat_message_right .chat_user_avatar {
+    float: right;
+}
+.chat_box .chat_message_wrapper.chat_message_right ul.chat_message {
+    float: right;
+    margin-left: 0 !important;
+    margin-right: 24px !important;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
+    border-left-color: #E8FFD4;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-right-color: #FCFBF6;
+}
+.chat_box .chat_message_wrapper.chat_message_right ul.chat_message > li:first-child::before {
+    border-color: transparent transparent transparent #ededed;
+    border-width: 0 0 29px 29px;
+    left: auto;
+    right: -14px;
+}
+.chat_box .chat_message_wrapper ul.chat_message > li:first-child::before {
+    border-color: transparent #ededed transparent transparent;
+    border-style: solid;
+    border-width: 0 29px 29px 0;
+    content: "";
+    height: 0;
+    left: -14px;
+    position: absolute;
+    top: 0;
+    width: 0;
+}
+.chat_box.chat_box_colors_a .chat_message_wrapper.chat_message_right ul.chat_message > li {
+    background: #E8FFD4 none repeat scroll 0 0;
+}
+.chat_box .chat_message_wrapper ul.chat_message > li {
+    background: #ededed none repeat scroll 0 0;
+    border-radius: 12px;
+    clear: both;
+    color: #212121;
+    display: block;
+    float: left;
+    font-size: 13px;
+    padding: 8px 16px;
+    position: relative;
+}
+.gurdeep-chat-box {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 5px;
+    float: left;
+    padding: 3px;
+}
+#metext {
+    background: transparent none repeat scroll 0 0;
+    border: medium none;
+    padding: 4px;
+}
+.gurdeep-chat-box i {
+    color: #333;
+    font-size: 21px;
+    line-height: 1px;
+}
+.chat_submit_box {
+    bottom: 0;
+    background: #4cd3e3;
+    box-sizing: border-box;
+    left: 0;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+    width: 100%;
+}
+.uk-input-group {
+    border-collapse: separate;
+    display: table;
+    position: relative;
+}
+/* 챗봇 css 끝*/
 </style>
-</head>
-<script th:inline="javascript">
+<script>
+// 챗봇 기능 구현 시작
 var stompClient = null;
 var id = null;
 // 서버소켓에 연결
 function connect() {
-	var socket = new SockJS('/ws');
+	var socket = new SockJS('/evcsmonitor/ws');
 	stompClient = Stomp.over(socket);
 
 	stompClient.connect({}, function(frame) {
@@ -62,7 +361,7 @@ function connect() {
 			$("#chatmsg").append(
 					'<div class="chat_message_wrapper">'+
 					'	<div class="chat_user_avatar">'+
-					'		<img src="/images/chatbotlogo.png" class="md-user-image">'+
+					'		<img src="/evcsmonitor/images/chatbotlogo.png" class="md-user-image">'+
 					'	</div>'+
 					'	<ul class="chat_message">'+
 					'		<li>'+
@@ -99,9 +398,8 @@ function disconnect() {
 function clearTextarea() { // 텍스트 입력 후 전송 시 input 초기화
 	$('#metext').val('');
 }
-
-function scrollDown() { // 텍스트 입력 후 전송 시 스크롤 아래로
-	$('#chat').scrollTop($('#chat').prop('scrollHeight'));
+function scrollDown() { // 스크롤 맨 아래로
+	document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
 }
 
 function sendMe() {
@@ -112,7 +410,7 @@ function sendMe() {
 	});
 	stompClient.send("/receiveme", {}, msg);
 	clearTextarea();
-
+	
 }
 
 $(document).ready(function() {
@@ -126,6 +424,7 @@ $(document).ready(function() {
 		sendMe();
 		scrollDown();
 	});
+	
 });
 
 $(function() {
@@ -137,8 +436,12 @@ $(function() {
 		$('#sidebar_secondary').removeClass('popup-box-on');
 	});
 })
+
+// 챗봇 기능 구현 끝
 </script>
+
 <body>
+	
     <!-- header-start -->
     <header>
         <div class="header-area ">
@@ -176,6 +479,7 @@ $(function() {
                                             </li> -->
                                             <li><a th:href="@{/introintroduce}">소개</a></li>
                                             <li><a th:href="@{/cm}">커뮤니티</a></li>
+                                            <li><a th:href="@{/safetyinstructions}">안전이용수칙</a></li>                                            
                                             <li><a th:href="@{/customercenter}">고객센터</a></li>
                                         </ul>
                                     </nav>
@@ -217,7 +521,6 @@ $(function() {
     </header>
     <!-- header-end -->
     
-    
     <div th:insert="${center} ? ${center} : center">
     </div>
    
@@ -256,7 +559,7 @@ $(function() {
                             </h3>
                             <ul>
                                 <li>이메일: gjhansc@gmail.com</li>
-                                <li>전화번호: (02)951-1234</li>
+                                <li>전화번호: (02)951-9586</li>
                                 <li>주소: 서울특별시 강남구 역삼동</li>
                             </ul>
                         </div>
@@ -298,7 +601,6 @@ $(function() {
     <script src="/evcsmonitor/js2/plugins.js"></script>
     <script src="/evcsmonitor/js2/range.js"></script>
 	
-	
 
     <!--contact js-->
     <script src="/evcsmonitor/js2/contact.js"></script>
@@ -309,6 +611,50 @@ $(function() {
 
 
     <script src="/evcsmonitor/js2/main.js"></script>
+
+
+    <!-- 챗봇 기능 시작-->
+   <div class="container">
+	<a href="#" class="float" id="connect"> 
+		<img class="mainpage-logo-image" src="/evcsmonitor/images/chatbotlogo.png">
+	</a>
+	<aside id="sidebar_secondary"
+			class="tabbed_sidebar ng-scope chat_sidebar">
+			<div class="popup-head">
+				<div class="popup-head-left pull-left">
+					<img class="md-user-image" src="/evcsmonitor/images/chatbotlogo.png">
+					<h1>Ev-monitor</h1>
+				</div>
+				<div class="popup-head-right pull-right">
+					<button data-widget="remove" id="disconnect"
+						class="chat-remove-button" style="margin-left: 260px; cursor:pointer" type="button">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+
+			<div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" style="display:flex; flex-direction: column-reverse; overflow-y: auto;">
+				<div class="chat_box touchscroll chat_box_colors_a" id="chatmsg">
+				</div>
+			</div>
+
+			<div class="chat_submit_box">
+				<div class="uk-input-group">
+					<div class="gurdeep-chat-box">
+						<input type="text" id="metext" placeholder="메시지를 입력하세요."
+							style="width: 240px;" name="metext" class="md-input">
+					</div>
+					<span class="uk-input-group-addon">
+						<button id="sendme" style="height: 38px; width: 45px; cursor:pointer">
+							<i class="fa fa-send"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+
+		</aside>
+	</div>		
+		<!-- 챗봇 기능 끝-->	
 
 </body>
 

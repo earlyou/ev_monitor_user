@@ -168,7 +168,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'					<table class="table table-hover" style="margin-bottom:10px;margin-top:10px">'+
 			'						<tr>'+
 			'							<th>주소</th>'+
-	        '							<td>'+v.addr+'</td>'+
+	        '							<td><a href="https://map.kakao.com/link/to/'+v.statNm+','+v.lat+','+v.lng+'">'+v.addr+'</a></td>'+
 			'						</tr>'+
 			'						<tr>'+
 			'							<th>상세 위치</th>'+
@@ -417,7 +417,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 								data: {'statId':v.statId,'uid':session.loginmember.id},
 								success:function(){
 									console.log('bookmark added');
-									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
+									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap('+v.statId+')">'+v.statNm+'</a></li>');
 									$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
 								}
 							});
@@ -473,7 +473,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 								data: {'statId':v.statId,'uid':session.loginmember.id},
 								success:function(){
 									console.log('bookmark added');
-									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap("'+v.statId+'")">'+v.statNm+'</a></li>');
+									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap('+v.statId+')">'+v.statNm+'</a></li>');
 									$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
 								}
 							});

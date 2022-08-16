@@ -6,7 +6,7 @@
 	<!-- Search -->
 	<section>
 		<ul class="icons" >
-			<li><a th:href="@{/}" class="icon solid fa-home"><span class="label">Home</span></a></li>
+			<li><a href="/evcsmonitor" class="icon solid fa-home"><span class="label">Home</span></a></li>
 			<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
 			<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
 			<li><a href="#" class="icon brands fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
@@ -101,18 +101,22 @@
 					<li>
 						<div id="adapter" class="filter">
 							<div class="col-6 col-12-small">
+								<!-- AC3 상? -->
 								<input type="checkbox" id="1" name="adapter" value="1">
 								<label for="1">j1772(5 to 7)</label>
 							</div>
 							<div class="col-6 col-12-small">
+								<!-- AC 완속? -->
 								<input type="checkbox" id="2" name="adapter" value="2">
 								<label for="2">j1772(5 to tesla)</label>
 							</div>
 							<div class="col-6 col-12-small">
+								<!-- DC 차데모 -->
 								<input type="checkbox" id="3" name="adapter" value="3">
-								<label for="3">Chademo gender</label>
+								<label for="3">CHAdeMO gender</label>
 							</div>
 							<div class="col-6 col-12-small">
+								<!-- DC 콤보?-->
 								<input type="checkbox" id="4" name="adapter" value="4">
 								<label for="4">CSS 콤보 1</label>
 							</div>
@@ -394,326 +398,6 @@
 		</ul>
 	</nav>
 	
-	
-	<!-- Section -->
-	<!-- 
-	<section>
-		<header class="major">
-			<h2>필터</h2>
-		</header>
-		<div>
-			<div>
-				<label for="sel2">시도</label>
-				<select id="sel2" name="si">
-				    <option value="서울특별시">서울</option>
-			  	</select>
-			  	<label for="sel3">구</label>
-				<select id="sel3" name="gu">
-					<optgroup label="ㄱ">
-					    <option value="37.514575,127.0495556">강남구</option>
-					    <option value="37.52736667,127.1258639">강동구</option>
-					    <option value="37.63695556,127.0277194">강북구</option>
-					    <option value="37.54815556,126.851675">강서구</option>
-					    <option value="37.47538611,126.9538444">관악구</option>
-					    <option value="37.53573889,127.0845333">광진구</option>
-					    <option value="37.49265,126.8895972">구로구</option>
-					    <option value="37.44910833,126.9041972">금천구</option>
-					</optgroup>
-					<optgroup label="ㄴ">    
-					    <option value="37.65146111,127.0583889">노원구</option>
-					</optgroup>
-					<optgroup label="ㄷ">    
-					    <option value="37.66583333,127.0495222">도봉구</option>
-					    <option value="37.571625,127.0421417">동대문구</option>
-					    <option value="37.50965556,126.941575">동작구</option>
-					</optgroup>
-					<optgroup label="ㅁ">
-					    <option value="37.56070556,126.9105306">마포구</option>
-				    </optgroup>
-				    <optgroup label="ㅅ">
-					    <option value="37.57636667,126.9388972">서대문구</option>
-					    <option value="37.48078611,127.0348111">서초구</option>
-					    <option value="37.56061111,127.039">성동구</option>
-					    <option value="37.58638333,127.0203333">성북구</option>
-					    <option value="37.51175556,127.1079306">송파구</option>
-				    </optgroup>
-				    <optgroup label="ㅇ">
-					    <option value="37.51423056,126.8687083">양천구</option>
-					    <option value="37.52361111,126.8983417">영등포구</option>
-					    <option value="37.53609444,126.9675222">용산구</option>
-					    <option value="37.59996944,126.9312417">은평구</option>
-				    </optgroup>
-				    <optgroup label="ㅈ">
-					    <option value="37.57037778,126.9816417">종로구</option>
-					    <option value="37.56100278,126.9996417">중구</option>
-					    <option value="37.60380556,127.0947778">중랑구</option>
-				    </optgroup>
-			  	</select>
-			</div>
-			<div class="filter">
-				<label for="sel1">carmodel</label>
-				<select id="sel1" name="carmodelid">
-				    <option value=11>4,2 충전기 사용 모델 11</option>
-				    <option value=601>1,2 충전기 사용 모델 601</option>
-				    <option value=62>7,7 충전기 사용 모델 62</option>
-				    <option value=701>테슬라 모델 701</option>
-			  	</select>
-			</div>
-			<div id="adapter" class="filter">	
-				<h3>adapter: </h3>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" id="1" name="adapter" value="1">
-					<label for="1">j1772(5 to 7)</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" id="2" name="adapter" value="2">
-					<label for="2">j1772(5 to tesla)</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" id="3" name="adapter" value="3">
-					<label for="3">Chademo gender</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" id="4" name="adapter" value="4">
-					<label for="4">CSS 콤보 1</label>
-				</div>
-			</div>
-			<div class="filter">
-				<h3>bnm:</h3>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="all" value="전체" id="all">
-					<label for="all">전체</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="all" value="전체" id="all">
-					<label for="all">전체</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='evMost(현대오일뱅크)' id="evMost(현대오일뱅크)">
-					<label for="evMost(현대오일뱅크)">evMost(현대오일뱅크)</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='GS칼텍스' id='GS칼텍스'>
-					<label for='GS칼텍스'>GS칼텍스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='LG헬로비전' id='LG헬로비전'>
-					<label for='LG헬로비전'>LG헬로비전</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='SK에너지' id='SK에너지'>
-					<label for='SK에너지'>SK에너지</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='대영채비' id='대영채비'>
-					<label for='대영채비'>대영채비</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='레드이엔지' id='레드이엔지'>
-					<label for='레드이엔지'>레드이엔지</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='롯데정보통신' id='롯데정보통신'>
-					<label for='롯데정보통신'>롯데정보통신</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='매니지온' id='매니지온'>
-					<label for='매니지온'>매니지온</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='블루네트웍스' id='블루네트웍스'>
-					<label for='블루네트웍스'>블루네트웍스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='삼성EVC' id='삼성EVC'>
-					<label for='삼성EVC'>삼성EVC</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='서울시' id='서울시'>
-					<label for='서울시'>서울시</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='서울에너지공사' id='서울에너지공사'>
-					<label for='서울에너지공사'>서울에너지공사</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='성민기업' id='성민기업'>
-					<label for='성민기업'>성민기업</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='스타코프' id='스타코프'>
-					<label for='스타코프'>스타코프</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='씨어스' id='씨어스'>
-					<label for='씨어스'>씨어스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='에버온' id='에버온'>
-					<label for='에버온'>에버온</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='에스트래픽' id='에스트래픽'>
-					<label for='에스트래픽'>에스트래픽</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='에이치엘비일렉' id='에이치엘비일렉'>
-					<label for='에이치엘비일렉'>에이치엘비일렉</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='유니이브이' id='유니이브이'>
-					<label for='유니이브이'>유니이브이</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='이노케이텍' id='이노케이텍'>
-					<label for='이노케이텍'>이노케이텍</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='이브이에스이피' id='이브이에스이피'>
-					<label for='이브이에스이피'>이브이에스이피</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='이지차저' id='이지차저'>
-					<label for='이지차저'>이지차저</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='이카플러그' id='이카플러그'>
-					<label for='이카플러그'>이카플러그</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='제주전기자동차서비스' id='제주전기자동차서비스'>
-					<label for='제주전기자동차서비스'>제주전기자동차서비스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='지커넥트' id='지커넥트'>
-					<label for='지커넥트'>지커넥트</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='차지비' id='차지비'>
-					<label for='차지비'>차지비</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='차지인' id='차지인'>
-					<label for='차지인'>차지인</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='카카오모빌리티' id='카카오모빌리티'>
-					<label for='카카오모빌리티'>카카오모빌리티</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='클린일렉스' id='클린일렉스'>
-					<label for='클린일렉스'>클린일렉스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='타디스테크놀로지' id='타디스테크놀로지'>
-					<label for='타디스테크놀로지'>타디스테크놀로지</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='파워큐브' id='파워큐브'>
-					<label for='파워큐브'>파워큐브</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='플러그링크' id='플러그링크'>
-					<label for='플러그링크'>플러그링크</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='한국EV충전서비스센터' id='한국EV충전서비스센터'>
-					<label for='한국EV충전서비스센터'>한국EV충전서비스센터</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='한국전기차인프라기술' id='한국전기차인프라기술'>
-					<label for='한국전기차인프라기술'>한국전기차인프라기술</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='한국전기차충전서비스' id='한국전기차충전서비스'>
-					<label for='한국전기차충전서비스'>한국전기차충전서비스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='한국전력공사' id='한국전력공사'>
-					<label for='한국전력공사'>한국전력공사</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='한국전자금융' id='한국전자금융'>
-					<label for='한국전자금융'>한국전자금융</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='한화솔루션' id='한화솔루션'>
-					<label for='한화솔루션'>한화솔루션</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='현대오일뱅크' id='현대오일뱅크'>
-					<label for='현대오일뱅크'>현대오일뱅크</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='현대자동차' id='현대자동차'>
-					<label for='현대자동차'>현대자동차</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='홈앤서비스' id='홈앤서비스'>
-					<label for='홈앤서비스'>홈앤서비스</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='환경부' id='환경부'>
-					<label for='환경부'>환경부</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type='checkbox' name='bnm' value='휴맥스이브이' id='휴맥스이브이'>
-					<label for='휴맥스이브이'>휴맥스이브이</label>
-				</div>
-			</div>
-			<div class="filter">	
-				<h3>chargespeed: </h3>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="chargespeed" value="완속" id="완속">
-					<label for="완속">완속</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="chargespeed" value="급속" id="급속">
-					<label for="급속">급속</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="chargespeed" value="초급속" id="초급속">
-					<label for="초급속">초급속</label>
-				</div>
-			</div>
-			<div class="filter">	
-				<h3>chargerstat: </h3>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="chargerstat" value="가능" id="가능">
-					<label for="가능">사용가능</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="chargerstat" value="불가능" id="불가능">
-					<label for="불가능">사용불가능</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="chargerstat" value="현장확인" id="현장확인">
-					<label for="현장확인">현장확인</label>
-				</div>
-			</div>
-			<div class="filter">	
-				<h3>parkingFree: </h3>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="parkingFree" value="Y" id="Y">
-					<label for="Y">주차 무료</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="parkingFree" value="N" id="N">
-					<label for="N">주차 유료</label>
-				</div>
-				<div class="col-6 col-12-small">
-					<input type="checkbox" name="parkingFree" value="C" id="C">
-					<label for="C">현장확인</label>
-				</div>
-			</div>
-		</div>
-		<div id="btndiv">
-			<button id="addfilter" class="button primary">필터선택</button>
-			<button id="resetfilter" class="button primary">필터리셋</button>
-		</div>
-	</section>
-
-	 -->
 	<!-- Footer -->
 	<footer id="footer">
 		<p class="copyright">&copy; Ev-monitor. All rights reserved.</p>

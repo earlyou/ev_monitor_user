@@ -1,169 +1,157 @@
-<head>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="UTF-8">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <style>
-body{
-    background-color:#eee;    
+body {
+	background-color: #eee;
 }
-.content{
-    margin-top:40px;    
+
+.content {
+	margin-top: 10px;
 }
+
 .plan-one {
-    margin: 0 0 20px 0;
-    width: 100%;
-    position: relative;
+	margin-top: 10px;
+	margin: 0 0 20px 0;
+	width: 100%;
+	position: relative;
 }
 
 .plan-card {
-    background: #fff;
-    margin-bottom: 30px;
-    transition: .5s;
-    border: 0;
-    border-radius: .55rem;
-    position: relative;
-    width: 100%;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.5);
+	background: #fff;
+	margin-bottom: 30px;
+	transition: .5s;
+	border: 0;
+	border-radius: .55rem;
+	position: relative;
+	width: 100%;
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .plan-one .pricing-header {
-    padding: 0;
-    margin-bottom: 0;
-    text-align: center;
+	padding: 0;
+	margin-bottom: 0;
+	text-align: center;
 }
 
 .plan-one .pricing-header .plan-title {
-    -webkit-border-radius: 10px 10px 0px 0px;
-    -moz-border-radius: 10px 10px 0px 0px;
-    border-radius: 10px 10px 0px 0px;
-    font-size: 1.2rem;
-    color: #ffffff;
-    padding: 10px 0;
-    font-weight: 600;
-    background: #5a99ee;
-    margin: 0;
+	-webkit-border-radius: 10px 10px 0px 0px;
+	-moz-border-radius: 10px 10px 0px 0px;
+	border-radius: 10px 10px 0px 0px;
+	font-size: 1.2rem;
+	color: #ffffff;
+	padding: 10px 0;
+	font-weight: 600;
+	background: #5a99ee;
+	height: 40px;
+	margin: 0;
 }
 
 .plan-one .pricing-header .plan-cost {
-    color: #ffffff;
-    background: #71a7f0;
-    padding: 15px 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    height: 100px;
+	color: #ffffff;
+	background: #71a7f0;
+	padding: 15px 0;
+	font-size: 2.5rem;
+	font-weight: 700;
+	height: 120px;
 }
 
 .plan-one .pricing-header .plan-save {
-    color: #ffffff;
-    background: #84b3f2;
-    padding: 10px 0;
-    font-size: 1rem;
-    font-weight: 700;
+	color: #ffffff;
+	background: #84b3f2;
+	padding: 10px 0;
+	font-size: 1rem;
+	font-weight: 700;
 }
 
 .plan-one .pricing-header.green .plan-title {
-    background: #47BCC7;
+	background: #47BCC7;
 }
 
 .plan-one .plan-features {
-    border: 1px solid #e6ecf3;
-    border-top: 0;
-    border-bottom: 0;
-    padding: 0;
-    margin: 0;
-    text-align: left;
+	border: 1px solid #e6ecf3;
+	border-top: 0;
+	border-bottom: 0;
+	padding: 0;
+	margin: 0;
+	text-align: left;
 }
 
 .plan-one .plan-features li {
-    padding: 10px 15px 10px 40px;
-    margin: 5px 0;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    position: relative;
-    border-bottom: 1px solid #e6ecf3;
-    line-height: 100%;
+	padding: 10px 15px 10px 40px;
+	margin: 5px 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	position: relative;
+	border-bottom: 1px solid #e6ecf3;
+	line-height: 100%;
 }
 
-@media (max-width: 767px) {
-    .plan-one .pricing-header {
-        text-align: center;
-    }
-    .plan-one .pricing-header i {
-        display: block;
-        float: none;
-        margin-bottom: 20px;
-    }
+@media ( max-width : 767px) {
+	.plan-one .pricing-header {
+		text-align: center;
+	}
+	.plan-one .pricing-header i {
+		display: block;
+		float: none;
+		margin-bottom: 20px;
+	}
 }
 </style>
 
 
 <script th:inline="javascript">
-
+	$(document).ready(function(){
+		var path = $(location).attr('pathname');
+		var category = path.substring(path.lastIndexOf('/') + 1);
+		
+		
+		$('#btngrp a[type="button"]').each(function(i,v){
+			if (v.id == category) {
+				$(this).attr('class','genric-btn info circle');
+			}
+		});
+	});
 </script>
 
 
 <body>
-<!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_1">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>전기차 모델 안내 페이지</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ bradcam_area  -->
-
-<section class="py-5" >
- <div class="container px-4 px-lg-5 mt-1" >
-   <ul class="nav nav-pills" style="justify-content: space-around;">
-	  <li>
-	    <a th:href="@{/hyundaicar}">현대</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/kiacar}">기아</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/genesis}">제네시스</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/sycar}">쌍용</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/samsungcar}">르노삼성</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/chevroletcar}">CHEVROLET</a>
-	  </li>	
-	  <li>
-	    <a th:href="@{/teslacar}">테슬라</a>
-	  </li>	
-	  <li>
-	    <a th:href="@{/benzcar}">벤츠</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/bmwcar}">BMW</a>
-	  </li>
-	  <li>
-	    <a th:href="@{/audicar}">Audi</a>
-	  </li>	
-	  <li>
-	    <a th:href="@{/minicar}">MINI</a>
-	  </li>	
-	  <li>
-	    <a th:href="@{/nissancar}">NISSAN</a>
-	  </li>		  
-	  <li>
-	    <a th:href="@{/volvocar}">VOLVO</a>
-	  </li>		  	  	  		  	    	  	  	  	  	  
-   </ul>
- </div>
-</section>
-<div class="container px-4 px-lg-5 mt-5" th:insert="${evicenter} ? ${evicenter} : evicenter">	
-	 	
-</div>
+	<!-- bradcam_area  -->
+	<div class="bradcam_area bradcam_bg_1">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="bradcam_text">
+						<h3>전기차 모델 안내 페이지</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/ bradcam_area  -->
+	
+	<section id="btngrp">
+		<div class="container box_1170 border-top-generic">
+			<div class="button-group-area mt-10">
+				<a type="button" class="genric-btn info-border circle" th:href="@{/hyundaicar}" id="hyundaicar">현대</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/kiacar}" id="kiacar">기아</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/genesis}" id="genesis">제네시스</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/sycar}" id="sycar">쌍용</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/samsungcar}" id="samsungcar">르노삼성</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/chevroletcar}" id="chevroletcar">CHEVROLET</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/teslacar}" id="teslacar">테슬라</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/benzcar}" id="benzcar">벤츠</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/bmwcar}" id="bmwcar">BMW</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/audicar}" id="audicar">Audi</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/minicar}" id="minicar">MINI</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/nissancar}" id="nissancar">NISSAN</a>
+				<a type="button" class="genric-btn info-border circle" th:href="@{/volvocar}" id="volvocar">VOLVO</a>
+			</div>
+		</div>
+	</section>
+	
+	<div class="container px-4 px-lg-5 mt-5" th:insert="${evicenter} ? ${evicenter} : evicenter"></div>
 </body>
+</html>

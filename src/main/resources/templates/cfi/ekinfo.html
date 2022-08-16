@@ -1,0 +1,82 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<style>
+body{
+    background:#f5f5f5;
+    margin-top:0px;
+}
+.card {
+    border: none;
+    -webkit-box-shadow: 1px 0 20px #F5F7FA;
+    box-shadow: 1px 0 20px #F5F7FA;
+    margin-bottom: 30px;
+    width: 800px;
+    height: auto;
+}
+.table th {
+    font-weight: 500;
+    color: #38a4ff;
+}
+.table thead {
+    background-color: #f3f2f7;
+}
+.table>tbody>tr>td, .table>tfoot>tr>td, .table>thead>tr>td {
+    padding: 14px 12px;
+    vertical-align: middle;
+}
+.table tr td {
+    color: #4cd3e3;
+}
+.thumb-sm {
+    height: 32px;
+    width: 32px;
+}
+
+.badge {
+    font-weight: 500;
+}
+.badge-soft-primary {
+    background-color: #00f559;
+    color: #415094;
+}
+</style>
+
+<body>
+<div class="container">
+	<h2>이노케이텍</h2>
+    <div class="row">
+        <div class="col-xl-20">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr class="align-self-center">
+                                    <th style="text-align:center;">충전속도</th>
+                                    <th style="text-align:center;">회원여부</th>
+                                    <th style="text-align:center;">공공주택</th>
+                                    <th style="text-align:center;">충전 시간대</th>
+                                    <th style="text-align:center;">계절</th>
+                                    <th style="text-align:center;">충전요금</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="ek:${eklist}">
+                                    <td style="text-align:center;" th:text="${ek.cs}"></td>
+                                    <td style="text-align:center;" th:text="${ek.memYN}"></td>
+                                    <td style="text-align:center;" th:text="${ek.apartYN}"></td>
+                                    <td style="text-align:center;" th:text="${ek.time}"></td>
+                                    <td style="text-align:center;" th:text="${ek.seasons}"></td>
+                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary" th:text="${ek.cf}"></span></td>
+                                </tr>                                                                                                                                                                                                                                                                                                            
+                            </tbody>
+                        </table>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
