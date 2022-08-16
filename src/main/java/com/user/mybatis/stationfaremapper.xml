@@ -20,4 +20,137 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		DELETE FROM stationfare WHERE cid=#{cid}
 	</delete>
+	
+	
+	<!-- 요금 상세 페이지 시작-->
+	<!-- 환경부 -->
+	<select id="meselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="환경부"
+	</select>	
+	
+	<!-- 에버온 -->
+	<select id="evselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="에버온"
+	</select>	
+	
+	<!-- 차지비 -->
+	<select id="piselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="차지비"
+	</select>
+	
+	<!-- 에스트래픽 -->
+	<select id="stselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="에스트래픽"
+	</select>
+	
+	<!-- 대영채비 -->
+	<select id="cvselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="대영채비"
+	</select>
+	
+	<!-- 해피차저 -->
+	<select id="heselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="해피차저"
+	</select>	
+	
+	<!-- 이카플러그 -->
+	<select id="epselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="이카플러그"
+	</select>
+
+	<!-- 지커넥트 -->
+	<select id="gnselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="지커넥트"
+	</select>
+	
+	<!-- 현대자동차 -->
+	<select id="hdselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="현대자동차"
+	</select>
+	
+	<!-- 스타코프 -->
+	<select id="sfselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="스타코프"
+	</select>
+	
+	<!-- 한국전기차인프라기술 -->
+	<select id="keselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="한국전기차인프라기술"
+	</select>				
+
+	<!-- GS칼텍스 -->
+	<select id="gsselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="GS칼텍스"
+	</select>
+	
+	<!-- SK에너지 -->
+	<select id="skselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="SK에너지"
+	</select>	
+
+	<!-- 보타리에너지 -->
+	<select id="btselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="보타리에너지"
+	</select>	
+
+	<!-- 제주전기자동차서비스 -->
+	<select id="jeselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="제주전기자동차서비스"
+	</select>	
+
+	<!-- 한국전력 -->
+	<select id="kpselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="한국전력"
+	</select>
+	
+	<!-- 타디스테크놀로지 -->
+	<select id="tdselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="타디스테크놀로지"
+	</select>
+	
+	<!-- 현대오일뱅크 -->
+	<select id="obselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="현대오일뱅크"
+	</select>		
+
+	<!-- 클린일렉스 -->
+	<select id="klselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="클린일렉스"
+	</select>
+	
+	<!-- LH -->
+	<select id="lhselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="LG헬로비전"
+	</select>	
+	
+	<!-- 휴맥스이브이 -->
+	<select id="hmselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="휴맥스이브이"
+	</select>
+	
+	<!-- 삼성EVC -->
+	<select id="ssselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="삼성EVC"
+	</select>
+	
+	<!-- 씨어스 -->
+	<select id="cuselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="씨어스"
+	</select>
+	
+	<!-- 플러그링크 -->
+	<select id="plselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="플러그링크"
+	</select>				
+
+	<!-- 이노케이텍 -->
+	<select id="ekselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="이노케이텍"
+	</select>
+	
+	<!-- 이지차저 -->
+	<select id="ecselect" parameterType="String" resultType="stationfareVO">
+		SELECT cs, memYN, apartYN, time, seasons, cf FROM stationfare WHERE bnm="이지차저"
+	</select>	
+		
 </mapper>

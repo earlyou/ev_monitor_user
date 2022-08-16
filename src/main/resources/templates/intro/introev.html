@@ -1,120 +1,81 @@
 <meta charset="utf-8">
 <html class="no-js" xmlns:th="http://www.thymeleaf.org">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
 
 <style>
 body{
-    background:#f5f5f5;
+    background:#f7f7f7;
     margin-top:0px;
+   }
 
+.events-date {
+    text-align: center;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    background-color: rgba(25, 47, 89, 0.9);
+    color: #fff;
+    padding: 12px 20px 8px 20px;
+    text-transform: uppercase
+}
+
+.event-time li {
+    display: inline-block;
+    margin-right: 20px
+}
+
+.event-time li:last-child {
+    margin-right: 0
+}
+
+.event-block {
+    box-shadow: 0px 0px 16px 0px rgba(187, 187, 187, 0.48)
+}
+
+@media screen and (max-width: 1199px) {
+    .event-date {
+        padding: 10px 18px 6px 18px
     }
-/*------- portfolio -------*/
-.project {
-  margin: 0px 0;
 }
 
-.no-gutter .project {
-  margin: 0 !important;
-  padding: 0 !important;
+@media screen and (max-width: 575px) {
+    .event-date {
+        padding: 8px 15px 4px 15px
+    }
+    .events-date {
+        padding: 10px 15px 6px 15px
+    }
 }
 
-.has-spacer {
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 30px;
+.position-relative {
+    position: relative !important;
 }
 
-.has-spacer-extra-space {
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-bottom: 30px;
+.margin-40px-bottom {
+    margin-bottom: 40px;
+}
+.padding-60px-lr {
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
-.has-side-spacer {
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-.project-title {
-  font-size: 1.25rem;
-}
-
-.project-skill {
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.06rem;
-}
-
-.project-info-box {
-  margin: 15px 0;
-  background-color: #fff;
-  padding: 30px 40px;
-  border-radius: 5px;
-  width: 350px;
-}
-
-.project-info-box p {
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #d5dadb;
-}
-
-.project-info-box p:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
-}
-img {
-    width: 100%;
-    max-width: 100%;
-    height: 500px;
-    -webkit-backface-visibility: hidden;
-}
-.rounded {
-    border-radius: 5px !important;
-}
-
-.mr-5 {
-    margin-right: 5px !important;
-}
-.mb-0 {
-    margin-bottom: 0 !important;
-}
-
-.project-info-box p {
+.margin-15px-bottom {
     margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #d5dadb;
 }
-p {
-    font-family: "Barlow", sans-serif !important;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #686c6d;
-    letter-spacing: 0.03rem;
+.font-weight-500 {
+    font-weight: 500;
+}
+.font-size22 {
+    font-size: 22px;
+}
+.text-theme-color {
+    color: #192f59;
+}
+.margin-10px-bottom {
     margin-bottom: 10px;
 }
-b, strong {
-    font-weight: 700 !important;
-}
-
-.border-secondary {
-    border-color: #d5dadb !important;
-}
-.opc-25 {
-    opacity: 0.25 !important;
-}
-.mb-30 {
-    margin-bottom: 30px !important;
-}
-.mt-30 {
-    margin-top: 30px !important;
-}
-.spacer-line-full-width, .spacer-line-fw {
-    width: 100%;
-    line-height: 0;
-    border-bottom: 2px solid #f7f7f7;
+.margin-10px-right {
+    margin-right: 10px;
 }
 </style>
 
@@ -122,43 +83,45 @@ b, strong {
 <body>
 <div class="container">
 <h1>전기차 보급목적(환경적)</h1>
-    <div class="row list-project">
-        <div class="col-md-7">
-            <img src="images/intropage/evcar_06.jpg" class="rounded tablet-top">
+    <!-- start event block -->
+    <div class="row align-items-center event-block no-gutters margin-40px-bottom">
+        <div class="col-lg-5 col-sm-12">
+            <div class="position-relative">
+                <img src="images/intropage/evcar_06.jpg" style="height: 400px; width: 600px;">
+            </div>
         </div>
-        <!-- / column -->
-        <div class="col-md-5">
-            <div class="project-info-box mt-1">
-                <h5>자동차로 인한 대기오염 해결</h5>
-                <p>
-				1. 수도권에서 발생하는 미세먼지의 30%이상이 경유차 등 <br> 자동차에서 배출되는 오염물질로서, 자동차로  인한 대기오염이 심각해지고 있습니다. <br>
-                2. 또한, 아파트 주변도로, 지하주차장 등 국민 생활에 밀접한 <br>곳에서 발생하는 자동차 배출가스는 인체 위해도가 매우 높아 '12년에 국제암연구소에서 1군 발암물질로 지정하기도 하였습니다. <br>
+        <div class="col-lg-7 col-sm-12">
+            <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
+                <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500">자동차로 인한 대기오염 해결</h5>
+                   <p>
+				1. 수도권에서 발생하는 미세먼지의 30%이상이 경유차 등 자동차에서 배출되는 오염물질로서, 자동차로 인한 <br>대기오염이 심각해지고 있습니다. <br>
+                2. 또한, 아파트 주변도로, 지하주차장 등 국민 생활에 <br>밀접한 곳에서 발생하는 자동차 배출가스는 인체 <br>위해도가 매우 높아 '12년에 국제암연구소에서 1군 <br>발암물질로 지정하기도 하였습니다. <br>
                 3. 내연기관차를 친환경차인 전기차로 대체해 나갈 경우 자동차로 인한 대기오염 문제를 획기적으로 해결할 수 있습니다. <br>
-                4. 자동차에서 배출되는 유해물질은 일산화탄소(CO), 탄화수소(HC), <br> 질소산화물(NOx), 미세먼지(PM)<br>등이 있습니다. <br>
-				</p>
+                4. 자동차에서 배출되는 유해물질은 일산화탄소(CO), 탄화수소(HC), 질소산화물(NOx), 미세먼지(PM)<br>등이 있습니다. <br>
+                 </p>
             </div>
         </div>
-        <!-- / column -->
     </div>
-    <!-- / row list-project -->
+    <!-- end event block -->
 
-    <div class="spacer-line-fw border-secondary opc-25 mt-30 mb-30">&nbsp;</div>
-
-    <div class="row list-project">
-        <div class="col-md-5 tablet-top">
-            <div class="project-info-box mt-0">
-                <h5>자동차로 인한 기후변화</h5>
+    <!-- start event block -->
+    <div class="row align-items-center event-block no-gutters margin-40px-bottom">
+        <div class="col-lg-7 order-2 order-lg-1">
+            <div class="padding-60px-lr md-padding-50px-lr sm-padding-30px-all xs-padding-25px-all">
+                <h5 class="margin-15px-bottom md-margin-10px-bottom font-size22 md-font-size20 xs-font-size18 font-weight-500">자동차로 인한 기후변화</h5>
                 <p>
-				전기차 사용량이 증가하면 <br>내연기관차로 인해 발생되는 <br> 대기오염물질, 온실가스 등 배출량이 <br> 감소되며 전기차 
-                1대 보급으로 <br> 연간 CO2 2톤을 감축하는 <br> 효과를 가져옵니다.<br>
+				전기차 사용량이 증가하면 내연기관차로 인해 발생되는 <br> 대기오염물질, 온실가스 등 배출량이 감소되며 <br>전기차 
+                1대 보급으로 연간 CO2 2톤을 감축하는 <br> 효과를 가져옵니다.<br>
 				</p>
             </div>
-
         </div>
-
-        <div class="col-md-7">
-            <img src="images/intropage/evcar_03.jpg" alt="project-image" class="rounded">
+        <div class="col-lg-5 order-1 order-lg-2">
+            <div class="position-relative">
+                <img src="images/intropage/evcar_03.jpg" style="height: 400px; width: 600px;">
+            </div>
         </div>
     </div>
+    <!-- end event block -->
+
 </div>
 </body>

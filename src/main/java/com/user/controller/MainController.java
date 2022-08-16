@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.user.biz.BookMarkBiz;
 import com.user.biz.MailBiz;
 import com.user.biz.StationBiz;
+import com.user.biz.StationFareBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
 import com.user.vo.BookMarkVO;
+import com.user.vo.StationFareVO;
 import com.user.vo.StationVO;
 import com.user.vo.UsersVO;
 
@@ -277,18 +279,4 @@ public class MainController {
 		return "index";
 	}
 	
-	
-	@RequestMapping("/cfichargingfareinfo") // 충전 요금 안내 페이지
-	public String chargingfareinfo(Model m) {
-		m.addAttribute("center", "/cfi/chargingfareinfo");
-		m.addAttribute("chargingfarecenter", "/cfi/chargingfarecenter");
-		return "index";
-	}
-	
-	@RequestMapping("/meinfo") // (환경부)충전 요금 안내 페이지
-	public String meinfo(Model m) {
-		m.addAttribute("center", "/cfi/chargingfareinfo");
-		m.addAttribute("chargingfarecenter", "/cfi/meinfo");
-		return "index";
-	}
 }

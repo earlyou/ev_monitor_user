@@ -45,7 +45,7 @@ body{
 
 <body>
 <div class="container">
-	<h2>환경부</h2>
+	<h2>타디스테크놀로지</h2>
     <div class="row">
         <div class="col-xl-20">
             <div class="card">
@@ -63,13 +63,13 @@ body{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="me:${melist}">
-                                    <td style="text-align:center;" th:text="${me.cs}"></td>
-                                    <td style="text-align:center;" th:text="${me.memYN}"></td>
-                                    <td style="text-align:center;" th:text="${me.apartYN}"></td>
-                                    <td style="text-align:center;" th:text="${me.time}"></td>
-                                    <td style="text-align:center;" th:text="${me.seasons}"></td>
-                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary" th:text="${me.cf}"></span></td>
+                                <tr th:each="td:${tdlist}">
+                                    <td style="text-align:center;" th:text="${td.cs}"></td>
+                                    <td style="text-align:center;" th:text="${td.memYN}"></td>
+                                    <td style="text-align:center;" th:text="${td.apartYN}"></td>
+                                    <td style="text-align:center;" th:text="${td.time}"></td>
+                                    <td style="text-align:center;" th:text="${td.seasons}"></td>
+                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary" th:text="${td.cf}"></span></td>
                                 </tr>                                                                                                                                                                                                                                                                                                            
                             </tbody>
                         </table>

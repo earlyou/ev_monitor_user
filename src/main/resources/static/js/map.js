@@ -118,7 +118,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			}
 			
 			var loc = '정보 없음';
-			if (v.location != null) {
+			if (v.location != 'null') {
 				loc = v.location;
 			}else {
 				loc = '정보 없음';

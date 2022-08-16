@@ -63,30 +63,14 @@ body{
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td style="text-align:center;">완속</td>
-                                    <td style="text-align:center;">회원</td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary">292.9원</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center;">급속</td>
-                                    <td style="text-align:center;">회원</td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary">292.9원</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align:center;">초급속</td>
-                                    <td style="text-align:center;">회원</td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"></td>
-                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary">309.1원</span></td>
-                                </tr>                                                                
+                                <tr th:each="me:${melist}">
+                                    <td style="text-align:center;" th:text="${me.cs}"></td>
+                                    <td style="text-align:center;" th:text="${me.memYN}"></td>
+                                    <td style="text-align:center;" th:text="${me.apartYN}"></td>
+                                    <td style="text-align:center;" th:text="${me.time}"></td>
+                                    <td style="text-align:center;" th:text="${me.seasons}"></td>
+                                    <td style="text-align:center;"><span class="badge badge-boxed badge-soft-primary" th:text="${me.cf}"></span></td>
+                                </tr>                                                                                                                                                                                                                                                                                                            
                             </tbody>
                         </table>
                     </div>

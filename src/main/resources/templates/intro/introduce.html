@@ -33,7 +33,6 @@ a.list-group-item, .list-group-item-action {
     padding-right: 3.3rem;
 }
 .list-group-item {
-    border-color: #e1e7ec;
     background-color: #fff;
     text-decoration: none;
 }
@@ -43,7 +42,7 @@ a.list-group-item, .list-group-item-action {
     padding: .75rem 1.25rem;
     margin-bottom: -1px;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.125);
+ 
 }
 
 .shopping-cart,
@@ -91,7 +90,6 @@ a.list-group-item, .list-group-item-action {
 .wishlist-table .remove-from-cart,
 .order-table .remove-from-cart {
     display: inline-block;
-    color: #ff5252;
     font-size: 18px;
     line-height: 1;
     text-decoration: none
@@ -201,7 +199,7 @@ a.list-group-item, .list-group-item-action {
             <nav class="list-group">
                 <a class="list-group-item" th:href="@{/introsummary}"><i class="fa fa-caret-square-o-right"></i>전기차 개요</a>
                 <a class="list-group-item" th:href="@{/introintroev}"><i class="fa fa-caret-square-o-right"></i>전기차 보급 목적(환경적)</a>
-                <a class="list-group-item" th:href="@{/introintroec}"><i class="fa fa-caret-square-o-right"></i>전기차 보급 목적(경제적)</a>
+                <a class="list-group-item" th:href="@{/introintroec}"><i class="fa fa-caret-square-o-right" aria-hidden="true"></i>전기차 보급 목적(경제적)</a>
                 <a class="list-group-item" th:href="@{/introintroindu}"><i class="fa fa-caret-square-o-right"></i>전기차 보급 목적(산업적)</a>
             </nav>
         </div>
