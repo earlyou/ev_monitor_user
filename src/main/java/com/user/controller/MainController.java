@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.user.biz.BookMarkBiz;
 import com.user.biz.MailBiz;
 import com.user.biz.StationBiz;
-import com.user.biz.StationFareBiz;
 import com.user.biz.UserAuthorityBiz;
 import com.user.biz.UsersBiz;
 import com.user.vo.BookMarkVO;
-import com.user.vo.StationFareVO;
 import com.user.vo.StationVO;
 import com.user.vo.UsersVO;
 

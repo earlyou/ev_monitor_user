@@ -18,7 +18,6 @@ public class Scheduler {
     @Scheduled(cron = "*/10 * * * * *")
     public void cronJobDailyUpdate() {
     	
-    	System.out.println("----------- Scheduler ------------");
     	Msg msg = new Msg();
     	Random r = new Random();
     	int data = r.nextInt(100);
