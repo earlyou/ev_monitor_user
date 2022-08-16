@@ -137,6 +137,10 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'        <div class="title">' + 
 			'           <div class="Nm">' + v.statNm + '</div>';
 			
+					content = content + 
+			'           <div class="modalbutton" style="margin-top: 7px;">' +
+			'           	<a href="#" class="icon alarm" onfocus="this.blur()" style="text-decoration:none;"><img src="images/alarm.png" width="20" height="20"></a>' +
+			'			</div>';
 			
 			var boo = false;
 			$.each(bookmark,function(i,b){
@@ -145,7 +149,6 @@ function mkmarker(station,chger,map,markers,stationId) {
 					return boo;
 				}
 			});
-			
 			
 			if(boo) {
 					content = content + 
@@ -401,6 +404,19 @@ function mkmarker(station,chger,map,markers,stationId) {
 		        	map.setDraggable(true);
 		        	map.setZoomable(true);
 		        });
+		        $('.alarm').on('click',function(e){
+		        	e.preventDefault();
+		        	if (session.loginmember == null) {
+						if(confirm('로그인 하시겠습니까?')){
+							$(location).attr('href','/evcsmonitor/login')
+						}
+					}else if(session.loginmember != null){
+						// form에 v.statid, uid val 입력
+						$('#statid').val(v.statId);
+						
+						$("#myModal").modal('show');
+					}
+			    });
 			    
 			    $('.bmark').on('click',function(e){
 					e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지

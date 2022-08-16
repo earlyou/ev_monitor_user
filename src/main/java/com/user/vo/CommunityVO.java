@@ -30,7 +30,8 @@ public class CommunityVO  {
 	// join용 필드
 	private String statNm;
 	private int usertypeid;
-	
+	private double lat;
+	private double lng;
   
 	// insert
 	public CommunityVO(String uid, String statid, String location, String title, String tf, String cimgname) {

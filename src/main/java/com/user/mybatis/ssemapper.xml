@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.user.mapper.SSEMapper">
+	
+	<insert id="insert" parameterType="SSEvo">
+		INSERT INTO SSE VALUES (#{id},#{uid},#{statid},#{alarmtime},#{notifyContent},#{notifyType})
+	</insert>
+	<update id="update" parameterType="SSEvo">
+		UPDATE SSE SET uid=#{uid},statid=#{statid},alarmtime=#{alarmtime},notifyContent=#{notifyContent},notifyType=#{notifyType} 
+		WHERE id=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM SSE WHERE id=#{id}
+	</delete>
+	<select id="select" parameterType="int" resultType="SSEvo">
+		SELECT * FROM SSE WHERE id=#{id}
+	</select>
+	<select id="selectall" resultType="SSEVO">
+		SELECT * FROM SSE
+	</select>
+	
+</mapper>

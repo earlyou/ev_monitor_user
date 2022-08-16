@@ -22,6 +22,8 @@ public interface UsersMapper {
 	public String selectchid(String name, String email) throws Exception;
 	public String selectchpwd(String name, String id, String email) throws Exception;
 	public String selectchpwdvalue(String name, String id, String email) throws Exception;	
+	
+	public UsersVO alarmbattery(String id) throws Exception;	
 }
 
 
