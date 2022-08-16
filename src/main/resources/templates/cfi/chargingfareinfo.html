@@ -33,7 +33,6 @@ a.list-group-item, .list-group-item-action {
     padding-right: 3.3rem;
 }
 .list-group-item {
-    border-color: #e1e7ec;
     background-color: #fff;
     text-decoration: none;
 }
@@ -43,9 +42,14 @@ a.list-group-item, .list-group-item-action {
     padding: .75rem 1.25rem;
     margin-bottom: -1px;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.125);
+ 
 }
 
+.shopping-cart,
+.wishlist-table,
+.order-table {
+    margin-bottom: 20px
+}
 
 .shopping-cart .table,
 .wishlist-table .table,
@@ -80,6 +84,15 @@ a.list-group-item, .list-group-item-action {
     padding-top: 17px;
     padding-bottom: 17px;
     border-width: 1px
+}
+
+.shopping-cart .remove-from-cart,
+.wishlist-table .remove-from-cart,
+.order-table .remove-from-cart {
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+    text-decoration: none
 }
 
 .shopping-cart .count-input,
@@ -160,13 +173,22 @@ a.list-group-item, .list-group-item-action {
     font-size: 1.1em;
     margin-bottom: 10px;
 }
-.nav{
- margin-bottom: 20px;
-}
 
 
 </style>
-
+<script>
+	$(document).ready(function(){
+		var path = $(location).attr('pathname');
+		var category = path.substring(path.lastIndexOf('/') + 1);
+		console.log(category);
+		
+		$('.list-group a').each(function(i,v){
+			if (v.id == category) {
+				$(this).attr('class','list-group-item genric-btn info');
+			}
+		});
+	});
+</script>
 <body>
 <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
@@ -174,7 +196,7 @@ a.list-group-item, .list-group-item-action {
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>충전 요금 안내 페이지</h3>
+                        <h3>충전 요금 안내</h3>
                     </div>
                 </div>
             </div>
@@ -184,40 +206,51 @@ a.list-group-item, .list-group-item-action {
 
 
 
-    <div class="row" style="margin-left: 200px; width: 2000px;">
+    <div class="row" style="margin-left: 10px; width: 1500px;">
         <div class="col-lg-3" style="margin-bottom:20px;">
-            <nav class="list-group nav nav-pills" style="width: 300px;">
-                <a class="list-group-item" th:href="@{/meinfo}"><i class="fa fa-caret-square-o-right"></i>환경부</a>
-                <a class="list-group-item" th:href="@{/evinfo}"><i class="fa fa-caret-square-o-right"></i>에버온</a>
-                <a class="list-group-item" th:href="@{/piinfo}"><i class="fa fa-caret-square-o-right"></i>차지비</a>
-                <a class="list-group-item" th:href="@{/stinfo}"><i class="fa fa-caret-square-o-right"></i>에스트래픽</a>
-                <a class="list-group-item" th:href="@{/cvinfo}"><i class="fa fa-caret-square-o-right"></i>대영채비</a>
-                <a class="list-group-item" th:href="@{/heinfo}"><i class="fa fa-caret-square-o-right"></i>해피차저</a>                
-                <a class="list-group-item" th:href="@{/epinfo}"><i class="fa fa-caret-square-o-right"></i>이카플러그</a>
-                <a class="list-group-item" th:href="@{/gninfo}"><i class="fa fa-caret-square-o-right"></i>지커넥트</a>
-                <a class="list-group-item" th:href="@{/hdinfo}"><i class="fa fa-caret-square-o-right"></i>현대자동차</a>   
-                <a class="list-group-item" th:href="@{/sfinfo}"><i class="fa fa-caret-square-o-right"></i>스타코프</a>
-                <a class="list-group-item" th:href="@{/keinfo}"><i class="fa fa-caret-square-o-right"></i>한국전기차인프라기술</a>  
-                <a class="list-group-item" th:href="@{/gsinfo}"><i class="fa fa-caret-square-o-right"></i>GS칼텍스</a>
-                <a class="list-group-item" th:href="@{/skinfo}"><i class="fa fa-caret-square-o-right"></i>SK에너지</a>
-                <a class="list-group-item" th:href="@{/btinfo}"><i class="fa fa-caret-square-o-right"></i>보타리에너지</a>
-                <a class="list-group-item" th:href="@{/jeinfo}"><i class="fa fa-caret-square-o-right"></i>제주전기자동차서비스</a>
-                <a class="list-group-item" th:href="@{/kpinfo}"><i class="fa fa-caret-square-o-right"></i>한국전력</a>
-                <a class="list-group-item" th:href="@{/tdinfo}"><i class="fa fa-caret-square-o-right"></i>타디스테크놀로지</a>
-                <a class="list-group-item" th:href="@{/obinfo}"><i class="fa fa-caret-square-o-right"></i>현대오일뱅크</a>                
-                <a class="list-group-item" th:href="@{/klinfo}"><i class="fa fa-caret-square-o-right"></i>클린일렉스</a>
-                <a class="list-group-item" th:href="@{/lhinfo}"><i class="fa fa-caret-square-o-right"></i>LG헬로비전</a>                
-                <a class="list-group-item" th:href="@{/hminfo}"><i class="fa fa-caret-square-o-right"></i>휴맥스이브이</a>
-                <a class="list-group-item" th:href="@{/ssinfo}"><i class="fa fa-caret-square-o-right"></i>삼성EVC</a>
-                <a class="list-group-item" th:href="@{/cuinfo}"><i class="fa fa-caret-square-o-right"></i>씨어스</a>
-                <a class="list-group-item" th:href="@{/plinfo}"><i class="fa fa-caret-square-o-right"></i>플러그링크</a>   
-                <a class="list-group-item" th:href="@{/ekinfo}"><i class="fa fa-caret-square-o-right"></i>이노케이텍</a>
-                <a class="list-group-item" th:href="@{/ecinfo}"><i class="fa fa-caret-square-o-right"></i>이지차저</a>                                                                                                      
+            <nav class="list-group">
+                <a class="list-group-item genric-btn info-border" th:href="@{/meinfo}" id="meinfo"><i class="fa fa-caret-square-o-right"></i>환경부</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/evinfo}" id="evinfo"><i class="fa fa-caret-square-o-right"></i>에버온</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/piinfo}" id="piinfo"><i class="fa fa-caret-square-o-right"></i>차지비</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/stinfo}" id="stinfo"><i class="fa fa-caret-square-o-right"></i>에스트래픽</a>          
+            	<a class="list-group-item genric-btn info-border" th:href="@{/cvinfo}" id="cvinfo"><i class="fa fa-caret-square-o-right"></i>대영채비</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/heinfo}" id="heinfo"><i class="fa fa-caret-square-o-right"></i>해피차저</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/epinfo}" id="epinfo"><i class="fa fa-caret-square-o-right"></i>이카플러그</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/gninfo}" id="gninfo"><i class="fa fa-caret-square-o-right"></i>지커넥트</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/hdinfo}" id="hdinfo"><i class="fa fa-caret-square-o-right"></i>현대자동차</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/sfinfo}" id="sfinfo"><i class="fa fa-caret-square-o-right"></i>스타코프</a>
+       
+                <a class="list-group-item genric-btn info-border" th:href="@{/keinfo}" id="keinfo"><i class="fa fa-caret-square-o-right"></i>한국전기차인프라기술</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/gsinfo}" id="gsinfo"><i class="fa fa-caret-square-o-right"></i>GS칼텍스</a>
+                
+                <a class="list-group-item genric-btn info-border" th:href="@{/skinfo}" id="skinfo"><i class="fa fa-caret-square-o-right"></i>SK에너지</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/btinfo}" id="btinfo"><i class="fa fa-caret-square-o-right"></i>보타리에너지</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/jeinfo}" id="jeinfo"><i class="fa fa-caret-square-o-right"></i>제주전기자동차서비스</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/kpinfo}" id="kpinfo"><i class="fa fa-caret-square-o-right"></i>한국전력</a>
+                
+                <a class="list-group-item genric-btn info-border" th:href="@{/tdinfo}" id="tdinfo"><i class="fa fa-caret-square-o-right"></i>타디스테크놀로지</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/obinfo}" id="obinfo"><i class="fa fa-caret-square-o-right"></i>현대오일뱅크</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/klinfo}" id="klinfo"><i class="fa fa-caret-square-o-right"></i>클린일렉스</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/lhinfo}" id="lhinfo"><i class="fa fa-caret-square-o-right"></i>LG헬로비전</a>
+                
+                <a class="list-group-item genric-btn info-border" th:href="@{/hminfo}" id="hminfo"><i class="fa fa-caret-square-o-right"></i>휴맥스이브이</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/ssinfo}" id="ssinfo"><i class="fa fa-caret-square-o-right"></i>삼성EVC</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/cuinfo}" id="cuinfo"><i class="fa fa-caret-square-o-right"></i>씨어스</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/plinfo}" id="plinfo"><i class="fa fa-caret-square-o-right"></i>플러그링크</a>
+                
+                <a class="list-group-item genric-btn info-border" th:href="@{/ekinfo}" id="ekinfo"><i class="fa fa-caret-square-o-right"></i>이노케이텍</a>
+                <a class="list-group-item genric-btn info-border" th:href="@{/ecinfo}" id="ecinfo"><i class="fa fa-caret-square-o-right"></i>이지차저</a>
             </nav>
         </div>
-        <div class="col-lg-8" style="margin-left: -270px; width: 1600px;">
- 			<div class="container px-4 px-lg-5 mt-5" style="width:1400px;" th:insert="${chargingfarecenter} ? ${chargingfarecenter} : chargingfarecenter"></div>
-       </div>
+        <div class="col-lg-8">
+            <div class="padding-top-2x mt-2 hidden-lg-up"></div>
+            <!-- Wishlist Table-->
+            <div class="table-responsive wishlist-table margin-bottom-none">
+               <div class="container px-4 px-lg-5 mt-5" th:insert="${chargingfarecenter} ? ${chargingfarecenter} : chargingfarecenter">	
+            </div>
+
+        </div>
+    </div>
 </div>                                
 
 
