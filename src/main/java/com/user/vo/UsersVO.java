@@ -28,6 +28,7 @@ public class UsersVO {
 	
 	private String uauserstypename;
 	private String cmmname;
+	private double batterysize;
 
 	public UsersVO(String id, String pwd, String name, String nickname, String phonenum, String email, String clp,
 			int usertypeid, Date regdate, int carmodelid) {
