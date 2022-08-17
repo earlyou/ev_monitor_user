@@ -21,7 +21,7 @@ class PageMakerTest {
 		
 		int total = 0;
 		try {
-			total = biz.gettotal();
+			total = biz.gettotal(v);
 			pageMake = new PageMakerVO(v, total);
 		} catch (Exception e) {
 			e.printStackTrace();
