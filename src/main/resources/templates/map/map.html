@@ -37,17 +37,16 @@ $(function(){
     		data:{'uid':session.loginmember.id,'statid':statid,'remainfuel':remainfuel,'alarm':"Y"},
     		success:function(data){
     			alert("알람이 설정되었습니다.");
-    			sessionStorage.setItem("alarm", "Y");
     			
     			const id = session.loginmember.id;
     		    console.log(id);
 
     		    const eventSource = new EventSource('/evcsmonitor/subscribe/' + id);
 				
-    		    eventSource.onerror = function(event) { 
+    		    /* eventSource.onerror = function(event) { 
     		    	eventSource.close();
     		    	console.log("Event Source Closed");
-   		       };
+   		       }; */
     		    
     		    eventSource.addEventListener("sse", function (event) {
     		        console.log(event.data);
@@ -60,6 +59,7 @@ $(function(){
     		                
     		                const notification = new Notification('EVMonitor', {
     		                	requireInteraction : true,
+    		                	icon:'../../evcsmonitor/images/alarm.png',
     		                	body: data.notifyContent
     		                });
     		                

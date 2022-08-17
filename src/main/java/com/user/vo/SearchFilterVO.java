@@ -7,8 +7,7 @@ import lombok.ToString;
 @ToString
 public class SearchFilterVO {
 	private String searchtype; // 어떤 타입 검색을 했는지 전송하는 필드 (T:제목+내용 / L:위치)
-	private String titlentf; 
-	private String location;
+	private String searchkeyword; 
 
 	private int page;
 	private int perPageNum;
