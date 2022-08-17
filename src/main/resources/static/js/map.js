@@ -135,9 +135,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 			'<div class="wrap" style="white-space: normal;">' + 
 			'    <div class="info">' + 
 			'        <div class="title">' + 
-			'           <div class="Nm">' + v.statNm + '</div>';
-			
-					content = content + 
+			'           <div class="Nm">' + v.statNm + '</div>'+
 			'           <div class="modalbutton" style="margin-top: 7px;">' +
 			'           	<a href="#" class="icon alarm" onfocus="this.blur()" style="text-decoration:none;"><img src="images/alarm.png" width="20" height="20"></a>' +
 			'			</div>';
@@ -473,6 +471,19 @@ function mkmarker(station,chger,map,markers,stationId) {
 		        	map.setDraggable(true);
 		        	map.setZoomable(true);
 		        });
+			    $('.alarm').on('click',function(e){
+		        	e.preventDefault();
+		        	if (session.loginmember == null) {
+						if(confirm('로그인 하시겠습니까?')){
+							$(location).attr('href','/evcsmonitor/login')
+						}
+					}else if(session.loginmember != null){
+						// form에 v.statid, uid val 입력
+						$('#statid').val(v.statId);
+						
+						$("#myModal").modal('show');
+					}
+			    });
 			    
 			    $('.bmark').on('click',function(e){
 					e.preventDefault();		// 북마크 버튼 누를 때 스크롤이 움직이는 현상 방지
@@ -515,6 +526,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 		    marker.setVisible(false);
 	    }
 	});
+	// 지도 확대레벨이 5이하일 때, 보이는 지도 범위의 위도 경도를 바탕으로 마커 표시
 	if (map.getLevel() <= 5) {
 		var bounds = map.getBounds();
 		$.each(markers, function(i,v){
@@ -546,7 +558,7 @@ function ready(lat,lng,stationId,map){
 		map.setLevel(4);
 	}
 	
-	// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	// 지도 확대 축소를 제어할 수 있는  줌 컨트롤 생성
 	var zoomControl = new kakao.maps.ZoomControl();
 	map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	
