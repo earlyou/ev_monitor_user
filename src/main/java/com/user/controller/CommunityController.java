@@ -44,7 +44,7 @@ public class CommunityController {
 			list = cbiz.getalladminlist();
 			list2 = cbiz.selectfilteruserlist(v);
 			
-			total = cbiz.gettotal();
+			total = cbiz.gettotal(v);
 			pageMake = new PageMakerVO(v, total);
 			System.out.println(pageMake);
 			

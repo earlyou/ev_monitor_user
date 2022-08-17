@@ -79,25 +79,6 @@ height: 30px;
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>My Profile</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/ bradcam_area  -->
-
-
-<!-- DataTales Example -->
-<div class="card shadow mb-4">
-
-    <div class="card-body">
-        <div class="table-responsive">
-          <div th:each="m:${mlist}">
-              <div th:if="${m.id}==${session.loginmember.id}">
-                  <div><a th:href="@{/mypage/upcheckpwd}">마이페이지</a></div>
-              </div>
-           </div> 
                         <h3>마이페이지</h3>
                     </div>
                 </div>
@@ -105,7 +86,6 @@ height: 30px;
         </div>
     </div>
     <!--/ bradcam_area  -->
-
 
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
