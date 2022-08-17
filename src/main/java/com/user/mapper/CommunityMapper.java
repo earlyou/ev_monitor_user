@@ -26,6 +26,6 @@ public interface CommunityMapper {
 	public List <CommunityVO> selectdetailother(String obj) throws Exception;
 	public List <CommunityVO> selectfilteruserlist(SearchFilterVO obj) throws Exception;
 	
-	public int gettotal() throws Exception;
+	public int gettotal(SearchFilterVO obj) throws Exception;
 	
 }

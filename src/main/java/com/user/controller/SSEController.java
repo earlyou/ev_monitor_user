@@ -3,6 +3,8 @@ package com.user.controller;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +38,9 @@ public class SSEController {
 	EmitterBiz ebiz;
 	
 	@RequestMapping("setalarm") 
-	public void deletecombtn(String uid, String statid, int remainfuel, Model m) {
+	public void deletecombtn(String uid, String statid, int remainfuel, String alarm, HttpSession session, Model m) {
+		session.setAttribute("alarm", alarm);
+		
 		// 각종 계산
 		UsersVO user = null;
 		StationVO station = null;
