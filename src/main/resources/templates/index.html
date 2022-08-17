@@ -415,18 +415,37 @@ $(document).ready(function() {
 		disconnect();
 	});
 	$("#sendme").click(function() {
-		sendMe();
-		scrollDown();
+		// 공백 전송 막기
+		if ($('#metext').val().replace(/\s| /gi,'').length == 0) {
+			return;
+		}else {
+			sendMe();
+			scrollDown();
+		}
+		$('#metext').focus();
+	});
+	$('#metext').keydown(function(e){
+		// '엔터키 눌렀을 때'
+		if (e.keyCode == 13) {
+			// 공백 전송 막기
+			if ($('#metext').val().replace(/\s| /gi,'').length == 0) {
+				return;
+			}else {
+				sendMe();
+				scrollDown();
+			}
+			$('#metext').focus();
+		}
 	});
 	
-	var alarm = [[${session.alarm}]];
+	var alarm = /*[[${session.alarm}]]*/null;
 	console.log(alarm);
 
 		
 		if(alarm!=null){
 			console.log("sse start");
 			
-			var id = [[${session.loginmember?.id}]];
+			var id = /*[[${session.loginmember?.id}]]*/'';
 			console.log(id);
 		
 		    const eventSource = new EventSource('/evcsmonitor/subscribe/' + id);
