@@ -82,7 +82,7 @@ $(document).ready(function(){
                                                 <div class="location">
                                                     <i class="fa fa-user-o"></i><span th:text="' '+${o.uid}"> Uid</span>
                                                 </div>
-                                                <div class="location">
+                                                <div class="location" th:if="${o.location}!=null">
                                                     <i class="fa fa-map-marker"></i><span th:text="' '+${o.location}+' '+${o.statNm}"> California, USA</span>
                                                 </div>
                                             </div>
@@ -98,12 +98,6 @@ $(document).ready(function(){
                         </div>
                         <div class="row">
                             <div class="col-lg-12">
-                            	<!-- <form id="moveForm" method="get">
-                            		<input type="hidden" name="page" th:value="${pageMaker.v.page}">
-        							<input type="hidden" name="perPageNum" th:value="${pageMaker.v.perPageNum}">  
-        							<input type="hidden" name="searchtype" th:value="${pageMaker.v.searchtype}">
-        							<input type="hidden" name="searchkeyword" th:value="${pageMaker.v.searchkeyword}">
-                            	</form> -->
                                 <div class="pagination_wrap">
                                     <ul>
                                         <li th:if="${pageMaker.prev}=='true'"><a th:href="@{cm(page=${pageMaker.startPage-1},perPageNum=10)}"> <i class="ti-angle-left"></i> </a></li>
