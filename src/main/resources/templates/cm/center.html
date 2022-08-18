@@ -16,11 +16,13 @@
 <script>
 $(document).ready(function(){
 	$('#searchbutton').click(function(){
-		$('#searchform').attr({
-            'method':'POST',
-            'action':'evcsmonitor/cm'
-        });
-        $('#searchform').submit();
+		var type=$('#searchtype option:selected').val();
+		console.log(type);
+		var keyword=$('#searchkeyword').val();
+		console.log(keyword);
+		$('#searchbutton').attr({
+	    	'href' : 'cm?page=1&perPageNum=10&searchtype='+type+'&searchkeyword='+keyword
+	    });
 	});
 });
 
@@ -97,8 +99,10 @@ $(document).ready(function(){
                         <div class="row">
                             <div class="col-lg-12">
                             	<!-- <form id="moveForm" method="get">
-                            		<input type="hidden" name="page" value="${pageMaker.v.page}">
-        							<input type="hidden" name="perPageNum" value="${pageMaker.v.perPageNum}">  
+                            		<input type="hidden" name="page" th:value="${pageMaker.v.page}">
+        							<input type="hidden" name="perPageNum" th:value="${pageMaker.v.perPageNum}">  
+        							<input type="hidden" name="searchtype" th:value="${pageMaker.v.searchtype}">
+        							<input type="hidden" name="searchkeyword" th:value="${pageMaker.v.searchkeyword}">
                             	</form> -->
                                 <div class="pagination_wrap">
                                     <ul>
@@ -127,6 +131,7 @@ $(document).ready(function(){
 			                                	<div class="col-md-2">
 			                                        <div class="single_field">
 			                                            <select class="wide" id="searchtype">
+			                                            	<option value="" selected>== 선택 ==</option>
 			                                                <option value="T">제목+내용</option>
 			                                                <option value="L">위치</option>
 			                                            </select>
@@ -139,7 +144,7 @@ $(document).ready(function(){
 			                                    </div>
 		                                    <div class="col-md-2">
 			                                    <div class="reset_btn">
-						                            <button class="boxed-btn3" id="searchbutton" style="height:55px;">검색</button>
+						                            <a href="#" class="boxed-btn3" id="searchbutton" style="height:55px;">검색</a>
 						                        </div>
 					                        </div>
 		                                    </div>

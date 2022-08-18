@@ -49,7 +49,21 @@ public class SearchFilterVO {
 		this.perPageNum = perPageNum;
 	}
 
+	public String getSearchtype() {
+		return searchtype;
+	}
 
+	public void setSearchtype(String searchtype) {
+		this.searchtype = searchtype;
+	}
+
+	public String getSearchkeyword() {
+		return searchkeyword;
+	}
+
+	public void setSearchkeyword(String searchkeyword) {
+		this.searchkeyword = searchkeyword;
+	}
 
 
 
