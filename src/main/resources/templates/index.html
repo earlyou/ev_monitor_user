@@ -408,7 +408,8 @@ function sendMe() {
 }
 
 $(document).ready(function() {
-	$("#connect").click(function() {
+	$("#connect").click(function(e) {
+    	e.preventDefault();		// 메인페이지 스크롤 움직임 막음
 		connect();
 	});
 	$("#disconnect").click(function() {
@@ -426,7 +427,7 @@ $(document).ready(function() {
 		$('#metext').focus();
 	});
 	$('#metext').keydown(function(e){
-		// '엔터키 눌렀을 때'
+		// ''
 		if (e.keyCode == 13) {
 			// 공백 전송 막기
 			if ($('#metext').val().replace(/\s| /gi,'').length == 0) {
