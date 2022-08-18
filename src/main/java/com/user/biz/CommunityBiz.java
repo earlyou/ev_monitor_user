@@ -69,7 +69,7 @@ public class CommunityBiz implements Biz<Integer, CommunityVO> {
 		return commudao.selectfilteruserlist(obj);
 	}
 	
-	public int gettotal() throws Exception{
-		return commudao.gettotal();
+	public int gettotal(SearchFilterVO obj) throws Exception{
+		return commudao.gettotal(obj);
 	}
 }

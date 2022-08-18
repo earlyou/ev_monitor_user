@@ -10,8 +10,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM community c INNER JOIN users u ON c.uid=u.id
 		LEFT JOIN station s ON c.statid=s.statId
 		WHERE u.usertypeid=100
-		<!-- <include refid="filter">
-		</include> -->
+		<if test="searchkeyword != null">
+			<choose> 
+			    <when test="searchtype == 'T'.toString()"> 
+			    	AND CONCAT(title, tf) REGEXP #{searchkeyword} 
+			    </when> 
+			    <when test="searchtype == 'L'.toString()"> 
+			    	AND CONCAT(statNm, addr) REGEXP #{searchkeyword}
+			    </when> 
+	  		</choose>
+		</if>
 		ORDER BY c.pid DESC
 		limit #{dataStart}, #{perPageNum}
 	</select>
@@ -21,8 +29,16 @@ PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 		FROM community c INNER JOIN users u ON c.uid=u.id
 		LEFT JOIN station s ON c.statid=s.statId
 		WHERE u.usertypeid=100
-		<!-- <include refid="filter">
-		</include> -->
+		<if test="searchkeyword != null">
+			<choose> 
+			    <when test="searchtype == 'T'.toString()"> 
+			    	AND CONCAT(title, tf) REGEXP #{searchkeyword} 
+			    </when> 
+			    <when test="searchtype == 'L'.toString()"> 
+			    	AND CONCAT(statNm, addr) REGEXP #{searchkeyword}
+			    </when> 
+	  		</choose>
+		</if>
     </select>
 	
 	<!-- 글목록 공지 select -->
