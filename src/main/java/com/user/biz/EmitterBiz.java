@@ -1,6 +1,5 @@
 package com.user.biz;
 
-import java.io.IOException;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,9 +68,10 @@ public class EmitterBiz {
                                    .name("sse")
                                    .data(data));
            
-        } catch (IOException exception) {
+        } catch (/*IO*/Exception exception) {
             emitterRepository.deleteById(id);
-            throw new RuntimeException("연결 오류!");
+            exception.printStackTrace();
+//            throw new RuntimeException("연결 오류!");
         }
     }
 	
