@@ -431,7 +431,7 @@ function mkmarker(station,chger,map,markers,stationId) {
 								data: {'statId':v.statId,'uid':session.loginmember.id},
 								success:function(){
 									console.log('bookmark added');
-									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" onclick="javascript:movemap('+v.statId+')">'+v.statNm+'</a></li>');
+									$('#asdf').append('<li id="'+v.statId+v.statId+'"><a style="font-size: 15px;" href="/evcsmonitor/map?statid='+v.statId+'">'+v.statNm+'</a></li>');
 									$("#asdf").animate({ scrollTop: $('#asdf').prop("scrollHeight")}, 1000);
 								}
 							});
