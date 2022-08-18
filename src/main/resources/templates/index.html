@@ -417,6 +417,7 @@ $(document).ready(function() {
 	$("#sendme").click(function() {
 		// 공백 전송 막기
 		if ($('#metext').val().replace(/\s| /gi,'').length == 0) {
+			alert('공백 상태로는 전송 불가능합니다.')
 			return;
 		}else {
 			sendMe();
@@ -429,6 +430,7 @@ $(document).ready(function() {
 		if (e.keyCode == 13) {
 			// 공백 전송 막기
 			if ($('#metext').val().replace(/\s| /gi,'').length == 0) {
+				alert('공백 상태로는 전송 불가능합니다.')
 				return;
 			}else {
 				sendMe();
@@ -555,7 +557,7 @@ $(function() {
                     <div class="col-xl-4 col-md-6 col-lg-3">
                         <div class="footer_widget wow fadeInUp" data-wow-duration="1.1s" data-wow-delay=".4s">
                             <h3 class="footer_title">
-                                Representative
+                                Web developers
                             </h3>
                             <ul>
                                 <li>팀장: 한규정</li>
